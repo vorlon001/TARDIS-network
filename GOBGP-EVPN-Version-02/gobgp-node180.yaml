@@ -1,0 +1,26 @@
+global:
+  config:
+    as: 65000
+    router-id: 192.168.200.180
+    port: 1790
+    local-address-list:
+      - 192.168.200.180
+neighbors:
+  - config:
+      neighbor-address: 192.168.200.182
+      peer-as: 65000
+    afi-safis:
+      - config:
+          afi-safi-name: l2vpn-evpn
+      - config:
+          afi-safi-name: ipv4-unicast
+    graceful-restart:
+      config:
+        enabled: true
+        notification-enabled: true
+        long-lived-enabled: true
+        restart-time: 20
+    ebgp-multihop:
+      config:
+        enabled: true
+        multihop-ttl: 14
