@@ -1,0 +1,62 @@
+    1  ./000-init-vm.sh
+    2  mc
+    3  ./020-install-frr-node150.sh
+    4  ./021-configure-frr-node150.sh
+    5  ./022-diag-frr.sh
+    6  ./021-configure-frr-node150.sh
+    7  ./022-diag-frr.sh
+    8  sudo ip link add vbdif10 type bridge
+    9  sudo ip link add vbdif20 type bridge
+   10  sudo ip link set vbdif10 up
+   11  sudo ip link set vbdif20 up
+   12  sudo ip link add vxlan20 type vxlan id 20 local 192.168.200.170 dstport 4789 nolearning
+   13  sudo ip link add vxlan10 type vxlan id 10 local 192.168.200.170 dstport 4789 nolearning
+   14  sudo ip link set vxlan10 up
+   15  sudo ip link set vxlan20 up
+   16  sudo ip link set vxlan20 master vbdif20
+   17  sudo ip link set vxlan10 master vbdif10
+   18  sudo ip address add 192.168.70.66/24 dev vbdif10
+   19  sudo ip address add 192.168.80.66/24 dev vbdif20
+   20  echo 1 > /proc/sys/net/ipv4/ip_forward
+   21  ./022-diag-frr.sh
+   22  ifconfig 
+   23  ifconfig vbdif10
+   24  ifconfig vbdif20
+   25  ifconfig vbdif10
+   26  reboot 
+   27  ./022-diag-frr.sh
+   28  ifconfig 
+   29  ip link show
+   30  ifconfig vbdif10
+   31  ip link show
+   32  tcpdump -ni
+   33  tcpdump -ni vxlan10
+   34  ip link show
+   35  tcpdump -ni enp1s0.200 port 4789
+   36  ping 192.168.70.11
+   37  ping 192.168.80.11
+   38  ping 192.168.80.21
+   39  ping 192.168.80.31
+   40  ping 192.168.70.11
+   41  ping 192.168.80.11
+   42  ping 192.168.70.11
+   43  ip link set dev vbdif10 address 40:44:70:66:00:66
+   44  ip link set dev vbdif20 address 40:44:80:66:00:66
+   45  ip link show
+   46  tcpdump -ni vxlan10
+   47  tcpdump -ni vbdif10
+   48  ping 192.168.70.11
+   49  ./021-configure-frr-node150.sh
+   50  ./022-diag-frr.sh
+   51  ifconfig 
+   52  ping 192.168.80.11
+   53  vtysh 
+   54  history 
+   55  ./022-diag-frr.sh
+   56  ping 192.168.80.11
+   57  ping 192.168.80.31
+   58  ls -la
+   59  pwd
+   60  scp 021-configure-frr-node150.config 192.168.200.170:. .
+   61  scp 021-configure-frr-node150.config 192.168.200.170:.
+   62  history  >099-history-node150

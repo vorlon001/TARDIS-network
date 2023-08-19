@@ -1,0 +1,44 @@
+hostname node188                                                                                                                                                                     [2/1860]
+log syslog
+log facility local7
+service integrated-vtysh-config
+!
+router bgp 65188
+ no bgp ebgp-requires-policy
+ no bgp default ipv4-unicast
+ no bgp network import-check
+ neighbor 192.168.202.187 remote-as 65187
+ neighbor 192.168.202.187 update-source eth0.600
+ neighbor 192.168.203.187 remote-as 65187
+ neighbor 192.168.203.187 update-source eth0.800
+ !
+ address-family ipv4 unicast
+  redistribute connected route-map toAS65000
+  neighbor 192.168.202.187 activate
+  neighbor 192.168.202.187 next-hop-self
+  neighbor 192.168.202.187 soft-reconfiguration inbound
+  neighbor 192.168.202.187 route-map fromAS65000 in
+  neighbor 192.168.202.187 route-map toAS65000 out
+  neighbor 192.168.203.187 activate
+  neighbor 192.168.203.187 next-hop-self
+  neighbor 192.168.203.187 soft-reconfiguration inbound
+  neighbor 192.168.203.187 route-map fromAS65000 in
+  neighbor 192.168.203.187 route-map toAS65000 out
+ exit-address-family
+exit
+!
+ip prefix-list all seq 10 permit 0.0.0.0/0 ge 32
+!
+route-map fromAS65000 permit 10
+ match ip address prefix-list all
+exit
+!
+route-map fromAS65000 permit 65535
+exit
+!
+route-map toAS65000 permit 10
+ match ip address prefix-list all
+exit
+!
+route-map toAS65000 permit 65535
+exit

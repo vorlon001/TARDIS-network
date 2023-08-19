@@ -1,0 +1,34 @@
+#!/usr/bin/bash
+
+set -x
+
+export DEBIAN_FRONTEND=noninteractive
+
+
+#apt -y update && apt -y install frr frr-pythontools
+curl -s https://deb.frrouting.org/frr/keys.asc | sudo apt-key add -
+FRRVER="frr-stable"
+echo deb https://deb.frrouting.org/frr $(lsb_release -s -c) $FRRVER | sudo tee -a /etc/apt/sources.list.d/frr.list
+sudo apt update && sudo apt install frr frr-pythontools
+
+
+
+sed -i "s/^bgpd=no/bgpd=yes/" /etc/frr/daemons
+sed -i "s/^ospfd=no/ospfd=yes/" /etc/frr/daemons
+sed -i "s/^ldpd=no/ldpd=yes/" /etc/frr/daemons
+sed -i "s/^ospfd=no/ospfd=yes/" /etc/frr/daemons
+sed -i "s/^bfdd=no/bfdd=yes/" /etc/frr/daemons
+sed -i "s/^vrrpd=no/vrrpd=yes/" /etc/frr/daemons
+sed -i "s/^ospf6d=no/ospf6d=yes/" /etc/frr/daemons
+sed -i "s/^isisd=no/isisd=yes/" /etc/frr/daemons
+sed -i "s/^sharpd=no/sharpd=yes/" /etc/frr/daemons
+
+
+# if frr in netns and not vrf
+# nano /etc/frr/daemons
+# sed -i 's|zebra_options="  -A 127.0.0.1 -s 90000000"|zebra_options="  -A 127.0.0.1 -s 90000000 --vrfwnetns"|' /etc/frr/daemons
+
+
+systemctl enable frr
+systemctl restart frr
+systemctl status frr

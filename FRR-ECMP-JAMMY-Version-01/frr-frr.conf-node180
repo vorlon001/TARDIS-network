@@ -1,0 +1,44 @@
+frr version 8.1
+frr defaults traditional
+hostname node180
+log syslog informational
+no ip forwarding
+no ipv6 forwarding
+service integrated-vtysh-config
+!
+interface enp1s0.600
+ ip address 192.168.202.180/24
+exit
+!
+interface enp1s0.800
+ ip address 192.168.203.180/24
+exit
+!
+interface lo
+ ip address 12.0.0.180/32
+exit
+!
+router bgp 65180
+ no bgp ebgp-requires-policy
+ neighbor 192.168.202.181 remote-as 65181
+ neighbor 192.168.202.181 update-source enp1s0.600
+ neighbor 192.168.203.181 remote-as 65181
+ neighbor 192.168.203.181 update-source enp1s0.800
+ !
+ address-family ipv4 unicast
+  redistribute connected
+  neighbor 192.168.202.181 next-hop-self
+  neighbor 192.168.202.181 route-map fromAS65000 in
+  neighbor 192.168.202.181 route-map toAS65000 out
+  neighbor 192.168.203.181 next-hop-self
+  neighbor 192.168.203.181 route-map fromAS65000 in
+  neighbor 192.168.203.181 route-map toAS65000 out
+ exit-address-family
+exit
+!
+route-map fromAS65000 permit 65535
+exit
+!
+route-map toAS65000 permit 65535
+exit
+!

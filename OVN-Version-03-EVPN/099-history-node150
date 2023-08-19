@@ -1,0 +1,26 @@
+    1  mc
+    2  ./000-init-vm.sh
+    3  mc
+    4  sudo ip link add vbdif10 type bridge
+    5  sudo ip link add vbdif20 type bridge
+    6  sudo ip link set vbdif10 up
+    7  sudo ip link set vbdif20 up
+    8  sudo ip link add vxlan20 type vxlan id 20 local 192.168.200.150 dstport 4789 nolearning
+    9  sudo ip link add vxlan10 type vxlan id 10 local 192.168.200.150 dstport 4789 nolearning
+   10  sudo ip link set vxlan10 up
+   11  sudo ip link set vxlan20 up
+   12  sudo ip link set vxlan20 master vbdif20
+   13  sudo ip link set vxlan10 master vbdif10
+   14  sudo ip address add 192.168.70.66/24 dev vbdif10
+   15  sudo ip address add 192.168.80.66/24 dev vbdif20
+   16  echo 1 > /proc/sys/net/ipv4/ip_forward
+   17  ip link set dev vbdif10 address 40:44:70:66:00:66
+   18  ip link set dev vbdif20 address 40:44:80:66:00:66
+   19  ping 192.168.80.66
+   20  ping 192.168.80.11
+   21  ping 192.168.80.21
+   22  ping 192.168.70.21
+   23  vtysh sh run
+   24  mc
+   25  ls
+   26  history > 099-history-node150

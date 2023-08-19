@@ -1,0 +1,12 @@
+    1  ./000-init-vm.sh
+    2  ip link show
+    3  tcpdump -ni vxlan20 -e
+    4  tcpdump -ni br300 -e
+    5  ip link show
+    6  ifconfig vm1
+    7  tcpdump -ni vm1 -e 
+    8  history  >099-history
+    9  history  >099-history-node150
+   10  history  >099-history-node180
+   11  rm 099-history 099-history-node150 
+   12  history  >099-history-node180

@@ -1,0 +1,41 @@
+    1  ls -la
+    2  ./000-init-vm.sh 
+    3  history  >099-history
+    4  history  >099-history-node170
+    1  ls -la
+    2  ./000-init-vm.sh 
+    3  history  >099-history
+    4  history  >099-history-node170
+    5  rm 099-history
+    6  docker exec -it ovn-northd ovn-nbctl --db=tcp:192.168.200.180:6641,tcp:192.168.200.181:6641,tcp:192.168.200.182:6641 lsp-add net180 br300
+    7  docker exec -it ovn-northd ovn-nbctl --db=tcp:192.168.200.180:6641,tcp:192.168.200.181:6641,tcp:192.168.200.182:6641 lsp-set-addresses br300 "40:44:70:66:00:66 192.168.70.66"
+    8  function ovn_add_phys_port_1 {     name=$1;     docker exec -it ovs-vswitchd ovs-vsctl add-port br-int $name -- set Interface $name type=internal -- set Interface $name external_ids:iface-id=$name; }
+    9  ovn_add_phys_port_1 br300 40:44:70:66:00:66
+   10  docker exec -it ovn-northd ovn-nbctl --db=tcp:192.168.200.170:6641,tcp:192.168.200.171:6641,tcp:192.168.200.172:6641 lsp-add net180 br300
+   11  docker exec -it ovn-northd ovn-nbctl --db=tcp:192.168.200.170:6641,tcp:192.168.200.171:6641,tcp:192.168.200.172:6641 lsp-set-addresses br300 "40:44:70:66:00:66 192.168.70.66"
+   12  docker exec -it ovn-northd ovn-nbctl --db=tcp:192.168.200.170:6641,tcp:192.168.200.171:6641,tcp:192.168.200.172:6641 lsp-add net170 br300
+   13  docker exec -it ovn-northd ovn-nbctl --db=tcp:192.168.200.170:6641,tcp:192.168.200.171:6641,tcp:192.168.200.172:6641 lsp-set-addresses br300 "40:44:70:66:00:66 192.168.70.66"
+   14  function ovn_add_phys_port_1 {     name=$1;     docker exec -it ovs-vswitchd ovs-vsctl add-port br-int $name -- set Interface $name type=internal -- set Interface $name external_ids:iface-id=$name; }
+   15  ovn_add_phys_port_1 br300 40:44:70:66:00:66
+   16  ip netns add zone1
+   17  docker exec -it ovs-vswitchd ovs-vsctl show
+   18  ip link set br300 netns zone1
+   19  ip netns exec zone1 ip link add bvi300 type bridge
+   20  ip netns exec zone1 ifconfig br300 up
+   21  ip netns exec zone1 ifconfig bvi300 up
+   22  ip netns exec zone1 ip link show
+   23  ip netns exec zone1 ip link set br300 master bvi300
+   24  ip netns exec zone1 ip link set bvi300 address 40:44:80:88:66:03
+   25  ip link add vxlan10 type vxlan id 10 local 192.168.200.170 dstport 4789 nolearning
+   26  ip link set vxlan10 netns zone1
+   27  ip netns exec zone1 ip link set vxlan10 master bvi300
+   28  ip netns exec zone1 ip link set vxlan10 up
+   29  history 
+   30  ls
+   31  history >> 099-history-node170
+    1  ls -la
+    2  ./000-init-vm.sh 
+    3  ls -la
+    4  ./001-build-ovn.sh 
+    5  mc
+    6  history >> 099-history-node170 
