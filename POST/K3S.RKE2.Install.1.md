@@ -227,8 +227,25 @@ curl -sfL https://get.rke2.io | INSTALL_RKE2_TYPE="agent" sh -
 
 systemctl enable rke2-agent.service
 
-mkdir -p /etc/rancher/rke2/
+mkdir -p /var/lib/rancher/rke2/server/manifests/
+cat <<EOF>/var/lib/rancher/rke2/server/manifests/rke2-cilium-config.yaml
+---
+apiVersion: helm.cattle.io/v1
+kind: HelmChartConfig
+metadata:
+  name: rke2-cilium
+  namespace: kube-system
+spec:
+  valuesContent: |-
+    eni:
+      enabled: true
+EOF
+
+mkdir -p /etc/rancher/rke2
 cat <<EOF>/etc/rancher/rke2/config.yaml
+cni:
+- cilium
+disable: rke2-ingress-nginx
 server: https://<VIP-IP>:9345
 token: <TOKEN>
 EOF
