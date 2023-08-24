@@ -299,7 +299,10 @@ journalctl -u rke2-server -f
 ## ADDON
 ```shell
 
-https://github.com/kubernetes-sigs/cri-tools/releases/download/v1.28.0/crictl-v1.28.0-linux-amd64.tar.gz
+wget https://github.com/kubernetes-sigs/cri-tools/releases/download/v1.28.0/crictl-v1.28.0-linux-amd64.tar.gz
+tar -zxvf crictl-v1.28.0-linux-amd64.tar.gz
+mv crictl /usr/bin/
+
 
 cat <<EOF>/etc/crictl.yaml
 runtime-endpoint: unix:///run/k3s/containerd/containerd.sock

@@ -43,41 +43,41 @@ debug: true
 ##   --audit-policy-file value                     (security) Path to the file that defines the audit policy configuration [$RKE2_AUDIT_POLICY_FILE]
 
 ```images
+
 IMAGE
-docker.io/rancher/hardened-calico:v3.25.1-build20230607
+IMAGE:TAG
 docker.io/rancher/hardened-cluster-autoscaler:v1.8.6-build20230406
 docker.io/rancher/hardened-cni-plugins:v1.0.1-build20221011
 docker.io/rancher/hardened-coredns:v1.10.1-build20230406
 docker.io/rancher/hardened-etcd:v3.5.7-k3s1-build20230406
-docker.io/rancher/hardened-flannel:v0.22.0-build20230612
 docker.io/rancher/hardened-k8s-metrics-server:v0.6.3-build20230515
 docker.io/rancher/hardened-kubernetes:v1.25.12-rke2r1-build20230719
 docker.io/rancher/klipper-helm:v0.8.0-build20230510
 docker.io/rancher/mirrored-cilium-cilium:v1.13.2
-docker.io/rancher/mirrored-cilium-operator-generic:v1.13.2
+docker.io/rancher/mirrored-cilium-operator-aws:v1.13.2
+docker.io/rancher/mirrored-ingress-nginx-kube-webhook-certgen:v20230312-helm-chart-4.5.2-28-g66a760794
 docker.io/rancher/mirrored-sig-storage-snapshot-controller:v6.2.1
 docker.io/rancher/mirrored-sig-storage-snapshot-validation-webhook:v6.2.1
 docker.io/rancher/nginx-ingress-controller:nginx-1.7.1-hardened1
 docker.io/rancher/pause:3.6
 docker.io/rancher/rke2-cloud-provider:v1.26.3-build20230406
 
-IMAGE                                                                TAG                             IMAGE ID            SIZE
-docker.io/rancher/hardened-calico                                    v3.25.1-build20230607           035dbbbc6a3c9       192MB
-docker.io/rancher/hardened-cluster-autoscaler                        v1.8.6-build20230406            e8ce8d527364d       58.2MB
-docker.io/rancher/hardened-cni-plugins                               v1.0.1-build20221011            ffd07315c2646       78.7MB
-docker.io/rancher/hardened-coredns                                   v1.10.1-build20230406           3c8207b045e32       64.3MB
-docker.io/rancher/hardened-etcd                                      v3.5.7-k3s1-build20230406       045ce52ecd52c       64.4MB
-docker.io/rancher/hardened-flannel                                   v0.22.0-build20230612           df20f583ea0ec       80.6MB
-docker.io/rancher/hardened-k8s-metrics-server                        v0.6.3-build20230515            9d8f4a693c64c       62.7MB
-docker.io/rancher/hardened-kubernetes                                v1.25.12-rke2r1-build20230719   c9ce397e74f9e       214MB
-docker.io/rancher/klipper-helm                                       v0.8.0-build20230510            6f42df210d7fa       95MB
-docker.io/rancher/mirrored-cilium-cilium                             v1.13.2                         2480b5e5b4799       174MB
-docker.io/rancher/mirrored-cilium-operator-generic                   v1.13.2                         5e08056ff5956       22.2MB
-docker.io/rancher/mirrored-sig-storage-snapshot-controller           v6.2.1                          1ef6c138bd5f2       24.2MB
-docker.io/rancher/mirrored-sig-storage-snapshot-validation-webhook   v6.2.1                          46e6854cb7c5e       21MB
-docker.io/rancher/nginx-ingress-controller                           nginx-1.7.1-hardened1           05fbbb9f7b895       336MB
-docker.io/rancher/pause                                              3.6                             6270bb605e12e       299kB
-docker.io/rancher/rke2-cloud-provider                                v1.26.3-build20230406           f906d1e7a5774       63.7MB
+IMAGE                                                                TAG                                        IMAGE ID            SIZE
+docker.io/rancher/hardened-cluster-autoscaler                        v1.8.6-build20230406                       e8ce8d527364d       58.2MB
+docker.io/rancher/hardened-cni-plugins                               v1.0.1-build20221011                       ffd07315c2646       78.7MB
+docker.io/rancher/hardened-coredns                                   v1.10.1-build20230406                      3c8207b045e32       64.3MB
+docker.io/rancher/hardened-etcd                                      v3.5.7-k3s1-build20230406                  045ce52ecd52c       64.4MB
+docker.io/rancher/hardened-k8s-metrics-server                        v0.6.3-build20230515                       9d8f4a693c64c       62.7MB
+docker.io/rancher/hardened-kubernetes                                v1.25.12-rke2r1-build20230719              c9ce397e74f9e       214MB
+docker.io/rancher/klipper-helm                                       v0.8.0-build20230510                       6f42df210d7fa       95MB
+docker.io/rancher/mirrored-cilium-cilium                             v1.13.2                                    2480b5e5b4799       174MB
+docker.io/rancher/mirrored-cilium-operator-aws                       v1.13.2                                    01e5959692a4f       26.2MB
+docker.io/rancher/mirrored-ingress-nginx-kube-webhook-certgen        v20230312-helm-chart-4.5.2-28-g66a760794   5a86b03a88d23       20.1MB
+docker.io/rancher/mirrored-sig-storage-snapshot-controller           v6.2.1                                     1ef6c138bd5f2       24.2MB
+docker.io/rancher/mirrored-sig-storage-snapshot-validation-webhook   v6.2.1                                     46e6854cb7c5e       21MB
+docker.io/rancher/nginx-ingress-controller                           nginx-1.7.1-hardened1                      05fbbb9f7b895       336MB
+docker.io/rancher/pause                                              3.6                                        6270bb605e12e       299kB
+docker.io/rancher/rke2-cloud-provider                                v1.26.3-build20230406                      f906d1e7a5774       63.7MB
 
 ```
 
