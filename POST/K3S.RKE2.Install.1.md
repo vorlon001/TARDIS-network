@@ -213,6 +213,7 @@ A token that can be used to register other server or agent nodes will be created
 ### ACCESS to Cluster
 ```shell
 export KUBECONFIG=/etc/rancher/rke2/rke2.yaml
+snap install kubectl --classic
 kubectl get pods,node  --all-namespaces -o wide
 helm ls --all-namespaces
 ```
