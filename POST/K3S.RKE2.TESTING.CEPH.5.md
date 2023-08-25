@@ -694,4 +694,17 @@ root@ceph-install:/# ssh root@192.168.200.140 "ceph -s"
     pgs:     81 active+clean
 
 
+root@node140:~# rados df
+POOL_NAME                  USED  OBJECTS  CLONES  COPIES  MISSING_ON_PRIMARY  UNFOUND  DEGRADED  RD_OPS       RD  WR_OPS       WR  USED COMPR  UNDER COMPR
+.mgr                    3.4 MiB        2       0       6                   0        0         0     156  136 KiB     175  2.4 MiB         0 B          0 B
+cephfs.kubernetes.data   24 KiB        2       0       6                   0        0         0       0      0 B      22   12 KiB         0 B          0 B
+cephfs.kubernetes.meta  756 KiB       26       0      78                   0        0         0      13   13 KiB     127  301 KiB         0 B          0 B
+kube                    468 MiB       76       0     228                   0        0         0    1735  6.9 MiB    6807  269 MiB         0 B          0 B
+
+total_objects    106
+total_used       1.7 GiB
+total_avail      268 GiB
+total_space      270 GiB
+
+
 ```
