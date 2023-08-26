@@ -1521,3 +1521,249 @@ total_avail      1.0 TiB
 total_space      1.1 TiB
 
 ```
+
+
+### Testing block 2
+
+
+```shell
+radosgw-admin --tenant testx --uid tester --display-name "Test User" --access_key TESTER --secret test123 user create
+```
+
+```
+{
+    "user_id": "testx$tester",
+    "display_name": "Test User",
+    "email": "",
+    "suspended": 0,
+    "max_buckets": 1000,
+    "subusers": [],
+    "keys": [
+        {
+            "user": "testx$tester",
+            "access_key": "TESTER",
+            "secret_key": "test123"
+        }
+    ],
+    "swift_keys": [],
+    "caps": [],
+    "op_mask": "read, write, delete",
+    "default_placement": "",
+    "default_storage_class": "",
+    "placement_tags": [],
+    "bucket_quota": {
+        "enabled": false,
+        "check_on_raw": false,
+        "max_size": -1,
+        "max_size_kb": 0,
+        "max_objects": -1
+    },
+    "user_quota": {
+        "enabled": false,
+        "check_on_raw": false,
+        "max_size": -1,
+        "max_size_kb": 0,
+        "max_objects": -1
+    },
+    "temp_url_keys": [],
+    "type": "rgw",
+    "mfa_ids": []
+}
+```
+
+```shell
+radosgw-admin subuser create --tenant testx --uid=tester --subuser=subtester --access=readwrite
+```
+
+```
+{                                                                                                                                                                                    [2/1977]
+    "user_id": "testx$tester",
+    "display_name": "Test User",
+    "email": "",
+    "suspended": 0,
+    "max_buckets": 1000,
+    "subusers": [
+        {
+            "id": "testx$tester:subtester",
+            "permissions": "read-write"
+        }
+    ],
+    "keys": [
+        {
+            "user": "testx$tester",
+            "access_key": "TESTER",
+            "secret_key": "test123"
+        }
+    ],
+    "swift_keys": [
+        {
+            "user": "testx$tester:subtester",
+            "secret_key": "1RHje1k5Kpol0QNohENb2v6vEiIKhg8I8i8JcyE8"
+        }
+    ],
+    "caps": [],
+    "op_mask": "read, write, delete",
+    "default_placement": "",
+    "default_storage_class": "",
+    "placement_tags": [],
+    "bucket_quota": {
+        "enabled": false,
+        "check_on_raw": false,
+        "max_size": -1,
+        "max_size_kb": 0,
+        "max_objects": -1
+    },
+    "user_quota": {
+        "enabled": false,
+        "check_on_raw": false,
+        "max_size": -1,
+        "max_size_kb": 0,
+        "max_objects": -1
+    },
+    "temp_url_keys": [],
+    "type": "rgw",
+    "mfa_ids": []
+}
+```
+
+```shell
+radosgw-admin user info --tenant testx  --uid=tester
+```
+
+```
+{                                                                                                                                                                                    [2/1977]
+    "user_id": "testx$tester",
+    "display_name": "Test User",
+    "email": "",
+    "suspended": 0,
+    "max_buckets": 1000,
+    "subusers": [
+        {
+            "id": "testx$tester:subtester",
+            "permissions": "read-write"
+        }
+    ],
+    "keys": [
+        {
+            "user": "testx$tester",
+            "access_key": "TESTER",
+            "secret_key": "test123"
+        }
+    ],
+    "swift_keys": [
+        {
+            "user": "testx$tester:subtester",
+            "secret_key": "1RHje1k5Kpol0QNohENb2v6vEiIKhg8I8i8JcyE8"
+        }
+    ],
+    "caps": [],
+    "op_mask": "read, write, delete",
+    "default_placement": "",
+    "default_storage_class": "",
+    "placement_tags": [],
+    "bucket_quota": {
+        "enabled": false,
+        "check_on_raw": false,
+        "max_size": -1,
+        "max_size_kb": 0,
+        "max_objects": -1
+    },
+    "user_quota": {
+        "enabled": false,
+        "check_on_raw": false,
+        "max_size": -1,
+        "max_size_kb": 0,
+        "max_objects": -1
+    },
+    "temp_url_keys": [],
+    "type": "rgw",
+    "mfa_ids": []
+}
+```
+
+```shell
+radosgw-admin user info --tenant testx --tenant testx --uid=tester  --gen-access-key --gen-secret
+radosgw-admin user modify --tenant testx --tenant testx --uid=tester  --gen-access-key --gen-secret
+radosgw-admin key rm --tenant testx --tenant testx --uid=tester --access-key=TESTER
+```
+```
+..........
+"keys": [
+    {
+        "user": "testx$tester",
+        "access_key": "DISD7Z4EN0N16Y5XO8GB",
+        "secret_key": "x7RVBtSD2l3QP0yEyYP3qlruXNR8AcwdUlGsxj63"
+    }
+],
+..........
+```
+
+```shell
+mc alias set minio http://192.168.200.140:9000 DISD7Z4EN0N16Y5XO8GB x7RVBtSD2l3QP0yEyYP3qlruXNR8AcwdUlGsxj63
+```
+
+```shell
+mc ls minio -r
+mc mb minio/test-data
+mc tree minio
+mc ls minio/test-data
+
+mc cp jammy-server-cloudimg-amd64-root.tar.xz minio/test-data/test1
+mc cp jammy-server-cloudimg-amd64-root.tar.xz minio/test-data/test2
+mc cp jammy-server-cloudimg-amd64-root.tar.xz minio/test-data/test3
+```
+
+```shell
+radosgw-admin user stats --tenant testx --uid=tester --sync-stats
+```
+```
+root@node140:~# radosgw-admin user stats --tenant testx --uid=tester --sync-stats
+{
+    "stats": {
+        "size": 543283788,
+        "size_actual": 543285248,
+        "size_kb": 530551,
+        "size_kb_actual": 530552,
+        "num_objects": 9
+    },
+    "last_stats_sync": "2023-08-26T11:46:54.522897Z",
+    "last_stats_update": "2023-08-26T11:46:54.498327Z"
+}
+```
+
+
+```shell
+radosgw-admin quota enable --quota-scope=user --tenant testx --uid=tester --max-objects=10 --max-size=5368709120
+```
+```shell
+radosgw-admin user info --tenant testx  --uid=tester
+```
+```
+..............
+    "user_quota": {
+        "enabled": true,
+        "check_on_raw": false,
+        "max_size": 5368709120,
+        "max_size_kb": 5242880,
+        "max_objects": 10
+    },
+..............
+```
+
+```shell
+root@node140:~# radosgw-admin quota enable --quota-scope=user --tenant testx --uid=tester --max-objects=200 --max-size=9000000000
+root@node140:~# radosgw-admin user stats --tenant testx --uid=tester --sync-stats
+{
+    "stats": {
+        "size": 2045330300,
+        "size_actual": 2045337600,
+        "size_kb": 1997393,
+        "size_kb_actual": 1997400,
+        "num_objects": 5
+    },
+    "last_stats_sync": "2023-08-26T11:55:12.667137Z",
+    "last_stats_update": "2023-08-26T11:55:12.662130Z"
+}
+
+```
+
