@@ -677,4 +677,24 @@ node140:     pgs:     305 active+clean
 node140:
 
 
+root@node140:~# ceph df
+--- RAW STORAGE ---
+CLASS     SIZE    AVAIL    USED  RAW USED  %RAW USED
+hdd    270 GiB  258 GiB  12 GiB    12 GiB       4.43
+TOTAL  270 GiB  258 GiB  12 GiB    12 GiB       4.43
+
+--- POOLS ---
+POOL                        ID  PGS   STORED  OBJECTS     USED  %USED  MAX AVAIL
+.mgr                         1    1  577 KiB        2  1.7 MiB      0     81 GiB
+kube                         2   32      0 B        0      0 B      0     81 GiB
+cephfs.kubernetes.meta       3   16  2.3 KiB       22   96 KiB      0     81 GiB
+cephfs.kubernetes.data       4   32      0 B        0      0 B      0     81 GiB
+.rgw.root                    5   32  2.6 KiB        6   72 KiB      0     81 GiB
+default.rgw.log              6   32   32 KiB      177  504 KiB      0     81 GiB
+default.rgw.control          7   32      0 B        8      0 B      0     81 GiB
+default.rgw.meta             8   32    958 B        5   48 KiB      0     81 GiB
+default.rgw.buckets.index    9   32      0 B       11      0 B      0     81 GiB
+default.rgw.buckets.data    10   32  3.7 GiB      961   11 GiB   4.38     81 GiB
+default.rgw.buckets.non-ec  11   32      0 B        0      0 B      0     81 GiB
+
 ```
