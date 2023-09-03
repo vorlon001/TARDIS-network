@@ -1,0 +1,704 @@
+DEBUG, init NewOrderEvent(CreateBootDisk:0x54fac0)
+DEBUG, init NewOrderEvent(IsStartDomainOne:0x54fac0)
+DEBUG, init NewOrderEvent(StateError:0x54fac0)
+DEBUG, init NewOrderEvent(ConfigureDomain:0x54fac0)
+DEBUG, init NewOrderEvent(CreateUserData:0x54fac0)
+DEBUG, init NewOrderEvent(InitDeattachDisk:0x54fac0)
+DEBUG, init NewOrderEvent(RemoveCloudISO:0x54fac0)
+DEBUG, init NewOrderEvent(AttachNetworkDevice:0x54fac0)
+DEBUG, init NewOrderEvent(CreateNetworkDate:0x54fac0)
+DEBUG, init NewOrderEvent(InitMachinePause:0x54fac0)
+DEBUG, init NewOrderEvent(ShutdownDomain:0x54fac0)
+DEBUG, init NewOrderEvent(StartDomainOne:0x54fac0)
+DEBUG, init NewOrderEvent(StateDestroy:0x54fac0)
+DEBUG, init NewOrderEvent(StatePause:0x54fac0)
+DEBUG, init NewOrderEvent(CreateDisk:0x54fac0)
+DEBUG, init NewOrderEvent(DestroyDomain:0x54fac0)
+DEBUG, init NewOrderEvent(InitAttachNetworkDevice:0x54fac0)
+DEBUG, init NewOrderEvent(InitMachineMigrate:0x54fac0)
+DEBUG, init NewOrderEvent(InitStartDomain:0x54fac0)
+DEBUG, init NewOrderEvent(IsStartDomainTwo:0x54fac0)
+DEBUG, init NewOrderEvent(MachineMigrate:0x54fac0)
+DEBUG, init NewOrderEvent(MachineResume:0x54fac0)
+DEBUG, init NewOrderEvent(StateReboot:0x54fac0)
+DEBUG, init NewOrderEvent(Done:0x54fac0)
+DEBUG, init NewOrderEvent(InitMachineResume:0x54fac0)
+DEBUG, init NewOrderEvent(InitShutdownDomain:0x54fac0)
+DEBUG, init NewOrderEvent(IsStopDomainOne:0x54fac0)
+DEBUG, init NewOrderEvent(StartDomain:0x54fac0)
+DEBUG, init NewOrderEvent(StateRunning:0x54fac0)
+DEBUG, init NewOrderEvent(DeattachNetworkDevice:0x54fac0)
+DEBUG, init NewOrderEvent(HardRebootDomain:0x54fac0)
+DEBUG, init NewOrderEvent(InitDeattachNetworkDevice:0x54fac0)
+DEBUG, init NewOrderEvent(InitDomain:0x54fac0)
+DEBUG, init NewOrderEvent(InitHardRebootDomain:0x54fac0)
+DEBUG, init NewOrderEvent(Reinstated:0x54fac0)
+DEBUG, init NewOrderEvent(Canceled:0x54fac0)
+DEBUG, init NewOrderEvent(DeattachDisk:0x54fac0)
+DEBUG, init NewOrderEvent(FirstStartDomain:0x54fac0)
+DEBUG, init NewOrderEvent(InitSoftRebootDomain:0x54fac0)
+DEBUG, init NewOrderEvent(RebootDomain:0x54fac0)
+DEBUG, init NewOrderEvent(StateStop:0x54fac0)
+DEBUG, init NewOrderEvent(AttachDisk:0x54fac0)
+DEBUG, init NewOrderEvent(Error:0x54fac0)
+DEBUG, init NewOrderEvent(InitAttachDisk:0x54fac0)
+DEBUG, init NewOrderEvent(InitDestroyDomain:0x54fac0)
+DEBUG, init NewOrderEvent(MachinePause:0x54fac0)
+DEBUG, init NewOrderEvent(SoftRebootDomain:0x54fac0)
+DEBUG, AddRule: [InitDomain CreateBootDisk Canceled]
+DEBUG, AddRule: [InitAttachDisk AttachDisk Error]
+DEBUG, AddRule: [InitDeattachDisk DeattachDisk Error]
+DEBUG, AddRule: [InitAttachNetworkDevice AttachNetworkDevice Error]
+DEBUG, AddRule: [InitDeattachNetworkDevice DeattachNetworkDevice Error]
+DEBUG, AddRule: [InitDestroyDomain DestroyDomain Error]
+DEBUG, AddRule: [InitSoftRebootDomain SoftRebootDomain Error]
+DEBUG, AddRule: [InitHardRebootDomain HardRebootDomain Error]
+DEBUG, AddRule: [InitStartDomain StartDomain Error]
+DEBUG, AddRule: [StartDomain StateRunning Error]
+DEBUG, AddRule: [InitShutdownDomain ShutdownDomain Error]
+DEBUG, AddRule: [InitMachinePause MachinePause StateError]
+DEBUG, AddRule: [InitMachineResume MachineResume StateError]
+DEBUG, AddRule: [InitMachineMigrate MachineMigrate StateError]
+DEBUG, AddRule: [CreateBootDisk CreateUserData Canceled]
+DEBUG, AddRule: [CreateUserData CreateNetworkDate Canceled]
+DEBUG, AddRule: [CreateNetworkDate FirstStartDomain Canceled]
+DEBUG, AddRule: [FirstStartDomain IsStopDomainOne Canceled]
+DEBUG, AddRule: [IsStopDomainOne StartDomainOne Error]
+DEBUG, AddRule: [StartDomainOne IsStartDomainOne Error]
+DEBUG, AddRule: [IsStartDomainOne RemoveCloudISO Error]
+DEBUG, AddRule: [RemoveCloudISO ConfigureDomain Canceled]
+DEBUG, AddRule: [ConfigureDomain RebootDomain Canceled]
+DEBUG, AddRule: [RebootDomain IsStartDomainTwo Canceled]
+DEBUG, AddRule: [IsStartDomainTwo StateRunning Error]
+DEBUG, AddRule: [CreateDisk AttachDisk Error]
+DEBUG, AddRule: [AttachDisk StateRunning Error]
+DEBUG, AddRule: [DeattachDisk StateRunning Error]
+DEBUG, AddRule: [AttachNetworkDevice StateRunning Error]
+DEBUG, AddRule: [DeattachNetworkDevice StateRunning Error]
+DEBUG, AddRule: [DestroyDomain StateDestroy Error]
+DEBUG, AddRule: [SoftRebootDomain StateReboot Error]
+DEBUG, AddRule: [HardRebootDomain StateReboot Error]
+DEBUG, AddRule: [ShutdownDomain StateStop StateError]
+DEBUG, AddRule: [MachinePause StateStop Error]
+DEBUG, AddRule: [MachineResume StateStop Error]
+DEBUG, AddRule: [MachineMigrate StateRunning Error]
+DEBUG, AddRule: [Done Error Error]
+DEBUG, AddRule: [Error Error Error]
+DEBUG, AddRule: [Canceled Error Error]
+DEBUG, AddRule: [Reinstated InitDomain Canceled]
+DEBUG, AddRule: [StateReboot StateRunning Error]
+DEBUG, AddRule: [StateDestroy Done Error]
+DEBUG, AddRule: [StateRunning Done Error]
+DEBUG, AddRule: [StatePause Done Error]
+DEBUG, AddRule: [StateStop Done Error]
+DEBUG, AddRule: [StateError Done Error]
+map[string]main.Transition{"AttachDisk":main.Transition{FromState:(*main.OrderEvent)(0xc0000987b0), ToCancel:(*main.OrderEvent)(0xc0000987d0), ToState:(*main.OrderEvent)(0xc000098610), Timestamp:<nil>, Metadata:map[string]string(nil)}, "AttachNetworkDevice":main.Transition{FromState:(*main.OrderEvent)(0xc000098370), ToCancel:(*main.OrderEvent)(0xc0000987d0), ToState:(*main.OrderEvent)(0xc000098610), Timestamp:<nil>, Metadata:map[string]string(nil)}, "Canceled":main.Transition{FromState:(*main.OrderEvent)(0xc0000986f0), ToCancel:(*main.OrderEvent)(0xc0000987d0), ToState:(*main.OrderEvent)(0xc0000987d0), Timestamp:<nil>, Metadata:map[string]string(nil)}, "ConfigureDomain":main.Transition{FromState:(*main.OrderEvent)(0xc0000982f0), ToCancel:(*main.OrderEvent)(0xc0000986f0), ToState:(*main.OrderEvent)(0xc000098770), Timestamp:<nil>, Metadata:map[string]string(nil)}, "CreateBootDisk":main.Transition{FromState:(*main.OrderEvent)(0xc000098290), ToCancel:(*main.OrderEvent)(0xc0000986f0), ToState:(*main.OrderEvent)(0xc000098310), Timestamp:<nil>, Metadata:map[string]string(nil)}, "CreateDisk":main.Transition{FromState:(*main.OrderEvent)(0xc000098450), ToCancel:(*main.OrderEvent)(0xc0000987d0), ToState:(*main.OrderEvent)(0xc0000987b0), Timestamp:<nil>, Metadata:map[string]string(nil)}, "CreateNetworkDate":main.Transition{FromState:(*main.OrderEvent)(0xc000098390), ToCancel:(*main.OrderEvent)(0xc0000986f0), ToState:(*main.OrderEvent)(0xc000098730), Timestamp:<nil>, Metadata:map[string]string(nil)}, "CreateUserData":main.Transition{FromState:(*main.OrderEvent)(0xc000098310), ToCancel:(*main.OrderEvent)(0xc0000986f0), ToState:(*main.OrderEvent)(0xc000098390), Timestamp:<nil>, Metadata:map[string]string(nil)}, "DeattachDisk":main.Transition{FromState:(*main.OrderEvent)(0xc000098710), ToCancel:(*main.OrderEvent)(0xc0000987d0), ToState:(*main.OrderEvent)(0xc000098610), Timestamp:<nil>, Metadata:map[string]string(nil)}, "DeattachNetworkDevice":main.Transition{FromState:(*main.OrderEvent)(0xc000098630), ToCancel:(*main.OrderEvent)(0xc0000987d0), ToState:(*main.OrderEvent)(0xc000098610), Timestamp:<nil>, Metadata:map[string]string(nil)}, "DestroyDomain":main.Transition{FromState:(*main.OrderEvent)(0xc000098470), ToCancel:(*main.OrderEvent)(0xc0000987d0), ToState:(*main.OrderEvent)(0xc000098410), Timestamp:<nil>, Metadata:map[string]string(nil)}, "Done":main.Transition{FromState:(*main.OrderEvent)(0xc000098570), ToCancel:(*main.OrderEvent)(0xc0000987d0), ToState:(*main.OrderEvent)(0xc0000987d0), Timestamp:<nil>, Metadata:map[string]string(nil)}, "Error":main.Transition{FromState:(*main.OrderEvent)(0xc0000987d0), ToCancel:(*main.OrderEvent)(0xc0000987d0), ToState:(*main.OrderEvent)(0xc0000987d0), Timestamp:<nil>, Metadata:map[string]string(nil)}, "FirstStartDomain":main.Transition{FromState:(*main.OrderEvent)(0xc000098730), ToCancel:(*main.OrderEvent)(0xc0000986f0), ToState:(*main.OrderEvent)(0xc0000985d0), Timestamp:<nil>, Metadata:map[string]string(nil)}, "HardRebootDomain":main.Transition{FromState:(*main.OrderEvent)(0xc000098650), ToCancel:(*main.OrderEvent)(0xc0000987d0), ToState:(*main.OrderEvent)(0xc000098550), Timestamp:<nil>, Metadata:map[string]string(nil)}, "InitAttachDisk":main.Transition{FromState:(*main.OrderEvent)(0xc0000987f0), ToCancel:(*main.OrderEvent)(0xc0000987d0), ToState:(*main.OrderEvent)(0xc0000987b0), Timestamp:<nil>, Metadata:map[string]string(nil)}, "InitAttachNetworkDevice":main.Transition{FromState:(*main.OrderEvent)(0xc000098490), ToCancel:(*main.OrderEvent)(0xc0000987d0), ToState:(*main.OrderEvent)(0xc000098370), Timestamp:<nil>, Metadata:map[string]string(nil)}, "InitDeattachDisk":main.Transition{FromState:(*main.OrderEvent)(0xc000098330), ToCancel:(*main.OrderEvent)(0xc0000987d0), ToState:(*main.OrderEvent)(0xc000098710), Timestamp:<nil>, Metadata:map[string]string(nil)}, "InitDeattachNetworkDevice":main.Transition{FromState:(*main.OrderEvent)(0xc000098670), ToCancel:(*main.OrderEvent)(0xc0000987d0), ToState:(*main.OrderEvent)(0xc000098630), Timestamp:<nil>, Metadata:map[string]string(nil)}, "InitDestroyDomain":main.Transition{FromState:(*main.OrderEvent)(0xc000098810), ToCancel:(*main.OrderEvent)(0xc0000987d0), ToState:(*main.OrderEvent)(0xc000098470), Timestamp:<nil>, Metadata:map[string]string(nil)}, "InitDomain":main.Transition{FromState:(*main.OrderEvent)(0xc000098690), ToCancel:(*main.OrderEvent)(0xc0000986f0), ToState:(*main.OrderEvent)(0xc000098290), Timestamp:<nil>, Metadata:map[string]string(nil)}, "InitHardRebootDomain":main.Transition{FromState:(*main.OrderEvent)(0xc0000986b0), ToCancel:(*main.OrderEvent)(0xc0000987d0), ToState:(*main.OrderEvent)(0xc000098650), Timestamp:<nil>, Metadata:map[string]string(nil)}, "InitMachineMigrate":main.Transition{FromState:(*main.OrderEvent)(0xc0000984b0), ToCancel:(*main.OrderEvent)(0xc0000982d0), ToState:(*main.OrderEvent)(0xc000098510), Timestamp:<nil>, Metadata:map[string]string(nil)}, "InitMachinePause":main.Transition{FromState:(*main.OrderEvent)(0xc0000983b0), ToCancel:(*main.OrderEvent)(0xc0000982d0), ToState:(*main.OrderEvent)(0xc000098830), Timestamp:<nil>, Metadata:map[string]string(nil)}, "InitMachineResume":main.Transition{FromState:(*main.OrderEvent)(0xc000098590), ToCancel:(*main.OrderEvent)(0xc0000982d0), ToState:(*main.OrderEvent)(0xc000098530), Timestamp:<nil>, Metadata:map[string]string(nil)}, "InitShutdownDomain":main.Transition{FromState:(*main.OrderEvent)(0xc0000985b0), ToCancel:(*main.OrderEvent)(0xc0000987d0), ToState:(*main.OrderEvent)(0xc0000983d0), Timestamp:<nil>, Metadata:map[string]string(nil)}, "InitSoftRebootDomain":main.Transition{FromState:(*main.OrderEvent)(0xc000098750), ToCancel:(*main.OrderEvent)(0xc0000987d0), ToState:(*main.OrderEvent)(0xc000098850), Timestamp:<nil>, Metadata:map[string]string(nil)}, "InitStartDomain":main.Transition{FromState:(*main.OrderEvent)(0xc0000984d0), ToCancel:(*main.OrderEvent)(0xc0000987d0), ToState:(*main.OrderEvent)(0xc0000985f0), Timestamp:<nil>, Metadata:map[string]string(nil)}, "IsStartDomainOne":main.Transition{FromState:(*main.OrderEvent)(0xc0000982b0), ToCancel:(*main.OrderEvent)(0xc0000987d0), ToState:(*main.OrderEvent)(0xc000098350), Timestamp:<nil>, Metadata:map[string]string(nil)}, "IsStartDomainTwo":main.Transition{FromState:(*main.OrderEvent)(0xc0000984f0), ToCancel:(*main.OrderEvent)(0xc0000987d0), ToState:(*main.OrderEvent)(0xc000098610), Timestamp:<nil>, Metadata:map[string]string(nil)}, "IsStopDomainOne":main.Transition{FromState:(*main.OrderEvent)(0xc0000985d0), ToCancel:(*main.OrderEvent)(0xc0000987d0), ToState:(*main.OrderEvent)(0xc0000983f0), Timestamp:<nil>, Metadata:map[string]string(nil)}, "MachineMigrate":main.Transition{FromState:(*main.OrderEvent)(0xc000098510), ToCancel:(*main.OrderEvent)(0xc0000987d0), ToState:(*main.OrderEvent)(0xc000098610), Timestamp:<nil>, Metadata:map[string]string(nil)}, "MachinePause":main.Transition{FromState:(*main.OrderEvent)(0xc000098830), ToCancel:(*main.OrderEvent)(0xc0000987d0), ToState:(*main.OrderEvent)(0xc000098790), Timestamp:<nil>, Metadata:map[string]string(nil)}, "MachineResume":main.Transition{FromState:(*main.OrderEvent)(0xc000098530), ToCancel:(*main.OrderEvent)(0xc0000987d0), ToState:(*main.OrderEvent)(0xc000098790), Timestamp:<nil>, Metadata:map[string]string(nil)}, "RebootDomain":main.Transition{FromState:(*main.OrderEvent)(0xc000098770), ToCancel:(*main.OrderEvent)(0xc0000986f0), ToState:(*main.OrderEvent)(0xc0000984f0), Timestamp:<nil>, Metadata:map[string]string(nil)}, "Reinstated":main.Transition{FromState:(*main.OrderEvent)(0xc0000986d0), ToCancel:(*main.OrderEvent)(0xc0000986f0), ToState:(*main.OrderEvent)(0xc000098690), Timestamp:<nil>, Metadata:map[string]string(nil)}, "RemoveCloudISO":main.Transition{FromState:(*main.OrderEvent)(0xc000098350), ToCancel:(*main.OrderEvent)(0xc0000986f0), ToState:(*main.OrderEvent)(0xc0000982f0), Timestamp:<nil>, Metadata:map[string]string(nil)}, "ShutdownDomain":main.Transition{FromState:(*main.OrderEvent)(0xc0000983d0), ToCancel:(*main.OrderEvent)(0xc0000982d0), ToState:(*main.OrderEvent)(0xc000098790), Timestamp:<nil>, Metadata:map[string]string(nil)}, "SoftRebootDomain":main.Transition{FromState:(*main.OrderEvent)(0xc000098850), ToCancel:(*main.OrderEvent)(0xc0000987d0), ToState:(*main.OrderEvent)(0xc000098550), Timestamp:<nil>, Metadata:map[string]string(nil)}, "StartDomain":main.Transition{FromState:(*main.OrderEvent)(0xc0000985f0), ToCancel:(*main.OrderEvent)(0xc0000987d0), ToState:(*main.OrderEvent)(0xc000098610), Timestamp:<nil>, Metadata:map[string]string(nil)}, "StartDomainOne":main.Transition{FromState:(*main.OrderEvent)(0xc0000983f0), ToCancel:(*main.OrderEvent)(0xc0000987d0), ToState:(*main.OrderEvent)(0xc0000982b0), Timestamp:<nil>, Metadata:map[string]string(nil)}, "StateDestroy":main.Transition{FromState:(*main.OrderEvent)(0xc000098410), ToCancel:(*main.OrderEvent)(0xc0000987d0), ToState:(*main.OrderEvent)(0xc000098570), Timestamp:<nil>, Metadata:map[string]string(nil)}, "StateError":main.Transition{FromState:(*main.OrderEvent)(0xc0000982d0), ToCancel:(*main.OrderEvent)(0xc0000987d0), ToState:(*main.OrderEvent)(0xc000098570), Timestamp:<nil>, Metadata:map[string]string(nil)}, "StatePause":main.Transition{FromState:(*main.OrderEvent)(0xc000098430), ToCancel:(*main.OrderEvent)(0xc0000987d0), ToState:(*main.OrderEvent)(0xc000098570), Timestamp:<nil>, Metadata:map[string]string(nil)}, "StateReboot":main.Transition{FromState:(*main.OrderEvent)(0xc000098550), ToCancel:(*main.OrderEvent)(0xc0000987d0), ToState:(*main.OrderEvent)(0xc000098610), Timestamp:<nil>, Metadata:map[string]string(nil)}, "StateRunning":main.Transition{FromState:(*main.OrderEvent)(0xc000098610), ToCancel:(*main.OrderEvent)(0xc0000987d0), ToState:(*main.OrderEvent)(0xc000098570), Timestamp:<nil>, Metadata:map[string]string(nil)}, "StateStop":main.Transition{FromState:(*main.OrderEvent)(0xc000098790), ToCancel:(*main.OrderEvent)(0xc0000987d0), ToState:(*main.OrderEvent)(0xc000098570), Timestamp:<nil>, Metadata:map[string]string(nil)}}
+#########################################################
+_cloudDomainStoreByName VMName: 3f7a0d24-cdbe-427d-9385-8fb46c908414
+_cloudDomainStores 3f7a0d24-cdbe-427d-9385-8fb46c908414: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.26543285 +0500 +05 m=+0.002587598 0001-01-01 00:00:00 +0000 UTC 00000000-0000-0000-0000-000000000000 VMName  eb916877-8f58-43d2-88c0-4141c0cabd15 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+_cloudDomainStoreByName eb916877-8f58-43d2-88c0-4141c0cabd15: {eb916877-8f58-43d2-88c0-4141c0cabd15 node1 192.168.1.10}
+_cloudDomainStoreByName e8bb75f3-2974-41dc-ba2b-6bc06e91ddcf: {e8bb75f3-2974-41dc-ba2b-6bc06e91ddcf node2 192.168.1.20}
+_cloudDomainStoreByName node1: eb916877-8f58-43d2-88c0-4141c0cabd15
+_cloudDomainStoreByName node2: e8bb75f3-2974-41dc-ba2b-6bc06e91ddcf
+_cloudDomainStoreByName 46a41f06-7995-4177-9ed3-1ad67bfd8d03: {46a41f06-7995-4177-9ed3-1ad67bfd8d03 switch1 192.168.200.0/24 192.168.200.1   [192.168.1.10] []}
+#########################################################
+DEBUG: CloudDomainStore(): &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.265722851 +0500 +05 m=+0.002877597 0001-01-01 00:00:00 +0000 UTC 984f591f-1315-4a36-aebc-80bd11155f7b VMName  eb916877-8f58-43d2-88c0-4141c0cabd15 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG: UUID EVENT: 984f591f-1315-4a36-aebc-80bd11155f7bDEBUG, RunEvents, stage:InitDomain
+DEBUG: DEBUG: Event ServiceOrder. InitDomain: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:984f591f-1315-4a36-aebc-80bd11155f7b
+DEBUG: transaction:{2023-08-12 20:10:21.265722023 +0500 +05 m=+0.002876774 InitDomain 984f591f-1315-4a36-aebc-80bd11155f7b 3f7a0d24-cdbe-427d-9385-8fb46c908414   <xml config............... 00000000-0000-0000-0000-000000000000}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.265722851 +0500 +05 m=+0.002877597 0001-01-01 00:00:00 +0000 UTC 984f591f-1315-4a36-aebc-80bd11155f7b VMName  eb916877-8f58-43d2-88c0-4141c0cabd15 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: Transition: =====> CreateBootDisk true
+DEBUG: Transition: InitDomain successful. Current state: CreateBootDisk
+DEBUG: -----------------------------
+DEBUG, RunEvents, stage:CreateBootDisk
+DEBUG: DEBUG: Event ServiceOrder. CreateBootDisk: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:984f591f-1315-4a36-aebc-80bd11155f7b
+DEBUG: transaction:{2023-08-12 20:10:21.265722023 +0500 +05 m=+0.002876774 InitDomain 984f591f-1315-4a36-aebc-80bd11155f7b 3f7a0d24-cdbe-427d-9385-8fb46c908414   <xml config............... 00000000-0000-0000-0000-000000000000}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.265722851 +0500 +05 m=+0.002877597 0001-01-01 00:00:00 +0000 UTC 984f591f-1315-4a36-aebc-80bd11155f7b VMName  eb916877-8f58-43d2-88c0-4141c0cabd15 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: Transition: =====> CreateUserData true
+DEBUG: Transition: CreateBootDisk successful. Current state: CreateUserData
+DEBUG: -----------------------------
+DEBUG, RunEvents, stage:CreateUserData
+DEBUG: DEBUG: Event ServiceOrder. CreateUserData: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:984f591f-1315-4a36-aebc-80bd11155f7b
+DEBUG: transaction:{2023-08-12 20:10:21.265722023 +0500 +05 m=+0.002876774 InitDomain 984f591f-1315-4a36-aebc-80bd11155f7b 3f7a0d24-cdbe-427d-9385-8fb46c908414   <xml config............... 00000000-0000-0000-0000-000000000000}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.265722851 +0500 +05 m=+0.002877597 0001-01-01 00:00:00 +0000 UTC 984f591f-1315-4a36-aebc-80bd11155f7b VMName  eb916877-8f58-43d2-88c0-4141c0cabd15 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: Transition: =====> CreateNetworkDate true
+DEBUG: Transition: CreateUserData successful. Current state: CreateNetworkDate
+DEBUG: -----------------------------
+DEBUG, RunEvents, stage:CreateNetworkDate
+DEBUG: DEBUG: Event ServiceOrder. CreateNetworkDate: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:984f591f-1315-4a36-aebc-80bd11155f7b
+DEBUG: transaction:{2023-08-12 20:10:21.265722023 +0500 +05 m=+0.002876774 InitDomain 984f591f-1315-4a36-aebc-80bd11155f7b 3f7a0d24-cdbe-427d-9385-8fb46c908414   <xml config............... 00000000-0000-0000-0000-000000000000}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.265722851 +0500 +05 m=+0.002877597 0001-01-01 00:00:00 +0000 UTC 984f591f-1315-4a36-aebc-80bd11155f7b VMName  eb916877-8f58-43d2-88c0-4141c0cabd15 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: Transition: =====> FirstStartDomain true
+DEBUG: Transition: CreateNetworkDate successful. Current state: FirstStartDomain
+DEBUG: -----------------------------
+DEBUG, RunEvents, stage:FirstStartDomain
+DEBUG: DEBUG: Event ServiceOrder. FirstStartDomain: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:984f591f-1315-4a36-aebc-80bd11155f7b
+DEBUG: transaction:{2023-08-12 20:10:21.265722023 +0500 +05 m=+0.002876774 InitDomain 984f591f-1315-4a36-aebc-80bd11155f7b 3f7a0d24-cdbe-427d-9385-8fb46c908414   <xml config............... 00000000-0000-0000-0000-000000000000}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.265722851 +0500 +05 m=+0.002877597 0001-01-01 00:00:00 +0000 UTC 984f591f-1315-4a36-aebc-80bd11155f7b VMName  eb916877-8f58-43d2-88c0-4141c0cabd15 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: Transition: =====> IsStopDomainOne true
+DEBUG: Transition: FirstStartDomain successful. Current state: IsStopDomainOne
+DEBUG: -----------------------------
+DEBUG, RunEvents, stage:IsStopDomainOne
+DEBUG: DEBUG: Event ServiceOrder. IsStopDomainOne: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:984f591f-1315-4a36-aebc-80bd11155f7b
+DEBUG: transaction:{2023-08-12 20:10:21.265722023 +0500 +05 m=+0.002876774 InitDomain 984f591f-1315-4a36-aebc-80bd11155f7b 3f7a0d24-cdbe-427d-9385-8fb46c908414   <xml config............... 00000000-0000-0000-0000-000000000000}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.265722851 +0500 +05 m=+0.002877597 0001-01-01 00:00:00 +0000 UTC 984f591f-1315-4a36-aebc-80bd11155f7b VMName  eb916877-8f58-43d2-88c0-4141c0cabd15 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: Transition: =====> StartDomainOne true
+DEBUG: Transition: IsStopDomainOne successful. Current state: StartDomainOne
+DEBUG: -----------------------------
+DEBUG, RunEvents, stage:StartDomainOne
+DEBUG: DEBUG: Event ServiceOrder. StartDomainOne: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:984f591f-1315-4a36-aebc-80bd11155f7b
+DEBUG: transaction:{2023-08-12 20:10:21.265722023 +0500 +05 m=+0.002876774 InitDomain 984f591f-1315-4a36-aebc-80bd11155f7b 3f7a0d24-cdbe-427d-9385-8fb46c908414   <xml config............... 00000000-0000-0000-0000-000000000000}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.265722851 +0500 +05 m=+0.002877597 0001-01-01 00:00:00 +0000 UTC 984f591f-1315-4a36-aebc-80bd11155f7b VMName  eb916877-8f58-43d2-88c0-4141c0cabd15 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: Transition: =====> IsStartDomainOne true
+DEBUG: Transition: StartDomainOne successful. Current state: IsStartDomainOne
+DEBUG: -----------------------------
+DEBUG, RunEvents, stage:IsStartDomainOne
+DEBUG: DEBUG: Event ServiceOrder. IsStartDomainOne: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:984f591f-1315-4a36-aebc-80bd11155f7b
+DEBUG: transaction:{2023-08-12 20:10:21.265722023 +0500 +05 m=+0.002876774 InitDomain 984f591f-1315-4a36-aebc-80bd11155f7b 3f7a0d24-cdbe-427d-9385-8fb46c908414   <xml config............... 00000000-0000-0000-0000-000000000000}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: Transition: =====> RemoveCloudISO true
+DEBUG: Transition: IsStartDomainOne successful. Current state: RemoveCloudISO
+DEBUG: -----------------------------
+DEBUG, RunEvents, stage:RemoveCloudISO
+DEBUG: DEBUG: Event ServiceOrder. RemoveCloudISO: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:984f591f-1315-4a36-aebc-80bd11155f7b
+DEBUG: transaction:{2023-08-12 20:10:21.265722023 +0500 +05 m=+0.002876774 InitDomain 984f591f-1315-4a36-aebc-80bd11155f7b 3f7a0d24-cdbe-427d-9385-8fb46c908414   <xml config............... 00000000-0000-0000-0000-000000000000}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.265722851 +0500 +05 m=+0.002877597 0001-01-01 00:00:00 +0000 UTC 984f591f-1315-4a36-aebc-80bd11155f7b VMName  eb916877-8f58-43d2-88c0-4141c0cabd15 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: Transition: =====> ConfigureDomain true
+DEBUG: Transition: RemoveCloudISO successful. Current state: ConfigureDomain
+DEBUG: -----------------------------
+DEBUG, RunEvents, stage:ConfigureDomain
+DEBUG: DEBUG: Event ServiceOrder. ConfigureDomain: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:984f591f-1315-4a36-aebc-80bd11155f7b
+DEBUG: transaction:{2023-08-12 20:10:21.265722023 +0500 +05 m=+0.002876774 InitDomain 984f591f-1315-4a36-aebc-80bd11155f7b 3f7a0d24-cdbe-427d-9385-8fb46c908414   <xml config............... 00000000-0000-0000-0000-000000000000}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.265722851 +0500 +05 m=+0.002877597 0001-01-01 00:00:00 +0000 UTC 984f591f-1315-4a36-aebc-80bd11155f7b VMName  eb916877-8f58-43d2-88c0-4141c0cabd15 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: Transition: =====> RebootDomain true
+DEBUG: Transition: ConfigureDomain successful. Current state: RebootDomain
+DEBUG: -----------------------------
+DEBUG, RunEvents, stage:RebootDomain
+DEBUG: DEBUG: Event ServiceOrder. RebootDomain: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:984f591f-1315-4a36-aebc-80bd11155f7b
+DEBUG: transaction:{2023-08-12 20:10:21.265722023 +0500 +05 m=+0.002876774 InitDomain 984f591f-1315-4a36-aebc-80bd11155f7b 3f7a0d24-cdbe-427d-9385-8fb46c908414   <xml config............... 00000000-0000-0000-0000-000000000000}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.265722851 +0500 +05 m=+0.002877597 0001-01-01 00:00:00 +0000 UTC 984f591f-1315-4a36-aebc-80bd11155f7b VMName  eb916877-8f58-43d2-88c0-4141c0cabd15 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: Transition: =====> IsStartDomainTwo true
+DEBUG: Transition: RebootDomain successful. Current state: IsStartDomainTwo
+DEBUG: -----------------------------
+DEBUG, RunEvents, stage:IsStartDomainTwo
+DEBUG: DEBUG: Event ServiceOrder. IsStartDomainTwo: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:984f591f-1315-4a36-aebc-80bd11155f7b
+DEBUG: transaction:{2023-08-12 20:10:21.265722023 +0500 +05 m=+0.002876774 InitDomain 984f591f-1315-4a36-aebc-80bd11155f7b 3f7a0d24-cdbe-427d-9385-8fb46c908414   <xml config............... 00000000-0000-0000-0000-000000000000}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.265722851 +0500 +05 m=+0.002877597 0001-01-01 00:00:00 +0000 UTC 984f591f-1315-4a36-aebc-80bd11155f7b VMName  eb916877-8f58-43d2-88c0-4141c0cabd15 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: Transition: =====> StateRunning true
+DEBUG: Transition: IsStartDomainTwo successful. Current state: StateRunning
+DEBUG: -----------------------------
+DEBUG, RunEvents, stage:StateRunning
+DEBUG: DEBUG: Event ServiceOrder. StateRunning: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:984f591f-1315-4a36-aebc-80bd11155f7b
+DEBUG: transaction:{2023-08-12 20:10:21.265722023 +0500 +05 m=+0.002876774 InitDomain 984f591f-1315-4a36-aebc-80bd11155f7b 3f7a0d24-cdbe-427d-9385-8fb46c908414   <xml config............... 00000000-0000-0000-0000-000000000000}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.265722851 +0500 +05 m=+0.002877597 0001-01-01 00:00:00 +0000 UTC 984f591f-1315-4a36-aebc-80bd11155f7b VMName  eb916877-8f58-43d2-88c0-4141c0cabd15 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: -----------------------------
+Transition 3f7a0d24-cdbe-427d-9385-8fb46c908414 is successful. Current state: StateRunningDEBUG: VARS: &main.OrderEvent{Name:"StateRunning"} <nil>
+DEBUG: Transitions: &[{InitDomain <nil> CreateBootDisk 2023-08-12 20:10:21.265874833 +0500 +05 m=+0.003029565 map[]} {CreateBootDisk <nil> CreateUserData 2023-08-12 20:10:21.265961887 +0500 +05 m=+0.003116618 map[]} {CreateUserData <nil> CreateNetworkDate 2023-08-12 20:10:21.266039814 +0500 +05 m=+0.003194544 map[]} {CreateNetworkDate <nil> FirstStartDomain 2023-08-12 20:10:21.266118845 +0500 +05 m=+0.003273569 map[]} {FirstStartDomain <nil> IsStopDomainOne 2023-08-12 20:10:21.266243942 +0500 +05 m=+0.003398677 map[]} {IsStopDomainOne <nil> StartDomainOne 2023-08-12 20:10:21.266321739 +0500 +05 m=+0.003476471 map[]} {StartDomainOne <nil> IsStartDomainOne 2023-08-12 20:10:21.266397641 +0500 +05 m=+0.003552369 map[]} {IsStartDomainOne <nil> RemoveCloudISO 2023-08-12 20:10:21.266455602 +0500 +05 m=+0.003610333 map[]} {RemoveCloudISO <nil> ConfigureDomain 2023-08-12 20:10:21.266530691 +0500 +05 m=+0.003685421 map[]} {ConfigureDomain <nil> RebootDomain 2023-08-12 20:10:21.266616831 +0500 +05 m=+0.003771563 map[]} {RebootDomain <nil> IsStartDomainTwo 2023-08-12 20:10:21.266713258 +0500 +05 m=+0.003867988 map[]} {IsStartDomainTwo <nil> StateRunning 2023-08-12 20:10:21.266790692 +0500 +05 m=+0.003945421 map[]}]
+DEBUG: 0:{InitDomain <nil> CreateBootDisk 2023-08-12 20:10:21.265874833 +0500 +05 m=+0.003029565 map[]}
+DEBUG: 1:{CreateBootDisk <nil> CreateUserData 2023-08-12 20:10:21.265961887 +0500 +05 m=+0.003116618 map[]}
+DEBUG: 2:{CreateUserData <nil> CreateNetworkDate 2023-08-12 20:10:21.266039814 +0500 +05 m=+0.003194544 map[]}
+DEBUG: 3:{CreateNetworkDate <nil> FirstStartDomain 2023-08-12 20:10:21.266118845 +0500 +05 m=+0.003273569 map[]}
+DEBUG: 4:{FirstStartDomain <nil> IsStopDomainOne 2023-08-12 20:10:21.266243942 +0500 +05 m=+0.003398677 map[]}
+DEBUG: 5:{IsStopDomainOne <nil> StartDomainOne 2023-08-12 20:10:21.266321739 +0500 +05 m=+0.003476471 map[]}
+DEBUG: 6:{StartDomainOne <nil> IsStartDomainOne 2023-08-12 20:10:21.266397641 +0500 +05 m=+0.003552369 map[]}
+DEBUG: 7:{IsStartDomainOne <nil> RemoveCloudISO 2023-08-12 20:10:21.266455602 +0500 +05 m=+0.003610333 map[]}
+DEBUG: 8:{RemoveCloudISO <nil> ConfigureDomain 2023-08-12 20:10:21.266530691 +0500 +05 m=+0.003685421 map[]}
+DEBUG: 9:{ConfigureDomain <nil> RebootDomain 2023-08-12 20:10:21.266616831 +0500 +05 m=+0.003771563 map[]}
+DEBUG: 10:{RebootDomain <nil> IsStartDomainTwo 2023-08-12 20:10:21.266713258 +0500 +05 m=+0.003867988 map[]}
+DEBUG: 11:{IsStartDomainTwo <nil> StateRunning 2023-08-12 20:10:21.266790692 +0500 +05 m=+0.003945421 map[]}
+================================================================================
+DEBUG: CloudDomainStore(): &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.267141163 +0500 +05 m=+0.004295893 0001-01-01 00:00:00 +0000 UTC dc0112ef-9352-4ba1-b41d-efea91314404 VMName <xml config............... eb916877-8f58-43d2-88c0-4141c0cabd15 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG: UUID EVENT: dc0112ef-9352-4ba1-b41d-efea91314404DEBUG, RunEvents, stage:InitAttachDisk
+DEBUG: DEBUG: Event ServiceOrder. InitAttachDisk: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:dc0112ef-9352-4ba1-b41d-efea91314404
+DEBUG: transaction:{2023-08-12 20:10:21.26714067 +0500 +05 m=+0.004295394 InitAttachDisk dc0112ef-9352-4ba1-b41d-efea91314404 3f7a0d24-cdbe-427d-9385-8fb46c908414 sdb /..../sdb.qcow2  00000000-0000-0000-0000-000000000000}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.267141163 +0500 +05 m=+0.004295893 0001-01-01 00:00:00 +0000 UTC dc0112ef-9352-4ba1-b41d-efea91314404 VMName <xml config............... eb916877-8f58-43d2-88c0-4141c0cabd15 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: Transition: =====> AttachDisk true
+DEBUG: Transition: InitAttachDisk successful. Current state: AttachDisk
+DEBUG: -----------------------------
+DEBUG, RunEvents, stage:AttachDisk
+DEBUG: DEBUG: Event ServiceOrder. AttachDisk: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:dc0112ef-9352-4ba1-b41d-efea91314404
+DEBUG: transaction:{2023-08-12 20:10:21.26714067 +0500 +05 m=+0.004295394 InitAttachDisk dc0112ef-9352-4ba1-b41d-efea91314404 3f7a0d24-cdbe-427d-9385-8fb46c908414 sdb /..../sdb.qcow2  00000000-0000-0000-0000-000000000000}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.267141163 +0500 +05 m=+0.004295893 0001-01-01 00:00:00 +0000 UTC dc0112ef-9352-4ba1-b41d-efea91314404 VMName <xml config............... eb916877-8f58-43d2-88c0-4141c0cabd15 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: Transition: =====> StateRunning true
+DEBUG: Transition: AttachDisk successful. Current state: StateRunning
+DEBUG: -----------------------------
+DEBUG, RunEvents, stage:StateRunning
+DEBUG: DEBUG: Event ServiceOrder. StateRunning: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:dc0112ef-9352-4ba1-b41d-efea91314404
+DEBUG: transaction:{2023-08-12 20:10:21.26714067 +0500 +05 m=+0.004295394 InitAttachDisk dc0112ef-9352-4ba1-b41d-efea91314404 3f7a0d24-cdbe-427d-9385-8fb46c908414 sdb /..../sdb.qcow2  00000000-0000-0000-0000-000000000000}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.267141163 +0500 +05 m=+0.004295893 0001-01-01 00:00:00 +0000 UTC dc0112ef-9352-4ba1-b41d-efea91314404 VMName <xml config............... eb916877-8f58-43d2-88c0-4141c0cabd15 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: -----------------------------
+Transition 3f7a0d24-cdbe-427d-9385-8fb46c908414 is successful. Current state: StateRunningDEBUG: VARS: &main.OrderEvent{Name:"StateRunning"} <nil>
+DEBUG: Transitions: &[{InitAttachDisk <nil> AttachDisk 2023-08-12 20:10:21.267237643 +0500 +05 m=+0.004392374 map[]} {AttachDisk <nil> StateRunning 2023-08-12 20:10:21.267330153 +0500 +05 m=+0.004484884 map[]}]
+DEBUG: 0:{InitAttachDisk <nil> AttachDisk 2023-08-12 20:10:21.267237643 +0500 +05 m=+0.004392374 map[]}
+DEBUG: 1:{AttachDisk <nil> StateRunning 2023-08-12 20:10:21.267330153 +0500 +05 m=+0.004484884 map[]}
+================================================================================
+DEBUG: CloudDomainStore(): &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.267463934 +0500 +05 m=+0.004618612 0001-01-01 00:00:00 +0000 UTC 9db53e39-dd7f-417b-896d-d95599d22eff VMName <xml config............... eb916877-8f58-43d2-88c0-4141c0cabd15 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b dc0112ef-9352-4ba1-b41d-efea91314404] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG: UUID EVENT: 9db53e39-dd7f-417b-896d-d95599d22effDEBUG, RunEvents, stage:InitDeattachDisk
+DEBUG: DEBUG: Event ServiceOrder. InitDeattachDisk: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:9db53e39-dd7f-417b-896d-d95599d22eff
+DEBUG: transaction:{2023-08-12 20:10:21.267463835 +0500 +05 m=+0.004618512 InitDeattachDisk 9db53e39-dd7f-417b-896d-d95599d22eff 3f7a0d24-cdbe-427d-9385-8fb46c908414 sdb /..../sdb.qcow2  00000000-0000-0000-0000-000000000000}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.267463934 +0500 +05 m=+0.004618612 0001-01-01 00:00:00 +0000 UTC 9db53e39-dd7f-417b-896d-d95599d22eff VMName <xml config............... eb916877-8f58-43d2-88c0-4141c0cabd15 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b dc0112ef-9352-4ba1-b41d-efea91314404] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: Transition: =====> DeattachDisk true
+DEBUG: Transition: InitDeattachDisk successful. Current state: DeattachDisk
+DEBUG: -----------------------------
+DEBUG, RunEvents, stage:DeattachDisk
+DEBUG: DEBUG: Event ServiceOrder. DeattachDisk: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:9db53e39-dd7f-417b-896d-d95599d22eff
+DEBUG: transaction:{2023-08-12 20:10:21.267463835 +0500 +05 m=+0.004618512 InitDeattachDisk 9db53e39-dd7f-417b-896d-d95599d22eff 3f7a0d24-cdbe-427d-9385-8fb46c908414 sdb /..../sdb.qcow2  00000000-0000-0000-0000-000000000000}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.267463934 +0500 +05 m=+0.004618612 0001-01-01 00:00:00 +0000 UTC 9db53e39-dd7f-417b-896d-d95599d22eff VMName <xml config............... eb916877-8f58-43d2-88c0-4141c0cabd15 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b dc0112ef-9352-4ba1-b41d-efea91314404] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: Transition: =====> StateRunning true
+DEBUG: Transition: DeattachDisk successful. Current state: StateRunning
+DEBUG: -----------------------------
+DEBUG, RunEvents, stage:StateRunning
+DEBUG: DEBUG: Event ServiceOrder. StateRunning: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:9db53e39-dd7f-417b-896d-d95599d22eff
+DEBUG: transaction:{2023-08-12 20:10:21.267463835 +0500 +05 m=+0.004618512 InitDeattachDisk 9db53e39-dd7f-417b-896d-d95599d22eff 3f7a0d24-cdbe-427d-9385-8fb46c908414 sdb /..../sdb.qcow2  00000000-0000-0000-0000-000000000000}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.267463934 +0500 +05 m=+0.004618612 0001-01-01 00:00:00 +0000 UTC 9db53e39-dd7f-417b-896d-d95599d22eff VMName <xml config............... eb916877-8f58-43d2-88c0-4141c0cabd15 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b dc0112ef-9352-4ba1-b41d-efea91314404] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: -----------------------------
+Transition 3f7a0d24-cdbe-427d-9385-8fb46c908414 is successful. Current state: StateRunningDEBUG: VARS: &main.OrderEvent{Name:"StateRunning"} <nil>
+DEBUG: Transitions: &[{InitDeattachDisk <nil> DeattachDisk 2023-08-12 20:10:21.267483937 +0500 +05 m=+0.004638614 map[]} {DeattachDisk <nil> StateRunning 2023-08-12 20:10:21.267502245 +0500 +05 m=+0.004656923 map[]}]
+DEBUG: 0:{InitDeattachDisk <nil> DeattachDisk 2023-08-12 20:10:21.267483937 +0500 +05 m=+0.004638614 map[]}
+DEBUG: 1:{DeattachDisk <nil> StateRunning 2023-08-12 20:10:21.267502245 +0500 +05 m=+0.004656923 map[]}
+================================================================================
+DEBUG: CloudDomainStore(): &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.267531261 +0500 +05 m=+0.004685938 0001-01-01 00:00:00 +0000 UTC b0863271-82ed-432e-945e-e6575cd83d10 VMName <xml config............... eb916877-8f58-43d2-88c0-4141c0cabd15 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b dc0112ef-9352-4ba1-b41d-efea91314404 9db53e39-dd7f-417b-896d-d95599d22eff] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG: UUID EVENT: b0863271-82ed-432e-945e-e6575cd83d10DEBUG, RunEvents, stage:InitAttachNetworkDevice
+DEBUG: DEBUG: Event ServiceOrder. InitAttachNetworkDevice: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:b0863271-82ed-432e-945e-e6575cd83d10
+DEBUG: transaction:{2023-08-12 20:10:21.267531169 +0500 +05 m=+0.004685846 InitAttachNetworkDevice b0863271-82ed-432e-945e-e6575cd83d10 3f7a0d24-cdbe-427d-9385-8fb46c908414 enps...... network path......  00000000-0000-0000-0000-000000000000}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.267531261 +0500 +05 m=+0.004685938 0001-01-01 00:00:00 +0000 UTC b0863271-82ed-432e-945e-e6575cd83d10 VMName <xml config............... eb916877-8f58-43d2-88c0-4141c0cabd15 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b dc0112ef-9352-4ba1-b41d-efea91314404 9db53e39-dd7f-417b-896d-d95599d22eff] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: Transition: =====> AttachNetworkDevice true
+DEBUG: Transition: InitAttachNetworkDevice successful. Current state: AttachNetworkDevice
+DEBUG: -----------------------------
+DEBUG, RunEvents, stage:AttachNetworkDevice
+DEBUG: DEBUG: Event ServiceOrder. AttachNetworkDevice: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:b0863271-82ed-432e-945e-e6575cd83d10
+DEBUG: transaction:{2023-08-12 20:10:21.267531169 +0500 +05 m=+0.004685846 InitAttachNetworkDevice b0863271-82ed-432e-945e-e6575cd83d10 3f7a0d24-cdbe-427d-9385-8fb46c908414 enps...... network path......  00000000-0000-0000-0000-000000000000}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.267531261 +0500 +05 m=+0.004685938 0001-01-01 00:00:00 +0000 UTC b0863271-82ed-432e-945e-e6575cd83d10 VMName <xml config............... eb916877-8f58-43d2-88c0-4141c0cabd15 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b dc0112ef-9352-4ba1-b41d-efea91314404 9db53e39-dd7f-417b-896d-d95599d22eff] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: Transition: =====> StateRunning true
+DEBUG: Transition: AttachNetworkDevice successful. Current state: StateRunning
+DEBUG: -----------------------------
+DEBUG, RunEvents, stage:StateRunning
+DEBUG: DEBUG: Event ServiceOrder. StateRunning: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:b0863271-82ed-432e-945e-e6575cd83d10
+DEBUG: transaction:{2023-08-12 20:10:21.267531169 +0500 +05 m=+0.004685846 InitAttachNetworkDevice b0863271-82ed-432e-945e-e6575cd83d10 3f7a0d24-cdbe-427d-9385-8fb46c908414 enps...... network path......  00000000-0000-0000-0000-000000000000}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.267531261 +0500 +05 m=+0.004685938 0001-01-01 00:00:00 +0000 UTC b0863271-82ed-432e-945e-e6575cd83d10 VMName <xml config............... eb916877-8f58-43d2-88c0-4141c0cabd15 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b dc0112ef-9352-4ba1-b41d-efea91314404 9db53e39-dd7f-417b-896d-d95599d22eff] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: -----------------------------
+Transition 3f7a0d24-cdbe-427d-9385-8fb46c908414 is successful. Current state: StateRunningDEBUG: VARS: &main.OrderEvent{Name:"StateRunning"} <nil>
+DEBUG: Transitions: &[{InitAttachNetworkDevice <nil> AttachNetworkDevice 2023-08-12 20:10:21.267551503 +0500 +05 m=+0.004706180 map[]} {AttachNetworkDevice <nil> StateRunning 2023-08-12 20:10:21.267570667 +0500 +05 m=+0.004725345 map[]}]
+DEBUG: 0:{InitAttachNetworkDevice <nil> AttachNetworkDevice 2023-08-12 20:10:21.267551503 +0500 +05 m=+0.004706180 map[]}
+DEBUG: 1:{AttachNetworkDevice <nil> StateRunning 2023-08-12 20:10:21.267570667 +0500 +05 m=+0.004725345 map[]}
+================================================================================
+DEBUG: CloudDomainStore(): &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.267599644 +0500 +05 m=+0.004754321 0001-01-01 00:00:00 +0000 UTC 63c91710-2946-44ef-8707-f10b74caa5ce VMName <xml config............... eb916877-8f58-43d2-88c0-4141c0cabd15 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b dc0112ef-9352-4ba1-b41d-efea91314404 9db53e39-dd7f-417b-896d-d95599d22eff b0863271-82ed-432e-945e-e6575cd83d10] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG: UUID EVENT: 63c91710-2946-44ef-8707-f10b74caa5ceDEBUG, RunEvents, stage:InitDeattachNetworkDevice
+DEBUG: DEBUG: Event ServiceOrder. InitDeattachNetworkDevice: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:63c91710-2946-44ef-8707-f10b74caa5ce
+DEBUG: transaction:{2023-08-12 20:10:21.267599547 +0500 +05 m=+0.004754224 InitDeattachNetworkDevice 63c91710-2946-44ef-8707-f10b74caa5ce 3f7a0d24-cdbe-427d-9385-8fb46c908414 enps...... network path......  00000000-0000-0000-0000-000000000000}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.267599644 +0500 +05 m=+0.004754321 0001-01-01 00:00:00 +0000 UTC 63c91710-2946-44ef-8707-f10b74caa5ce VMName <xml config............... eb916877-8f58-43d2-88c0-4141c0cabd15 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b dc0112ef-9352-4ba1-b41d-efea91314404 9db53e39-dd7f-417b-896d-d95599d22eff b0863271-82ed-432e-945e-e6575cd83d10] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: Transition: =====> DeattachNetworkDevice true
+DEBUG: Transition: InitDeattachNetworkDevice successful. Current state: DeattachNetworkDevice
+DEBUG: -----------------------------
+DEBUG, RunEvents, stage:DeattachNetworkDevice
+DEBUG: DEBUG: Event ServiceOrder. DeattachNetworkDevice: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:63c91710-2946-44ef-8707-f10b74caa5ce
+DEBUG: transaction:{2023-08-12 20:10:21.267599547 +0500 +05 m=+0.004754224 InitDeattachNetworkDevice 63c91710-2946-44ef-8707-f10b74caa5ce 3f7a0d24-cdbe-427d-9385-8fb46c908414 enps...... network path......  00000000-0000-0000-0000-000000000000}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.267599644 +0500 +05 m=+0.004754321 0001-01-01 00:00:00 +0000 UTC 63c91710-2946-44ef-8707-f10b74caa5ce VMName <xml config............... eb916877-8f58-43d2-88c0-4141c0cabd15 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b dc0112ef-9352-4ba1-b41d-efea91314404 9db53e39-dd7f-417b-896d-d95599d22eff b0863271-82ed-432e-945e-e6575cd83d10] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: Transition: =====> StateRunning true
+DEBUG: Transition: DeattachNetworkDevice successful. Current state: StateRunning
+DEBUG: -----------------------------
+DEBUG, RunEvents, stage:StateRunning
+DEBUG: DEBUG: Event ServiceOrder. StateRunning: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:63c91710-2946-44ef-8707-f10b74caa5ce
+DEBUG: transaction:{2023-08-12 20:10:21.267599547 +0500 +05 m=+0.004754224 InitDeattachNetworkDevice 63c91710-2946-44ef-8707-f10b74caa5ce 3f7a0d24-cdbe-427d-9385-8fb46c908414 enps...... network path......  00000000-0000-0000-0000-000000000000}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.267599644 +0500 +05 m=+0.004754321 0001-01-01 00:00:00 +0000 UTC 63c91710-2946-44ef-8707-f10b74caa5ce VMName <xml config............... eb916877-8f58-43d2-88c0-4141c0cabd15 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b dc0112ef-9352-4ba1-b41d-efea91314404 9db53e39-dd7f-417b-896d-d95599d22eff b0863271-82ed-432e-945e-e6575cd83d10] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: -----------------------------
+Transition 3f7a0d24-cdbe-427d-9385-8fb46c908414 is successful. Current state: StateRunningDEBUG: VARS: &main.OrderEvent{Name:"StateRunning"} <nil>
+DEBUG: Transitions: &[{InitDeattachNetworkDevice <nil> DeattachNetworkDevice 2023-08-12 20:10:21.267619964 +0500 +05 m=+0.004774641 map[]} {DeattachNetworkDevice <nil> StateRunning 2023-08-12 20:10:21.267638643 +0500 +05 m=+0.004793320 map[]}]
+DEBUG: 0:{InitDeattachNetworkDevice <nil> DeattachNetworkDevice 2023-08-12 20:10:21.267619964 +0500 +05 m=+0.004774641 map[]}
+DEBUG: 1:{DeattachNetworkDevice <nil> StateRunning 2023-08-12 20:10:21.267638643 +0500 +05 m=+0.004793320 map[]}
+================================================================================
+DEBUG: CloudDomainStore(): &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.267667853 +0500 +05 m=+0.004822531 0001-01-01 00:00:00 +0000 UTC 2aa0a237-a456-492a-b188-23dfebf958b2 VMName <xml config............... eb916877-8f58-43d2-88c0-4141c0cabd15 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b dc0112ef-9352-4ba1-b41d-efea91314404 9db53e39-dd7f-417b-896d-d95599d22eff b0863271-82ed-432e-945e-e6575cd83d10 63c91710-2946-44ef-8707-f10b74caa5ce] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG: UUID EVENT: 2aa0a237-a456-492a-b188-23dfebf958b2DEBUG, RunEvents, stage:InitMachineMigrate
+DEBUG: DEBUG: Event ServiceOrder. InitMachineMigrate: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:2aa0a237-a456-492a-b188-23dfebf958b2
+DEBUG: transaction:{2023-08-12 20:10:21.267667759 +0500 +05 m=+0.004822435 InitMachineMigrate 2aa0a237-a456-492a-b188-23dfebf958b2 3f7a0d24-cdbe-427d-9385-8fb46c908414    e8bb75f3-2974-41dc-ba2b-6bc06e91ddcf}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.267667853 +0500 +05 m=+0.004822531 0001-01-01 00:00:00 +0000 UTC 2aa0a237-a456-492a-b188-23dfebf958b2 VMName <xml config............... eb916877-8f58-43d2-88c0-4141c0cabd15 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b dc0112ef-9352-4ba1-b41d-efea91314404 9db53e39-dd7f-417b-896d-d95599d22eff b0863271-82ed-432e-945e-e6575cd83d10 63c91710-2946-44ef-8707-f10b74caa5ce] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: Transition: =====> MachineMigrate true
+DEBUG: Transition: InitMachineMigrate successful. Current state: MachineMigrate
+DEBUG: -----------------------------
+DEBUG, RunEvents, stage:MachineMigrate
+DEBUG: DEBUG: Event ServiceOrder. MachineMigrate: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:2aa0a237-a456-492a-b188-23dfebf958b2
+DEBUG: transaction:{2023-08-12 20:10:21.267667759 +0500 +05 m=+0.004822435 InitMachineMigrate 2aa0a237-a456-492a-b188-23dfebf958b2 3f7a0d24-cdbe-427d-9385-8fb46c908414    e8bb75f3-2974-41dc-ba2b-6bc06e91ddcf}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.267667853 +0500 +05 m=+0.004822531 0001-01-01 00:00:00 +0000 UTC 2aa0a237-a456-492a-b188-23dfebf958b2 VMName <xml config............... eb916877-8f58-43d2-88c0-4141c0cabd15 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b dc0112ef-9352-4ba1-b41d-efea91314404 9db53e39-dd7f-417b-896d-d95599d22eff b0863271-82ed-432e-945e-e6575cd83d10 63c91710-2946-44ef-8707-f10b74caa5ce] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: Transition: =====> StateRunning true
+DEBUG: Transition: MachineMigrate successful. Current state: StateRunning
+DEBUG: -----------------------------
+DEBUG, RunEvents, stage:StateRunning
+DEBUG: DEBUG: Event ServiceOrder. StateRunning: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:2aa0a237-a456-492a-b188-23dfebf958b2
+DEBUG: transaction:{2023-08-12 20:10:21.267667759 +0500 +05 m=+0.004822435 InitMachineMigrate 2aa0a237-a456-492a-b188-23dfebf958b2 3f7a0d24-cdbe-427d-9385-8fb46c908414    e8bb75f3-2974-41dc-ba2b-6bc06e91ddcf}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.267667853 +0500 +05 m=+0.004822531 0001-01-01 00:00:00 +0000 UTC 2aa0a237-a456-492a-b188-23dfebf958b2 VMName <xml config............... eb916877-8f58-43d2-88c0-4141c0cabd15 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b dc0112ef-9352-4ba1-b41d-efea91314404 9db53e39-dd7f-417b-896d-d95599d22eff b0863271-82ed-432e-945e-e6575cd83d10 63c91710-2946-44ef-8707-f10b74caa5ce] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: -----------------------------
+Transition 3f7a0d24-cdbe-427d-9385-8fb46c908414 is successful. Current state: StateRunningDEBUG: VARS: &main.OrderEvent{Name:"StateRunning"} <nil>
+DEBUG: Transitions: &[{InitMachineMigrate <nil> MachineMigrate 2023-08-12 20:10:21.267690534 +0500 +05 m=+0.004845211 map[]} {MachineMigrate <nil> StateRunning 2023-08-12 20:10:21.26770784 +0500 +05 m=+0.004862517 map[]}]
+DEBUG: 0:{InitMachineMigrate <nil> MachineMigrate 2023-08-12 20:10:21.267690534 +0500 +05 m=+0.004845211 map[]}
+DEBUG: 1:{MachineMigrate <nil> StateRunning 2023-08-12 20:10:21.26770784 +0500 +05 m=+0.004862517 map[]}
+================================================================================
+DEBUG: CloudDomainStore(): &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.26773834 +0500 +05 m=+0.004893017 0001-01-01 00:00:00 +0000 UTC 22c9b158-443a-4ca1-85f0-0d1cd483fafa VMName <xml config............... e8bb75f3-2974-41dc-ba2b-6bc06e91ddcf 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b dc0112ef-9352-4ba1-b41d-efea91314404 9db53e39-dd7f-417b-896d-d95599d22eff b0863271-82ed-432e-945e-e6575cd83d10 63c91710-2946-44ef-8707-f10b74caa5ce 2aa0a237-a456-492a-b188-23dfebf958b2] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG: UUID EVENT: 22c9b158-443a-4ca1-85f0-0d1cd483fafaDEBUG, RunEvents, stage:InitSoftRebootDomain
+DEBUG: DEBUG: Event ServiceOrder. InitSoftRebootDomain: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:22c9b158-443a-4ca1-85f0-0d1cd483fafa
+DEBUG: transaction:{2023-08-12 20:10:21.267738246 +0500 +05 m=+0.004892923 InitSoftRebootDomain 22c9b158-443a-4ca1-85f0-0d1cd483fafa 3f7a0d24-cdbe-427d-9385-8fb46c908414    00000000-0000-0000-0000-000000000000}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.26773834 +0500 +05 m=+0.004893017 0001-01-01 00:00:00 +0000 UTC 22c9b158-443a-4ca1-85f0-0d1cd483fafa VMName <xml config............... e8bb75f3-2974-41dc-ba2b-6bc06e91ddcf 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b dc0112ef-9352-4ba1-b41d-efea91314404 9db53e39-dd7f-417b-896d-d95599d22eff b0863271-82ed-432e-945e-e6575cd83d10 63c91710-2946-44ef-8707-f10b74caa5ce 2aa0a237-a456-492a-b188-23dfebf958b2] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: Transition: =====> SoftRebootDomain true
+DEBUG: Transition: InitSoftRebootDomain successful. Current state: SoftRebootDomain
+DEBUG: -----------------------------
+DEBUG, RunEvents, stage:SoftRebootDomain
+DEBUG: DEBUG: Event ServiceOrder. SoftRebootDomain: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:22c9b158-443a-4ca1-85f0-0d1cd483fafa
+DEBUG: transaction:{2023-08-12 20:10:21.267738246 +0500 +05 m=+0.004892923 InitSoftRebootDomain 22c9b158-443a-4ca1-85f0-0d1cd483fafa 3f7a0d24-cdbe-427d-9385-8fb46c908414    00000000-0000-0000-0000-000000000000}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.26773834 +0500 +05 m=+0.004893017 0001-01-01 00:00:00 +0000 UTC 22c9b158-443a-4ca1-85f0-0d1cd483fafa VMName <xml config............... e8bb75f3-2974-41dc-ba2b-6bc06e91ddcf 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b dc0112ef-9352-4ba1-b41d-efea91314404 9db53e39-dd7f-417b-896d-d95599d22eff b0863271-82ed-432e-945e-e6575cd83d10 63c91710-2946-44ef-8707-f10b74caa5ce 2aa0a237-a456-492a-b188-23dfebf958b2] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: Transition: =====> StateReboot true
+DEBUG: Transition: SoftRebootDomain successful. Current state: StateReboot
+DEBUG: -----------------------------
+DEBUG, RunEvents, stage:StateReboot
+DEBUG: DEBUG: Event ServiceOrder. StateReboot: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:22c9b158-443a-4ca1-85f0-0d1cd483fafa
+DEBUG: transaction:{2023-08-12 20:10:21.267738246 +0500 +05 m=+0.004892923 InitSoftRebootDomain 22c9b158-443a-4ca1-85f0-0d1cd483fafa 3f7a0d24-cdbe-427d-9385-8fb46c908414    00000000-0000-0000-0000-000000000000}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.26773834 +0500 +05 m=+0.004893017 0001-01-01 00:00:00 +0000 UTC 22c9b158-443a-4ca1-85f0-0d1cd483fafa VMName <xml config............... e8bb75f3-2974-41dc-ba2b-6bc06e91ddcf 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b dc0112ef-9352-4ba1-b41d-efea91314404 9db53e39-dd7f-417b-896d-d95599d22eff b0863271-82ed-432e-945e-e6575cd83d10 63c91710-2946-44ef-8707-f10b74caa5ce 2aa0a237-a456-492a-b188-23dfebf958b2] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: Transition: =====> StateRunning true
+DEBUG: Transition: StateReboot successful. Current state: StateRunning
+DEBUG: -----------------------------
+DEBUG, RunEvents, stage:StateRunning
+DEBUG: DEBUG: Event ServiceOrder. StateRunning: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:22c9b158-443a-4ca1-85f0-0d1cd483fafa
+DEBUG: transaction:{2023-08-12 20:10:21.267738246 +0500 +05 m=+0.004892923 InitSoftRebootDomain 22c9b158-443a-4ca1-85f0-0d1cd483fafa 3f7a0d24-cdbe-427d-9385-8fb46c908414    00000000-0000-0000-0000-000000000000}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.26773834 +0500 +05 m=+0.004893017 0001-01-01 00:00:00 +0000 UTC 22c9b158-443a-4ca1-85f0-0d1cd483fafa VMName <xml config............... e8bb75f3-2974-41dc-ba2b-6bc06e91ddcf 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b dc0112ef-9352-4ba1-b41d-efea91314404 9db53e39-dd7f-417b-896d-d95599d22eff b0863271-82ed-432e-945e-e6575cd83d10 63c91710-2946-44ef-8707-f10b74caa5ce 2aa0a237-a456-492a-b188-23dfebf958b2] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: -----------------------------
+Transition 3f7a0d24-cdbe-427d-9385-8fb46c908414 is successful. Current state: StateRunningDEBUG: VARS: &main.OrderEvent{Name:"StateRunning"} <nil>
+DEBUG: Transitions: &[{InitSoftRebootDomain <nil> SoftRebootDomain 2023-08-12 20:10:21.267761615 +0500 +05 m=+0.004916292 map[]} {SoftRebootDomain <nil> StateReboot 2023-08-12 20:10:21.26777875 +0500 +05 m=+0.004933427 map[]} {StateReboot <nil> StateRunning 2023-08-12 20:10:21.267795829 +0500 +05 m=+0.004950506 map[]}]
+DEBUG: 0:{InitSoftRebootDomain <nil> SoftRebootDomain 2023-08-12 20:10:21.267761615 +0500 +05 m=+0.004916292 map[]}
+DEBUG: 1:{SoftRebootDomain <nil> StateReboot 2023-08-12 20:10:21.26777875 +0500 +05 m=+0.004933427 map[]}
+DEBUG: 2:{StateReboot <nil> StateRunning 2023-08-12 20:10:21.267795829 +0500 +05 m=+0.004950506 map[]}
+================================================================================
+DEBUG: CloudDomainStore(): &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.267830642 +0500 +05 m=+0.004985319 0001-01-01 00:00:00 +0000 UTC 047a45d0-a50e-47b7-9b25-207228056365 VMName <xml config............... e8bb75f3-2974-41dc-ba2b-6bc06e91ddcf 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b dc0112ef-9352-4ba1-b41d-efea91314404 9db53e39-dd7f-417b-896d-d95599d22eff b0863271-82ed-432e-945e-e6575cd83d10 63c91710-2946-44ef-8707-f10b74caa5ce 2aa0a237-a456-492a-b188-23dfebf958b2 22c9b158-443a-4ca1-85f0-0d1cd483fafa] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG: UUID EVENT: 047a45d0-a50e-47b7-9b25-207228056365DEBUG, RunEvents, stage:InitHardRebootDomain
+DEBUG: DEBUG: Event ServiceOrder. InitHardRebootDomain: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:047a45d0-a50e-47b7-9b25-207228056365
+DEBUG: transaction:{2023-08-12 20:10:21.267830549 +0500 +05 m=+0.004985225 InitHardRebootDomain 047a45d0-a50e-47b7-9b25-207228056365 3f7a0d24-cdbe-427d-9385-8fb46c908414    00000000-0000-0000-0000-000000000000}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.267830642 +0500 +05 m=+0.004985319 0001-01-01 00:00:00 +0000 UTC 047a45d0-a50e-47b7-9b25-207228056365 VMName <xml config............... e8bb75f3-2974-41dc-ba2b-6bc06e91ddcf 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b dc0112ef-9352-4ba1-b41d-efea91314404 9db53e39-dd7f-417b-896d-d95599d22eff b0863271-82ed-432e-945e-e6575cd83d10 63c91710-2946-44ef-8707-f10b74caa5ce 2aa0a237-a456-492a-b188-23dfebf958b2 22c9b158-443a-4ca1-85f0-0d1cd483fafa] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: Transition: =====> HardRebootDomain true
+DEBUG: Transition: InitHardRebootDomain successful. Current state: HardRebootDomain
+DEBUG: -----------------------------
+DEBUG, RunEvents, stage:HardRebootDomain
+DEBUG: DEBUG: Event ServiceOrder. HardRebootDomain: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:047a45d0-a50e-47b7-9b25-207228056365
+DEBUG: transaction:{2023-08-12 20:10:21.267830549 +0500 +05 m=+0.004985225 InitHardRebootDomain 047a45d0-a50e-47b7-9b25-207228056365 3f7a0d24-cdbe-427d-9385-8fb46c908414    00000000-0000-0000-0000-000000000000}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.267830642 +0500 +05 m=+0.004985319 0001-01-01 00:00:00 +0000 UTC 047a45d0-a50e-47b7-9b25-207228056365 VMName <xml config............... e8bb75f3-2974-41dc-ba2b-6bc06e91ddcf 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b dc0112ef-9352-4ba1-b41d-efea91314404 9db53e39-dd7f-417b-896d-d95599d22eff b0863271-82ed-432e-945e-e6575cd83d10 63c91710-2946-44ef-8707-f10b74caa5ce 2aa0a237-a456-492a-b188-23dfebf958b2 22c9b158-443a-4ca1-85f0-0d1cd483fafa] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: Transition: =====> StateReboot true
+DEBUG: Transition: HardRebootDomain successful. Current state: StateReboot
+DEBUG: -----------------------------
+DEBUG, RunEvents, stage:StateReboot
+DEBUG: DEBUG: Event ServiceOrder. StateReboot: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:047a45d0-a50e-47b7-9b25-207228056365
+DEBUG: transaction:{2023-08-12 20:10:21.267830549 +0500 +05 m=+0.004985225 InitHardRebootDomain 047a45d0-a50e-47b7-9b25-207228056365 3f7a0d24-cdbe-427d-9385-8fb46c908414    00000000-0000-0000-0000-000000000000}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.267830642 +0500 +05 m=+0.004985319 0001-01-01 00:00:00 +0000 UTC 047a45d0-a50e-47b7-9b25-207228056365 VMName <xml config............... e8bb75f3-2974-41dc-ba2b-6bc06e91ddcf 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b dc0112ef-9352-4ba1-b41d-efea91314404 9db53e39-dd7f-417b-896d-d95599d22eff b0863271-82ed-432e-945e-e6575cd83d10 63c91710-2946-44ef-8707-f10b74caa5ce 2aa0a237-a456-492a-b188-23dfebf958b2 22c9b158-443a-4ca1-85f0-0d1cd483fafa] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: Transition: =====> StateRunning true
+DEBUG: Transition: StateReboot successful. Current state: StateRunning
+DEBUG: -----------------------------
+DEBUG, RunEvents, stage:StateRunning
+DEBUG: DEBUG: Event ServiceOrder. StateRunning: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:047a45d0-a50e-47b7-9b25-207228056365
+DEBUG: transaction:{2023-08-12 20:10:21.267830549 +0500 +05 m=+0.004985225 InitHardRebootDomain 047a45d0-a50e-47b7-9b25-207228056365 3f7a0d24-cdbe-427d-9385-8fb46c908414    00000000-0000-0000-0000-000000000000}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.267830642 +0500 +05 m=+0.004985319 0001-01-01 00:00:00 +0000 UTC 047a45d0-a50e-47b7-9b25-207228056365 VMName <xml config............... e8bb75f3-2974-41dc-ba2b-6bc06e91ddcf 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b dc0112ef-9352-4ba1-b41d-efea91314404 9db53e39-dd7f-417b-896d-d95599d22eff b0863271-82ed-432e-945e-e6575cd83d10 63c91710-2946-44ef-8707-f10b74caa5ce 2aa0a237-a456-492a-b188-23dfebf958b2 22c9b158-443a-4ca1-85f0-0d1cd483fafa] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: -----------------------------
+Transition 3f7a0d24-cdbe-427d-9385-8fb46c908414 is successful. Current state: StateRunningDEBUG: VARS: &main.OrderEvent{Name:"StateRunning"} <nil>
+DEBUG: Transitions: &[{InitHardRebootDomain <nil> HardRebootDomain 2023-08-12 20:10:21.267851856 +0500 +05 m=+0.005006533 map[]} {HardRebootDomain <nil> StateReboot 2023-08-12 20:10:21.267871391 +0500 +05 m=+0.005026069 map[]} {StateReboot <nil> StateRunning 2023-08-12 20:10:21.267890595 +0500 +05 m=+0.005045272 map[]}]
+DEBUG: 0:{InitHardRebootDomain <nil> HardRebootDomain 2023-08-12 20:10:21.267851856 +0500 +05 m=+0.005006533 map[]}
+DEBUG: 1:{HardRebootDomain <nil> StateReboot 2023-08-12 20:10:21.267871391 +0500 +05 m=+0.005026069 map[]}
+DEBUG: 2:{StateReboot <nil> StateRunning 2023-08-12 20:10:21.267890595 +0500 +05 m=+0.005045272 map[]}
+================================================================================
+DEBUG: CloudDomainStore(): &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.267924104 +0500 +05 m=+0.005078781 0001-01-01 00:00:00 +0000 UTC 71dc8181-4641-40a9-9231-2fedf3676732 VMName <xml config............... e8bb75f3-2974-41dc-ba2b-6bc06e91ddcf 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b dc0112ef-9352-4ba1-b41d-efea91314404 9db53e39-dd7f-417b-896d-d95599d22eff b0863271-82ed-432e-945e-e6575cd83d10 63c91710-2946-44ef-8707-f10b74caa5ce 2aa0a237-a456-492a-b188-23dfebf958b2 22c9b158-443a-4ca1-85f0-0d1cd483fafa 047a45d0-a50e-47b7-9b25-207228056365] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG: UUID EVENT: 71dc8181-4641-40a9-9231-2fedf3676732DEBUG, RunEvents, stage:InitShutdownDomain
+DEBUG: DEBUG: Event ServiceOrder. InitShutdownDomain: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:71dc8181-4641-40a9-9231-2fedf3676732
+DEBUG: transaction:{2023-08-12 20:10:21.267924011 +0500 +05 m=+0.005078688 InitShutdownDomain 71dc8181-4641-40a9-9231-2fedf3676732 3f7a0d24-cdbe-427d-9385-8fb46c908414    00000000-0000-0000-0000-000000000000}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.267924104 +0500 +05 m=+0.005078781 0001-01-01 00:00:00 +0000 UTC 71dc8181-4641-40a9-9231-2fedf3676732 VMName <xml config............... e8bb75f3-2974-41dc-ba2b-6bc06e91ddcf 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b dc0112ef-9352-4ba1-b41d-efea91314404 9db53e39-dd7f-417b-896d-d95599d22eff b0863271-82ed-432e-945e-e6575cd83d10 63c91710-2946-44ef-8707-f10b74caa5ce 2aa0a237-a456-492a-b188-23dfebf958b2 22c9b158-443a-4ca1-85f0-0d1cd483fafa 047a45d0-a50e-47b7-9b25-207228056365] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: Transition: =====> ShutdownDomain true
+DEBUG: Transition: InitShutdownDomain successful. Current state: ShutdownDomain
+DEBUG: -----------------------------
+DEBUG, RunEvents, stage:ShutdownDomain
+DEBUG: DEBUG: Event ServiceOrder. ShutdownDomain: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:71dc8181-4641-40a9-9231-2fedf3676732
+DEBUG: transaction:{2023-08-12 20:10:21.267924011 +0500 +05 m=+0.005078688 InitShutdownDomain 71dc8181-4641-40a9-9231-2fedf3676732 3f7a0d24-cdbe-427d-9385-8fb46c908414    00000000-0000-0000-0000-000000000000}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.267924104 +0500 +05 m=+0.005078781 0001-01-01 00:00:00 +0000 UTC 71dc8181-4641-40a9-9231-2fedf3676732 VMName <xml config............... e8bb75f3-2974-41dc-ba2b-6bc06e91ddcf 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b dc0112ef-9352-4ba1-b41d-efea91314404 9db53e39-dd7f-417b-896d-d95599d22eff b0863271-82ed-432e-945e-e6575cd83d10 63c91710-2946-44ef-8707-f10b74caa5ce 2aa0a237-a456-492a-b188-23dfebf958b2 22c9b158-443a-4ca1-85f0-0d1cd483fafa 047a45d0-a50e-47b7-9b25-207228056365] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: Transition: =====> StateStop true
+DEBUG: Transition: ShutdownDomain successful. Current state: StateStop
+DEBUG: -----------------------------
+DEBUG, RunEvents, stage:StateStop
+DEBUG: DEBUG: Event ServiceOrder. StateStop: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:71dc8181-4641-40a9-9231-2fedf3676732
+DEBUG: transaction:{2023-08-12 20:10:21.267924011 +0500 +05 m=+0.005078688 InitShutdownDomain 71dc8181-4641-40a9-9231-2fedf3676732 3f7a0d24-cdbe-427d-9385-8fb46c908414    00000000-0000-0000-0000-000000000000}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.267924104 +0500 +05 m=+0.005078781 0001-01-01 00:00:00 +0000 UTC 71dc8181-4641-40a9-9231-2fedf3676732 VMName <xml config............... e8bb75f3-2974-41dc-ba2b-6bc06e91ddcf 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b dc0112ef-9352-4ba1-b41d-efea91314404 9db53e39-dd7f-417b-896d-d95599d22eff b0863271-82ed-432e-945e-e6575cd83d10 63c91710-2946-44ef-8707-f10b74caa5ce 2aa0a237-a456-492a-b188-23dfebf958b2 22c9b158-443a-4ca1-85f0-0d1cd483fafa 047a45d0-a50e-47b7-9b25-207228056365] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: -----------------------------
+Transition 3f7a0d24-cdbe-427d-9385-8fb46c908414 is successful. Current state: StateStopDEBUG: VARS: &main.OrderEvent{Name:"StateStop"} <nil>
+DEBUG: Transitions: &[{InitShutdownDomain <nil> ShutdownDomain 2023-08-12 20:10:21.267948308 +0500 +05 m=+0.005102985 map[]} {ShutdownDomain <nil> StateStop 2023-08-12 20:10:21.267965722 +0500 +05 m=+0.005120399 map[]}]
+DEBUG: 0:{InitShutdownDomain <nil> ShutdownDomain 2023-08-12 20:10:21.267948308 +0500 +05 m=+0.005102985 map[]}
+DEBUG: 1:{ShutdownDomain <nil> StateStop 2023-08-12 20:10:21.267965722 +0500 +05 m=+0.005120399 map[]}
+================================================================================
+DEBUG: CloudDomainStore(): &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.26799559 +0500 +05 m=+0.005150267 0001-01-01 00:00:00 +0000 UTC 6dd096e9-0e0b-48f6-8837-f0b57bd77d96 VMName <xml config............... e8bb75f3-2974-41dc-ba2b-6bc06e91ddcf 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b dc0112ef-9352-4ba1-b41d-efea91314404 9db53e39-dd7f-417b-896d-d95599d22eff b0863271-82ed-432e-945e-e6575cd83d10 63c91710-2946-44ef-8707-f10b74caa5ce 2aa0a237-a456-492a-b188-23dfebf958b2 22c9b158-443a-4ca1-85f0-0d1cd483fafa 047a45d0-a50e-47b7-9b25-207228056365 71dc8181-4641-40a9-9231-2fedf3676732] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG: UUID EVENT: 6dd096e9-0e0b-48f6-8837-f0b57bd77d96DEBUG, RunEvents, stage:InitStartDomain
+DEBUG: DEBUG: Event ServiceOrder. InitStartDomain: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:6dd096e9-0e0b-48f6-8837-f0b57bd77d96
+DEBUG: transaction:{2023-08-12 20:10:21.267995496 +0500 +05 m=+0.005150173 InitStartDomain 6dd096e9-0e0b-48f6-8837-f0b57bd77d96 3f7a0d24-cdbe-427d-9385-8fb46c908414    00000000-0000-0000-0000-000000000000}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.26799559 +0500 +05 m=+0.005150267 0001-01-01 00:00:00 +0000 UTC 6dd096e9-0e0b-48f6-8837-f0b57bd77d96 VMName <xml config............... e8bb75f3-2974-41dc-ba2b-6bc06e91ddcf 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b dc0112ef-9352-4ba1-b41d-efea91314404 9db53e39-dd7f-417b-896d-d95599d22eff b0863271-82ed-432e-945e-e6575cd83d10 63c91710-2946-44ef-8707-f10b74caa5ce 2aa0a237-a456-492a-b188-23dfebf958b2 22c9b158-443a-4ca1-85f0-0d1cd483fafa 047a45d0-a50e-47b7-9b25-207228056365 71dc8181-4641-40a9-9231-2fedf3676732] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: Transition: =====> StartDomain true
+DEBUG: Transition: InitStartDomain successful. Current state: StartDomain
+DEBUG: -----------------------------
+DEBUG, RunEvents, stage:StartDomain
+DEBUG: DEBUG: Event ServiceOrder. StartDomain: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:6dd096e9-0e0b-48f6-8837-f0b57bd77d96
+DEBUG: transaction:{2023-08-12 20:10:21.267995496 +0500 +05 m=+0.005150173 InitStartDomain 6dd096e9-0e0b-48f6-8837-f0b57bd77d96 3f7a0d24-cdbe-427d-9385-8fb46c908414    00000000-0000-0000-0000-000000000000}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.26799559 +0500 +05 m=+0.005150267 0001-01-01 00:00:00 +0000 UTC 6dd096e9-0e0b-48f6-8837-f0b57bd77d96 VMName <xml config............... e8bb75f3-2974-41dc-ba2b-6bc06e91ddcf 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b dc0112ef-9352-4ba1-b41d-efea91314404 9db53e39-dd7f-417b-896d-d95599d22eff b0863271-82ed-432e-945e-e6575cd83d10 63c91710-2946-44ef-8707-f10b74caa5ce 2aa0a237-a456-492a-b188-23dfebf958b2 22c9b158-443a-4ca1-85f0-0d1cd483fafa 047a45d0-a50e-47b7-9b25-207228056365 71dc8181-4641-40a9-9231-2fedf3676732] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: Transition: =====> StateRunning true
+DEBUG: Transition: StartDomain successful. Current state: StateRunning
+DEBUG: -----------------------------
+DEBUG, RunEvents, stage:StateRunning
+DEBUG: DEBUG: Event ServiceOrder. StateRunning: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:6dd096e9-0e0b-48f6-8837-f0b57bd77d96
+DEBUG: transaction:{2023-08-12 20:10:21.267995496 +0500 +05 m=+0.005150173 InitStartDomain 6dd096e9-0e0b-48f6-8837-f0b57bd77d96 3f7a0d24-cdbe-427d-9385-8fb46c908414    00000000-0000-0000-0000-000000000000}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.26799559 +0500 +05 m=+0.005150267 0001-01-01 00:00:00 +0000 UTC 6dd096e9-0e0b-48f6-8837-f0b57bd77d96 VMName <xml config............... e8bb75f3-2974-41dc-ba2b-6bc06e91ddcf 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b dc0112ef-9352-4ba1-b41d-efea91314404 9db53e39-dd7f-417b-896d-d95599d22eff b0863271-82ed-432e-945e-e6575cd83d10 63c91710-2946-44ef-8707-f10b74caa5ce 2aa0a237-a456-492a-b188-23dfebf958b2 22c9b158-443a-4ca1-85f0-0d1cd483fafa 047a45d0-a50e-47b7-9b25-207228056365 71dc8181-4641-40a9-9231-2fedf3676732] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: -----------------------------
+Transition 3f7a0d24-cdbe-427d-9385-8fb46c908414 is successful. Current state: StateRunningDEBUG: VARS: &main.OrderEvent{Name:"StateRunning"} <nil>
+DEBUG: Transitions: &[{InitStartDomain <nil> StartDomain 2023-08-12 20:10:21.268023813 +0500 +05 m=+0.005178490 map[]} {StartDomain <nil> StateRunning 2023-08-12 20:10:21.268043269 +0500 +05 m=+0.005197946 map[]}]
+DEBUG: 0:{InitStartDomain <nil> StartDomain 2023-08-12 20:10:21.268023813 +0500 +05 m=+0.005178490 map[]}
+DEBUG: 1:{StartDomain <nil> StateRunning 2023-08-12 20:10:21.268043269 +0500 +05 m=+0.005197946 map[]}
+================================================================================
+DEBUG: CloudDomainStore(): &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.268079894 +0500 +05 m=+0.005234571 0001-01-01 00:00:00 +0000 UTC b71f9f87-d026-4113-8b07-6abd444dbb0a VMName <xml config............... e8bb75f3-2974-41dc-ba2b-6bc06e91ddcf 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b dc0112ef-9352-4ba1-b41d-efea91314404 9db53e39-dd7f-417b-896d-d95599d22eff b0863271-82ed-432e-945e-e6575cd83d10 63c91710-2946-44ef-8707-f10b74caa5ce 2aa0a237-a456-492a-b188-23dfebf958b2 22c9b158-443a-4ca1-85f0-0d1cd483fafa 047a45d0-a50e-47b7-9b25-207228056365 71dc8181-4641-40a9-9231-2fedf3676732 6dd096e9-0e0b-48f6-8837-f0b57bd77d96] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG: UUID EVENT: b71f9f87-d026-4113-8b07-6abd444dbb0aDEBUG, RunEvents, stage:InitDestroyDomain
+DEBUG: DEBUG: Event ServiceOrder. InitDestroyDomain: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:b71f9f87-d026-4113-8b07-6abd444dbb0a
+DEBUG: transaction:{2023-08-12 20:10:21.268079805 +0500 +05 m=+0.005234482 InitDestroyDomain b71f9f87-d026-4113-8b07-6abd444dbb0a 3f7a0d24-cdbe-427d-9385-8fb46c908414    00000000-0000-0000-0000-000000000000}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.268079894 +0500 +05 m=+0.005234571 0001-01-01 00:00:00 +0000 UTC b71f9f87-d026-4113-8b07-6abd444dbb0a VMName <xml config............... e8bb75f3-2974-41dc-ba2b-6bc06e91ddcf 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b dc0112ef-9352-4ba1-b41d-efea91314404 9db53e39-dd7f-417b-896d-d95599d22eff b0863271-82ed-432e-945e-e6575cd83d10 63c91710-2946-44ef-8707-f10b74caa5ce 2aa0a237-a456-492a-b188-23dfebf958b2 22c9b158-443a-4ca1-85f0-0d1cd483fafa 047a45d0-a50e-47b7-9b25-207228056365 71dc8181-4641-40a9-9231-2fedf3676732 6dd096e9-0e0b-48f6-8837-f0b57bd77d96] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: Transition: =====> DestroyDomain true
+DEBUG: Transition: InitDestroyDomain successful. Current state: DestroyDomain
+DEBUG: -----------------------------
+DEBUG, RunEvents, stage:DestroyDomain
+DEBUG: DEBUG: Event ServiceOrder. DestroyDomain: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:b71f9f87-d026-4113-8b07-6abd444dbb0a
+DEBUG: transaction:{2023-08-12 20:10:21.268079805 +0500 +05 m=+0.005234482 InitDestroyDomain b71f9f87-d026-4113-8b07-6abd444dbb0a 3f7a0d24-cdbe-427d-9385-8fb46c908414    00000000-0000-0000-0000-000000000000}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.268079894 +0500 +05 m=+0.005234571 0001-01-01 00:00:00 +0000 UTC b71f9f87-d026-4113-8b07-6abd444dbb0a VMName <xml config............... e8bb75f3-2974-41dc-ba2b-6bc06e91ddcf 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b dc0112ef-9352-4ba1-b41d-efea91314404 9db53e39-dd7f-417b-896d-d95599d22eff b0863271-82ed-432e-945e-e6575cd83d10 63c91710-2946-44ef-8707-f10b74caa5ce 2aa0a237-a456-492a-b188-23dfebf958b2 22c9b158-443a-4ca1-85f0-0d1cd483fafa 047a45d0-a50e-47b7-9b25-207228056365 71dc8181-4641-40a9-9231-2fedf3676732 6dd096e9-0e0b-48f6-8837-f0b57bd77d96] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: Transition: =====> StateDestroy true
+DEBUG: Transition: DestroyDomain successful. Current state: StateDestroy
+DEBUG: -----------------------------
+DEBUG, RunEvents, stage:StateDestroy
+DEBUG: DEBUG: Event ServiceOrder. StateDestroy: vm:3f7a0d24-cdbe-427d-9385-8fb46c908414 transaction:b71f9f87-d026-4113-8b07-6abd444dbb0a
+DEBUG: transaction:{2023-08-12 20:10:21.268079805 +0500 +05 m=+0.005234482 InitDestroyDomain b71f9f87-d026-4113-8b07-6abd444dbb0a 3f7a0d24-cdbe-427d-9385-8fb46c908414    00000000-0000-0000-0000-000000000000}
+DEBUG: DOMAIN: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.268079894 +0500 +05 m=+0.005234571 0001-01-01 00:00:00 +0000 UTC b71f9f87-d026-4113-8b07-6abd444dbb0a VMName <xml config............... e8bb75f3-2974-41dc-ba2b-6bc06e91ddcf 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b dc0112ef-9352-4ba1-b41d-efea91314404 9db53e39-dd7f-417b-896d-d95599d22eff b0863271-82ed-432e-945e-e6575cd83d10 63c91710-2946-44ef-8707-f10b74caa5ce 2aa0a237-a456-492a-b188-23dfebf958b2 22c9b158-443a-4ca1-85f0-0d1cd483fafa 047a45d0-a50e-47b7-9b25-207228056365 71dc8181-4641-40a9-9231-2fedf3676732 6dd096e9-0e0b-48f6-8837-f0b57bd77d96] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+DEBUG, RunEvents, stage exec:true, <nil>
+DEBUG: -----------------------------
+Transition 3f7a0d24-cdbe-427d-9385-8fb46c908414 is successful. Current state: StateDestroyDEBUG: VARS: &main.OrderEvent{Name:"StateDestroy"} <nil>
+DEBUG: Transitions: &[{InitDestroyDomain <nil> DestroyDomain 2023-08-12 20:10:21.268101963 +0500 +05 m=+0.005256640 map[]} {DestroyDomain <nil> StateDestroy 2023-08-12 20:10:21.268123662 +0500 +05 m=+0.005278339 map[]}]
+DEBUG: 0:{InitDestroyDomain <nil> DestroyDomain 2023-08-12 20:10:21.268101963 +0500 +05 m=+0.005256640 map[]}
+DEBUG: 1:{DestroyDomain <nil> StateDestroy 2023-08-12 20:10:21.268123662 +0500 +05 m=+0.005278339 map[]}
+================================================================================
+#########################################################
+_transactionStores: 71dc8181-4641-40a9-9231-2fedf3676732: main.TransactionOrder{TimeOrder:time.Date(2023, time.August, 12, 20, 10, 21, 267924011, time.Local), NameOrder:"InitShutdownDomain", Uuid:uuid.UUID{0x71, 0xdc, 0x81, 0x81, 0x46, 0x41, 0x40, 0xa9, 0x92, 0x31, 0x2f, 0xed, 0xf3, 0x67, 0x67, 0x32}, OrderUUID:uuid.UUID{0x3f, 0x7a, 0xd, 0x24, 0xcd, 0xbe, 0x42, 0x7d, 0x93, 0x85, 0x8f, 0xb4, 0x6c, 0x90, 0x84, 0x14}, Device:"", Path:"", XMLDomainconfig:"", MigrateTo:uuid.UUID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}}
+_transactionStores: 984f591f-1315-4a36-aebc-80bd11155f7b: main.TransactionOrder{TimeOrder:time.Date(2023, time.August, 12, 20, 10, 21, 265722023, time.Local), NameOrder:"InitDomain", Uuid:uuid.UUID{0x98, 0x4f, 0x59, 0x1f, 0x13, 0x15, 0x4a, 0x36, 0xae, 0xbc, 0x80, 0xbd, 0x11, 0x15, 0x5f, 0x7b}, OrderUUID:uuid.UUID{0x3f, 0x7a, 0xd, 0x24, 0xcd, 0xbe, 0x42, 0x7d, 0x93, 0x85, 0x8f, 0xb4, 0x6c, 0x90, 0x84, 0x14}, Device:"", Path:"", XMLDomainconfig:"<xml config...............", MigrateTo:uuid.UUID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}}
+_transactionStores: dc0112ef-9352-4ba1-b41d-efea91314404: main.TransactionOrder{TimeOrder:time.Date(2023, time.August, 12, 20, 10, 21, 267140670, time.Local), NameOrder:"InitAttachDisk", Uuid:uuid.UUID{0xdc, 0x1, 0x12, 0xef, 0x93, 0x52, 0x4b, 0xa1, 0xb4, 0x1d, 0xef, 0xea, 0x91, 0x31, 0x44, 0x4}, OrderUUID:uuid.UUID{0x3f, 0x7a, 0xd, 0x24, 0xcd, 0xbe, 0x42, 0x7d, 0x93, 0x85, 0x8f, 0xb4, 0x6c, 0x90, 0x84, 0x14}, Device:"sdb", Path:"/..../sdb.qcow2", XMLDomainconfig:"", MigrateTo:uuid.UUID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}}
+_transactionStores: 9db53e39-dd7f-417b-896d-d95599d22eff: main.TransactionOrder{TimeOrder:time.Date(2023, time.August, 12, 20, 10, 21, 267463835, time.Local), NameOrder:"InitDeattachDisk", Uuid:uuid.UUID{0x9d, 0xb5, 0x3e, 0x39, 0xdd, 0x7f, 0x41, 0x7b, 0x89, 0x6d, 0xd9, 0x55, 0x99, 0xd2, 0x2e, 0xff}, OrderUUID:uuid.UUID{0x3f, 0x7a, 0xd, 0x24, 0xcd, 0xbe, 0x42, 0x7d, 0x93, 0x85, 0x8f, 0xb4, 0x6c, 0x90, 0x84, 0x14}, Device:"sdb", Path:"/..../sdb.qcow2", XMLDomainconfig:"", MigrateTo:uuid.UUID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}}
+_transactionStores: b0863271-82ed-432e-945e-e6575cd83d10: main.TransactionOrder{TimeOrder:time.Date(2023, time.August, 12, 20, 10, 21, 267531169, time.Local), NameOrder:"InitAttachNetworkDevice", Uuid:uuid.UUID{0xb0, 0x86, 0x32, 0x71, 0x82, 0xed, 0x43, 0x2e, 0x94, 0x5e, 0xe6, 0x57, 0x5c, 0xd8, 0x3d, 0x10}, OrderUUID:uuid.UUID{0x3f, 0x7a, 0xd, 0x24, 0xcd, 0xbe, 0x42, 0x7d, 0x93, 0x85, 0x8f, 0xb4, 0x6c, 0x90, 0x84, 0x14}, Device:"enps......", Path:"network path......", XMLDomainconfig:"", MigrateTo:uuid.UUID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}}
+_transactionStores: 63c91710-2946-44ef-8707-f10b74caa5ce: main.TransactionOrder{TimeOrder:time.Date(2023, time.August, 12, 20, 10, 21, 267599547, time.Local), NameOrder:"InitDeattachNetworkDevice", Uuid:uuid.UUID{0x63, 0xc9, 0x17, 0x10, 0x29, 0x46, 0x44, 0xef, 0x87, 0x7, 0xf1, 0xb, 0x74, 0xca, 0xa5, 0xce}, OrderUUID:uuid.UUID{0x3f, 0x7a, 0xd, 0x24, 0xcd, 0xbe, 0x42, 0x7d, 0x93, 0x85, 0x8f, 0xb4, 0x6c, 0x90, 0x84, 0x14}, Device:"enps......", Path:"network path......", XMLDomainconfig:"", MigrateTo:uuid.UUID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}}
+_transactionStores: 22c9b158-443a-4ca1-85f0-0d1cd483fafa: main.TransactionOrder{TimeOrder:time.Date(2023, time.August, 12, 20, 10, 21, 267738246, time.Local), NameOrder:"InitSoftRebootDomain", Uuid:uuid.UUID{0x22, 0xc9, 0xb1, 0x58, 0x44, 0x3a, 0x4c, 0xa1, 0x85, 0xf0, 0xd, 0x1c, 0xd4, 0x83, 0xfa, 0xfa}, OrderUUID:uuid.UUID{0x3f, 0x7a, 0xd, 0x24, 0xcd, 0xbe, 0x42, 0x7d, 0x93, 0x85, 0x8f, 0xb4, 0x6c, 0x90, 0x84, 0x14}, Device:"", Path:"", XMLDomainconfig:"", MigrateTo:uuid.UUID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}}
+_transactionStores: 047a45d0-a50e-47b7-9b25-207228056365: main.TransactionOrder{TimeOrder:time.Date(2023, time.August, 12, 20, 10, 21, 267830549, time.Local), NameOrder:"InitHardRebootDomain", Uuid:uuid.UUID{0x4, 0x7a, 0x45, 0xd0, 0xa5, 0xe, 0x47, 0xb7, 0x9b, 0x25, 0x20, 0x72, 0x28, 0x5, 0x63, 0x65}, OrderUUID:uuid.UUID{0x3f, 0x7a, 0xd, 0x24, 0xcd, 0xbe, 0x42, 0x7d, 0x93, 0x85, 0x8f, 0xb4, 0x6c, 0x90, 0x84, 0x14}, Device:"", Path:"", XMLDomainconfig:"", MigrateTo:uuid.UUID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}}
+_transactionStores: 6dd096e9-0e0b-48f6-8837-f0b57bd77d96: main.TransactionOrder{TimeOrder:time.Date(2023, time.August, 12, 20, 10, 21, 267995496, time.Local), NameOrder:"InitStartDomain", Uuid:uuid.UUID{0x6d, 0xd0, 0x96, 0xe9, 0xe, 0xb, 0x48, 0xf6, 0x88, 0x37, 0xf0, 0xb5, 0x7b, 0xd7, 0x7d, 0x96}, OrderUUID:uuid.UUID{0x3f, 0x7a, 0xd, 0x24, 0xcd, 0xbe, 0x42, 0x7d, 0x93, 0x85, 0x8f, 0xb4, 0x6c, 0x90, 0x84, 0x14}, Device:"", Path:"", XMLDomainconfig:"", MigrateTo:uuid.UUID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}}
+_transactionStores: b71f9f87-d026-4113-8b07-6abd444dbb0a: main.TransactionOrder{TimeOrder:time.Date(2023, time.August, 12, 20, 10, 21, 268079805, time.Local), NameOrder:"InitDestroyDomain", Uuid:uuid.UUID{0xb7, 0x1f, 0x9f, 0x87, 0xd0, 0x26, 0x41, 0x13, 0x8b, 0x7, 0x6a, 0xbd, 0x44, 0x4d, 0xbb, 0xa}, OrderUUID:uuid.UUID{0x3f, 0x7a, 0xd, 0x24, 0xcd, 0xbe, 0x42, 0x7d, 0x93, 0x85, 0x8f, 0xb4, 0x6c, 0x90, 0x84, 0x14}, Device:"", Path:"", XMLDomainconfig:"", MigrateTo:uuid.UUID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}}
+_transactionStores: 2aa0a237-a456-492a-b188-23dfebf958b2: main.TransactionOrder{TimeOrder:time.Date(2023, time.August, 12, 20, 10, 21, 267667759, time.Local), NameOrder:"InitMachineMigrate", Uuid:uuid.UUID{0x2a, 0xa0, 0xa2, 0x37, 0xa4, 0x56, 0x49, 0x2a, 0xb1, 0x88, 0x23, 0xdf, 0xeb, 0xf9, 0x58, 0xb2}, OrderUUID:uuid.UUID{0x3f, 0x7a, 0xd, 0x24, 0xcd, 0xbe, 0x42, 0x7d, 0x93, 0x85, 0x8f, 0xb4, 0x6c, 0x90, 0x84, 0x14}, Device:"", Path:"", XMLDomainconfig:"", MigrateTo:uuid.UUID{0xe8, 0xbb, 0x75, 0xf3, 0x29, 0x74, 0x41, 0xdc, 0xba, 0x2b, 0x6b, 0xc0, 0x6e, 0x91, 0xdd, 0xcf}}
+_cloudDomainStoreByName VMName: 3f7a0d24-cdbe-427d-9385-8fb46c908414
+_cloudDomainStores 3f7a0d24-cdbe-427d-9385-8fb46c908414: &{2023-08-12 20:10:21.265428779 +0500 +05 m=+0.002583533 2023-08-12 20:10:21.268079894 +0500 +05 m=+0.005234571 2023-08-12 20:10:21.268154959 +0500 +05 m=+0.005309636 b71f9f87-d026-4113-8b07-6abd444dbb0a VMName <xml config............... e8bb75f3-2974-41dc-ba2b-6bc06e91ddcf 46a41f06-7995-4177-9ed3-1ad67bfd8d03 [984f591f-1315-4a36-aebc-80bd11155f7b dc0112ef-9352-4ba1-b41d-efea91314404 9db53e39-dd7f-417b-896d-d95599d22eff b0863271-82ed-432e-945e-e6575cd83d10 63c91710-2946-44ef-8707-f10b74caa5ce 2aa0a237-a456-492a-b188-23dfebf958b2 22c9b158-443a-4ca1-85f0-0d1cd483fafa 047a45d0-a50e-47b7-9b25-207228056365 71dc8181-4641-40a9-9231-2fedf3676732 6dd096e9-0e0b-48f6-8837-f0b57bd77d96 b71f9f87-d026-4113-8b07-6abd444dbb0a] 3f7a0d24-cdbe-427d-9385-8fb46c908414}
+_cloudDomainStoreByName eb916877-8f58-43d2-88c0-4141c0cabd15: {eb916877-8f58-43d2-88c0-4141c0cabd15 node1 192.168.1.10}
+_cloudDomainStoreByName e8bb75f3-2974-41dc-ba2b-6bc06e91ddcf: {e8bb75f3-2974-41dc-ba2b-6bc06e91ddcf node2 192.168.1.20}
+_cloudDomainStoreByName node2: e8bb75f3-2974-41dc-ba2b-6bc06e91ddcf
+_cloudDomainStoreByName node1: eb916877-8f58-43d2-88c0-4141c0cabd15
+_cloudDomainStoreByName 46a41f06-7995-4177-9ed3-1ad67bfd8d03: {46a41f06-7995-4177-9ed3-1ad67bfd8d03 switch1 192.168.200.0/24 192.168.200.1   [192.168.1.10] []}
+#########################################################
+#########################################################
+#########################################################
+ --- YAML ---
+b0863271-82ed-432e-945e-e6575cd83d10:
+    timeorder: 2023-08-12T20:10:21.267531169+05:00
+    nameorder: InitAttachNetworkDevice
+    uuid: b0863271-82ed-432e-945e-e6575cd83d10
+    orderuuid: 3f7a0d24-cdbe-427d-9385-8fb46c908414
+    device: enps......
+    path: network path......
+    xmldomainconfig: ""
+    migrateto: 00000000-0000-0000-0000-000000000000
+63c91710-2946-44ef-8707-f10b74caa5ce:
+    timeorder: 2023-08-12T20:10:21.267599547+05:00
+    nameorder: InitDeattachNetworkDevice
+    uuid: 63c91710-2946-44ef-8707-f10b74caa5ce
+    orderuuid: 3f7a0d24-cdbe-427d-9385-8fb46c908414
+    device: enps......
+    path: network path......
+    xmldomainconfig: ""
+    migrateto: 00000000-0000-0000-0000-000000000000
+22c9b158-443a-4ca1-85f0-0d1cd483fafa:
+    timeorder: 2023-08-12T20:10:21.267738246+05:00
+    nameorder: InitSoftRebootDomain
+    uuid: 22c9b158-443a-4ca1-85f0-0d1cd483fafa
+    orderuuid: 3f7a0d24-cdbe-427d-9385-8fb46c908414
+    device: ""
+    path: ""
+    xmldomainconfig: ""
+    migrateto: 00000000-0000-0000-0000-000000000000
+047a45d0-a50e-47b7-9b25-207228056365:
+    timeorder: 2023-08-12T20:10:21.267830549+05:00
+    nameorder: InitHardRebootDomain
+    uuid: 047a45d0-a50e-47b7-9b25-207228056365
+    orderuuid: 3f7a0d24-cdbe-427d-9385-8fb46c908414
+    device: ""
+    path: ""
+    xmldomainconfig: ""
+    migrateto: 00000000-0000-0000-0000-000000000000
+71dc8181-4641-40a9-9231-2fedf3676732:
+    timeorder: 2023-08-12T20:10:21.267924011+05:00
+    nameorder: InitShutdownDomain
+    uuid: 71dc8181-4641-40a9-9231-2fedf3676732
+    orderuuid: 3f7a0d24-cdbe-427d-9385-8fb46c908414
+    device: ""
+    path: ""
+    xmldomainconfig: ""
+    migrateto: 00000000-0000-0000-0000-000000000000
+984f591f-1315-4a36-aebc-80bd11155f7b:
+    timeorder: 2023-08-12T20:10:21.265722023+05:00
+    nameorder: InitDomain
+    uuid: 984f591f-1315-4a36-aebc-80bd11155f7b
+    orderuuid: 3f7a0d24-cdbe-427d-9385-8fb46c908414
+    device: ""
+    path: ""
+    xmldomainconfig: <xml config...............
+    migrateto: 00000000-0000-0000-0000-000000000000
+dc0112ef-9352-4ba1-b41d-efea91314404:
+    timeorder: 2023-08-12T20:10:21.26714067+05:00
+    nameorder: InitAttachDisk
+    uuid: dc0112ef-9352-4ba1-b41d-efea91314404
+    orderuuid: 3f7a0d24-cdbe-427d-9385-8fb46c908414
+    device: sdb
+    path: /..../sdb.qcow2
+    xmldomainconfig: ""
+    migrateto: 00000000-0000-0000-0000-000000000000
+9db53e39-dd7f-417b-896d-d95599d22eff:
+    timeorder: 2023-08-12T20:10:21.267463835+05:00
+    nameorder: InitDeattachDisk
+    uuid: 9db53e39-dd7f-417b-896d-d95599d22eff
+    orderuuid: 3f7a0d24-cdbe-427d-9385-8fb46c908414
+    device: sdb
+    path: /..../sdb.qcow2
+    xmldomainconfig: ""
+    migrateto: 00000000-0000-0000-0000-000000000000
+6dd096e9-0e0b-48f6-8837-f0b57bd77d96:
+    timeorder: 2023-08-12T20:10:21.267995496+05:00
+    nameorder: InitStartDomain
+    uuid: 6dd096e9-0e0b-48f6-8837-f0b57bd77d96
+    orderuuid: 3f7a0d24-cdbe-427d-9385-8fb46c908414
+    device: ""
+    path: ""
+    xmldomainconfig: ""
+    migrateto: 00000000-0000-0000-0000-000000000000
+b71f9f87-d026-4113-8b07-6abd444dbb0a:
+    timeorder: 2023-08-12T20:10:21.268079805+05:00
+    nameorder: InitDestroyDomain
+    uuid: b71f9f87-d026-4113-8b07-6abd444dbb0a
+    orderuuid: 3f7a0d24-cdbe-427d-9385-8fb46c908414
+    device: ""
+    path: ""
+    xmldomainconfig: ""
+    migrateto: 00000000-0000-0000-0000-000000000000
+2aa0a237-a456-492a-b188-23dfebf958b2:
+    timeorder: 2023-08-12T20:10:21.267667759+05:00
+    nameorder: InitMachineMigrate
+    uuid: 2aa0a237-a456-492a-b188-23dfebf958b2
+    orderuuid: 3f7a0d24-cdbe-427d-9385-8fb46c908414
+    device: ""
+    path: ""
+    xmldomainconfig: ""
+    migrateto: e8bb75f3-2974-41dc-ba2b-6bc06e91ddcf
+
+#########################################################
+#########################################################
+ --- YAML ---
+VMName: 3f7a0d24-cdbe-427d-9385-8fb46c908414
+
+#########################################################
+#########################################################
+ --- YAML ---
+3f7a0d24-cdbe-427d-9385-8fb46c908414:
+    initorder: 2023-08-12T20:10:21.265428779+05:00
+    lastorderinit: 2023-08-12T20:10:21.268079894+05:00
+    lastorderdone: 2023-08-12T20:10:21.268154959+05:00
+    lasttransaction: b71f9f87-d026-4113-8b07-6abd444dbb0a
+    domain: VMName
+    xmldomainconfig: <xml config...............
+    computenodeuuid: e8bb75f3-2974-41dc-ba2b-6bc06e91ddcf
+    networkuuid: 46a41f06-7995-4177-9ed3-1ad67bfd8d03
+    transactions:
+        - 984f591f-1315-4a36-aebc-80bd11155f7b
+        - dc0112ef-9352-4ba1-b41d-efea91314404
+        - 9db53e39-dd7f-417b-896d-d95599d22eff
+        - b0863271-82ed-432e-945e-e6575cd83d10
+        - 63c91710-2946-44ef-8707-f10b74caa5ce
+        - 2aa0a237-a456-492a-b188-23dfebf958b2
+        - 22c9b158-443a-4ca1-85f0-0d1cd483fafa
+        - 047a45d0-a50e-47b7-9b25-207228056365
+        - 71dc8181-4641-40a9-9231-2fedf3676732
+        - 6dd096e9-0e0b-48f6-8837-f0b57bd77d96
+        - b71f9f87-d026-4113-8b07-6abd444dbb0a
+    uuid: 3f7a0d24-cdbe-427d-9385-8fb46c908414
+
+#########################################################
+#########################################################
+ --- YAML ---
+eb916877-8f58-43d2-88c0-4141c0cabd15:
+    uuid: eb916877-8f58-43d2-88c0-4141c0cabd15
+    name: node1
+    ipv4address: 192.168.1.10
+e8bb75f3-2974-41dc-ba2b-6bc06e91ddcf:
+    uuid: e8bb75f3-2974-41dc-ba2b-6bc06e91ddcf
+    name: node2
+    ipv4address: 192.168.1.20
+
+#########################################################
+#########################################################
+ --- YAML ---
+node1: eb916877-8f58-43d2-88c0-4141c0cabd15
+node2: e8bb75f3-2974-41dc-ba2b-6bc06e91ddcf
+
+#########################################################
+#########################################################
+ --- YAML ---
+46a41f06-7995-4177-9ed3-1ad67bfd8d03:
+    uuid: 46a41f06-7995-4177-9ed3-1ad67bfd8d03
+    name: switch1
+    ipv4network: 192.168.200.0/24
+    ipv4gateway: 192.168.200.1
+    ipv6network: ""
+    ipv6gateway: ""
+    ipv4dns:
+        - 192.168.1.10
+    ipv6dns: []

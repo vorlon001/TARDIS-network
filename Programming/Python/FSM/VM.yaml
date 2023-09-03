@@ -1,0 +1,133 @@
+TASK:
+    INIT:
+        START:
+          METHOD: TASK_INITVM
+        DONE:
+          METHOD: RUNNING
+    DELETE:
+        START:
+          METHOD: TASK_DELETED_VM
+        DONE:
+          METHOD: REMOVE
+    STOP:
+        START:
+          METHOD: SHUTDOWN
+        DONE:
+          METHOD: STOP
+STAGE:
+    STARTING_INIT_VM:
+        OK:
+            INIT:
+              METHOD: CREATE_CONFIG
+        ERR:
+          METHOD: ERROR_STATE_STOP
+    CREATE_CONFIG:
+        OK: 
+            INIT:
+              METHOD: START_PENDING
+        ERR:
+          METHOD: ERROR_STATE_STOP
+    REINIT: 
+        OK: 
+            INIT:
+              METHOD: STARTING_INIT_VM
+        ERR:
+          METHOD: ERROR_STATE_STOP
+    START_PENDING:
+        OK: 
+            INIT:
+              METHOD: SETUP_PENDING
+        ERR:
+          METHOD: SHUTDOWN_PENDING
+    SETUP_PENDING:
+        OK:
+          INIT:
+            METHOD: READY
+        ERR:
+          METHOD: SHUTDOWN_PENDING
+    SHUTDOWN:
+        OK:
+          INIT:
+            METHOD: SHUTDOWN_PENDING
+          DELETE:
+            METHOD: SHUTDOWN_PENDING
+          STOP:
+            METHOD: SHUTDOWN_PENDING
+        ERR:
+          METHOD: ERROR_STATE_STOP
+    SHUTDOWN_PENDING:
+        OK: 
+          INIT:
+            METHOD: DELETION_PENDING
+          DELETE:
+            METHOD: DELETION_PENDING
+          STOP:
+            METHOD: STOP
+        ERR:
+          METHOD: ERROR_STATE_STOP
+    DELETION_PENDING:
+        OK: 
+            INIT:
+              METHOD: DELETED
+            DELETE:
+              METHOD: DELETED
+        ERR:
+          METHOD: ERROR_STATE_STOP
+    DELETED:
+        OK:
+            INIT:
+              METHOD: REINIT
+            DELETE:
+              METHOD: REMOVE
+        ERR:
+          METHOD: ERROR_STATE_STOP
+    READY:
+        OK:
+          INIT:
+            METHOD: RUNNING
+        ERR:
+          METHOD: ERROR_STATE_STOP
+    REMOVE:
+        OK:
+          DELETE:
+            METHOD: REMOVE
+        ERR: 
+          METHOD: ERROR_STATE_STOP
+    STOP:
+        OK:
+          STOP:
+            METHOD: STOP
+        ERR: 
+          METHOD: ERROR_STATE_STOP
+EXCEPTION:
+    ERROR_STATE_STOP:
+        METHOD: SYSTEM_ALERT
+INIT:
+    TASK_INITVM:
+        OK:
+          METHOD: STARTING_INIT_VM
+        ERR:
+          METHOD: ERROR_STATE_STOP
+    TASK_DELETED_VM:
+        OK:
+          METHOD: SHUTDOWN
+        ERR:
+          METHOD: ERROR_STATE_STOP
+    SHUTDOWN:
+        OK:
+          METHOD: SHUTDOWN_PENDING
+        ERR:
+          METHOD: ERROR_STATE_STOP
+    TASK_SHUTDOWN_REMOVE:
+        OK:
+          METHOD: SHUTDOWN_PENDING
+        ERR:
+          METHOD: ERROR_STATE_STOP
+DONE:
+    RUNNING:
+        METHOD: RUNNING
+    REMOVE:
+        METHOD: REMOVE
+    STOP:
+        METHOD: STOP
+
