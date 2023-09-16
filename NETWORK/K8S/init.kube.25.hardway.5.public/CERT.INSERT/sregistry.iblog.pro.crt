@@ -1,0 +1,110 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 30 (0x1e)
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C=RU, ST=SVERDLOVSK REGION, L=YEKATERINBURG, O=iBLOG.PRO, OU=iBLOG.PRO, CN=iBLOG.PRO CA/emailAddress=vorlon@iblog.pro
+        Validity
+            Not Before: May  4 05:00:37 2022 GMT
+            Not After : May  4 05:00:37 2023 GMT
+        Subject: C=RU, ST=SVERDLOVSK REGION, L=YEKATERINBURG, O=iBLOG.PRO, CN=sregistry.iblog.pro
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (2048 bit)
+                Modulus:
+                    00:cf:6b:97:5f:bd:59:88:89:55:5c:58:99:08:f5:
+                    6c:43:bb:c1:85:0f:45:c8:58:50:2b:bc:1d:c0:85:
+                    bf:df:90:34:00:83:24:69:0e:53:12:fd:df:f0:fe:
+                    53:53:5e:78:d5:ed:f4:67:f5:b0:a0:41:2c:16:76:
+                    42:bc:aa:ee:3d:f2:1d:c9:c6:5c:09:00:e8:62:f1:
+                    b9:66:30:96:99:2a:7e:cb:bd:05:a7:75:58:ea:e1:
+                    ad:b4:e2:62:eb:aa:10:37:2c:fa:d0:96:db:b7:d5:
+                    bb:b1:92:78:20:7e:ad:53:42:8e:4d:ba:99:ba:3a:
+                    61:d5:06:6a:3b:40:55:30:90:16:ee:5b:0e:2b:61:
+                    7f:3b:5b:01:0c:71:1b:0b:95:93:b5:fc:40:21:be:
+                    47:2f:c7:6a:f0:92:ef:91:69:92:66:8d:73:09:a7:
+                    11:37:30:85:c1:b5:61:24:a0:dc:9e:49:20:66:57:
+                    f8:24:f1:fb:f6:66:2e:ad:5d:6d:84:16:08:df:2f:
+                    12:4c:c7:bb:99:b5:75:8d:0f:c5:25:37:ff:01:3e:
+                    cb:28:63:db:43:2e:91:87:16:40:8a:cb:35:86:4b:
+                    e1:17:7b:15:58:3f:da:83:7d:95:33:a8:78:94:74:
+                    71:14:31:93:00:d1:41:1f:73:04:6b:1f:bd:95:be:
+                    cf:8f
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Subject Key Identifier: 
+                1C:19:E0:27:59:E0:E1:E7:75:8A:AC:78:77:57:CD:C8:C9:A3:7D:96
+            X509v3 Authority Key Identifier: 
+                8F:44:62:7E:84:A5:3F:F3:B2:6B:C0:6F:60:23:FB:ED:2A:22:11:E7
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            X509v3 Key Usage: 
+                Digital Signature, Key Encipherment
+            X509v3 Extended Key Usage: 
+                TLS Web Server Authentication
+            X509v3 Subject Alternative Name: 
+                DNS:sregistry.iblog.pro
+            Netscape Comment: 
+                OpenSSL Generated Certificate
+    Signature Algorithm: sha256WithRSAEncryption
+    Signature Value:
+        ad:38:0d:50:64:c3:45:07:50:ce:ff:40:0a:72:61:14:72:16:
+        de:9d:cd:38:93:ac:c8:2e:ce:ac:d0:97:97:e4:5d:d8:6e:d3:
+        9f:67:ee:f1:c4:d7:9e:f4:fe:34:2d:ea:d4:63:76:7b:ab:6a:
+        e9:0f:ea:df:c1:ff:34:d3:5d:2f:58:05:82:7a:3f:55:b4:03:
+        f5:52:03:f1:92:f8:f3:51:36:66:44:5a:ac:32:ea:00:b4:77:
+        0f:fc:e4:81:1b:b2:36:59:84:9c:a9:57:a7:fa:50:bc:98:2e:
+        93:7c:97:1c:cd:0b:44:5b:3f:57:10:f1:b7:01:0f:f7:fc:b0:
+        91:d0:2e:bb:f0:6f:87:b9:bc:a1:49:6c:5c:6f:3d:b6:fc:74:
+        e6:5f:d3:82:f8:b0:f4:10:68:d1:6b:fb:1f:17:c6:8b:31:93:
+        d9:44:2e:c5:18:e1:2e:8b:4b:d7:8f:27:9e:ce:dc:c2:fa:8e:
+        9a:6c:56:aa:bc:06:ee:ee:2a:ba:16:a4:93:ae:47:5c:f3:e1:
+        7c:96:e1:84:38:9d:e0:49:cd:99:3f:98:57:3f:25:32:6f:65:
+        4e:f6:78:9c:9f:cb:da:6b:3f:4a:05:88:2f:38:6d:2c:71:39:
+        27:4f:0f:99:47:7f:fd:53:12:33:b5:f8:61:ba:b3:da:cb:ff:
+        41:4b:6e:0b:67:99:fe:76:9d:c0:64:78:e1:3a:d0:5c:1a:1f:
+        39:4a:3d:10:ab:bd:d5:be:a9:cf:5c:9e:52:d3:08:de:57:b0:
+        63:a1:ff:5f:a7:fe:90:01:ff:01:03:6d:62:ee:b8:a9:46:4d:
+        62:ea:25:fa:d1:44:0a:03:7f:d2:36:5e:69:30:a9:55:90:52:
+        3c:92:d5:fb:0e:37:c4:f8:61:d6:0e:11:32:10:cd:af:26:29:
+        ac:b4:83:2b:50:11:78:01:d5:e2:1a:2e:bb:d5:17:78:05:33:
+        3d:9e:e4:d8:a5:6f:69:d7:65:d0:1e:91:0f:fe:de:d6:74:37:
+        c3:06:29:21:fd:4f:d7:ac:28:f4:a0:3a:30:5c:5b:04:21:42:
+        5d:ab:53:94:02:74:16:2a:96:58:b3:73:a1:2e:0a:9a:ef:3a:
+        b0:e2:fa:e1:2e:99:59:8d:40:ac:60:3d:e4:5b:92:2b:ee:a6:
+        4a:27:b9:93:7f:fc:42:f0:fd:df:0d:39:c1:17:57:63:36:1d:
+        68:a4:0b:a9:0b:b8:bf:cf:94:07:fe:f6:6c:de:fa:69:39:a6:
+        45:38:bc:a5:53:eb:18:44:db:44:5a:f2:d4:4d:70:1c:3f:14:
+        a6:10:b6:91:da:ec:17:9a:79:14:2e:65:6d:ce:b8:be:33:98:
+        1d:8a:db:03:51:78:18:88
+-----BEGIN CERTIFICATE-----
+MIIFTzCCAzegAwIBAgIBHjANBgkqhkiG9w0BAQsFADCBoTELMAkGA1UEBhMCUlUx
+GjAYBgNVBAgMEVNWRVJETE9WU0sgUkVHSU9OMRYwFAYDVQQHDA1ZRUtBVEVSSU5C
+VVJHMRIwEAYDVQQKDAlpQkxPRy5QUk8xEjAQBgNVBAsMCWlCTE9HLlBSTzEVMBMG
+A1UEAwwMaUJMT0cuUFJPIENBMR8wHQYJKoZIhvcNAQkBFhB2b3Jsb25AaWJsb2cu
+cHJvMB4XDTIyMDUwNDA1MDAzN1oXDTIzMDUwNDA1MDAzN1owczELMAkGA1UEBhMC
+UlUxGjAYBgNVBAgMEVNWRVJETE9WU0sgUkVHSU9OMRYwFAYDVQQHDA1ZRUtBVEVS
+SU5CVVJHMRIwEAYDVQQKDAlpQkxPRy5QUk8xHDAaBgNVBAMME3NyZWdpc3RyeS5p
+YmxvZy5wcm8wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDPa5dfvVmI
+iVVcWJkI9WxDu8GFD0XIWFArvB3Ahb/fkDQAgyRpDlMS/d/w/lNTXnjV7fRn9bCg
+QSwWdkK8qu498h3JxlwJAOhi8blmMJaZKn7LvQWndVjq4a204mLrqhA3LPrQltu3
+1buxknggfq1TQo5Nupm6OmHVBmo7QFUwkBbuWw4rYX87WwEMcRsLlZO1/EAhvkcv
+x2rwku+RaZJmjXMJpxE3MIXBtWEkoNyeSSBmV/gk8fv2Zi6tXW2EFgjfLxJMx7uZ
+tXWND8UlN/8BPssoY9tDLpGHFkCKyzWGS+EXexVYP9qDfZUzqHiUdHEUMZMA0UEf
+cwRrH72Vvs+PAgMBAAGjgb4wgbswHQYDVR0OBBYEFBwZ4CdZ4OHndYqseHdXzcjJ
+o32WMB8GA1UdIwQYMBaAFI9EYn6EpT/zsmvAb2Aj++0qIhHnMAkGA1UdEwQCMAAw
+CwYDVR0PBAQDAgWgMBMGA1UdJQQMMAoGCCsGAQUFBwMBMB4GA1UdEQQXMBWCE3Ny
+ZWdpc3RyeS5pYmxvZy5wcm8wLAYJYIZIAYb4QgENBB8WHU9wZW5TU0wgR2VuZXJh
+dGVkIENlcnRpZmljYXRlMA0GCSqGSIb3DQEBCwUAA4ICAQCtOA1QZMNFB1DO/0AK
+cmEUchbenc04k6zILs6s0JeX5F3YbtOfZ+7xxNee9P40LerUY3Z7q2rpD+rfwf80
+010vWAWCej9VtAP1UgPxkvjzUTZmRFqsMuoAtHcP/OSBG7I2WYScqVen+lC8mC6T
+fJcczQtEWz9XEPG3AQ/3/LCR0C678G+HubyhSWxcbz22/HTmX9OC+LD0EGjRa/sf
+F8aLMZPZRC7FGOEui0vXjyeeztzC+o6abFaqvAbu7iq6FqSTrkdc8+F8luGEOJ3g
+Sc2ZP5hXPyUyb2VO9nicn8vaaz9KBYgvOG0scTknTw+ZR3/9UxIztfhhurPay/9B
+S24LZ5n+dp3AZHjhOtBcGh85Sj0Qq73VvqnPXJ5S0wjeV7Bjof9fp/6QAf8BA21i
+7ripRk1i6iX60UQKA3/SNl5pMKlVkFI8ktX7DjfE+GHWDhEyEM2vJimstIMrUBF4
+AdXiGi671Rd4BTM9nuTYpW9p12XQHpEP/t7WdDfDBikh/U/XrCj0oDowXFsEIUJd
+q1OUAnQWKpZYs3OhLgqa7zqw4vrhLplZjUCsYD3kW5Ir7qZKJ7mTf/xC8P3fDTnB
+F1djNh1opAupC7i/z5QH/vZs3vppOaZFOLylU+sYRNtEWvLUTXAcPxSmELaR2uwX
+mnkULmVtzri+M5gditsDUXgYiA==
+-----END CERTIFICATE-----
