@@ -9,4 +9,7 @@ route add -net 10.96.128.0/17 gw 192.168.203.170
 route add -net 10.96.128.0/17 gw 192.168.203.171
 route add -net 10.96.128.0/17 gw 192.168.203.172
 
-echo "need change netplan config"
+
+route add -net 10.96.68.128/26 gw 192.168.203.172
+route add -net 10.96.70.0/26 gw 192.168.203.171
+route add -net 10.96.76.192/26 gw 192.168.203.170
