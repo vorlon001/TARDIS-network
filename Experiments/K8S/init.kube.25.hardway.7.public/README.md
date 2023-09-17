@@ -11,6 +11,8 @@ create 6 vm, Debian 12 ( https://github.com/vorlon001/libvirt-home-labs/tree/v33
 | node171    | 192.168.200.171   |
 | node172    | 192.168.200.172   |
 
+Routing: FRR BGP Route Reflector
+
 
 ```shell
 
