@@ -1,3 +1,17 @@
+
+create 6 vm, Debian 12 ( https://github.com/vorlon001/libvirt-home-labs/tree/v33 )
+
+
+| VM Name | IP Address, vlan 200 |
+| ----------- | ----------- |
+| node180    | 192.168.200.180   |
+| node181    | 192.168.200.181   |
+| node182    | 192.168.200.181   |
+| node170    | 192.168.200.170   |
+| node171    | 192.168.200.171   |
+| node172    | 192.168.200.172   |
+
+
 ```shell
 
 
@@ -9,6 +23,67 @@ done
 
 ```
 
+
+```yaml
+
+# This file is generated from information provided by the datasource.  Changes
+# to it will not persist across an instance reboot.  To disable cloud-init's
+# network configuration capabilities, write a file
+# /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg with the following:
+# network: {config: disabled}
+network:
+    version: 2
+    ethernets:
+        enp1s0:
+            match:
+                macaddress: fa:16:3e:02:c9:8c
+            set-name: enp1s0
+        enp2s0:
+            match:
+                macaddress: fa:16:3e:93:f7:ec
+            set-name: enp2s0
+    vlans:
+        enp1s0.200:
+            addresses:
+            - 192.168.200.180/24
+            id: 200
+            link: enp1s0
+            mtu: 1500
+            nameservers:
+                addresses:
+                - 192.168.1.10
+            routes:
+            -   to: 0.0.0.0/0
+                via: 192.168.200.1
+        enp1s0.400:
+            addresses:
+            - 192.168.201.180/24
+            id: 400
+            link: enp1s0
+            mtu: 1500
+            nameservers:
+                addresses:
+                - 192.168.1.10
+        enp1s0.600:
+            addresses:
+            - 192.168.202.180/24
+            id: 600
+            link: enp1s0
+            mtu: 1500
+            nameservers:
+                addresses:
+                - 192.168.1.10
+        enp1s0.800:
+            addresses:
+            - 192.168.203.180/24
+            id: 800
+            link: enp1s0
+            mtu: 1500
+            nameservers:
+                addresses:
+                - 192.168.1.10
+
+```
 
 ```shell
 
@@ -171,3 +246,6 @@ root@node180:~# systemctl status kube-controller-manager.service
 сен 17 12:00:17 node180 kube-controller-manager[2759]: I0917 12:00:17.107613    2759 leaderelection.go:250] attempting to acquire leader lease kube-system/kube-controller-manager...
 
 ```
+
+
+![alt text](http://www.wonderland-alice.ru/netcat_files/177_94.gif)
