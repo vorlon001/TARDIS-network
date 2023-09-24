@@ -1,0 +1,21 @@
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: default
+  namespace: metallb-system
+spec:
+  # Production services will go here. Public IPs are expensive, so we leased
+  # just 4 of them.
+  addresses:
+  - 11.0.0.0/22
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: internet
+  namespace: metallb-system
+spec:
+  # Production services will go here. Public IPs are expensive, so we leased
+  # just 4 of them.
+  addresses:
+  - 11.0.10.1/32
