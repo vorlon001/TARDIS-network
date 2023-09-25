@@ -13,7 +13,9 @@
       ansible.builtin.shell:
         cmd: ceph orch device ls
       register: details
+    - debug: msg="{{ details.cmd }}"
     - debug: msg="{{ details.stdout_lines }}"
+
 - name: Post Install Ceph
   hosts: bootstrap
   gather_facts: no
@@ -23,9 +25,11 @@
     ansible.builtin.shell: "{{ item}}"
     loop: "{{ diagnostic_post_deploy }}"
     register: details
-
+  - name: Debug Msg
+    debug:
+        msg="{{ item.cmd }}"
+    loop: "{{ details.results }}"
   - name: Debug Msg
     debug:
         msg="{{ item.stdout_lines }}"
     loop: "{{ details.results }}"
-

@@ -2,7 +2,6 @@
 - hosts: bootstrap
   become: yes
   tasks:
- 
 
     - name: Download https://raw.githubusercontent.com/ceph/ceph/reef/src/cephadm/cephadm.py
       ansible.builtin.get_url:
@@ -15,41 +14,50 @@
       ansible.builtin.shell:
         cmd: cephadm add-repo --release reef
       register: details
+    - debug: msg="{{ details.cmd }}"
     - debug: msg="{{ details.stdout_lines }}"
 
     - name: apt update
       ansible.builtin.shell:
         cmd: apt update
       register: details
+    - debug: msg="{{ details.cmd }}"
     - debug: msg="{{ details.stdout_lines }}"
 
     - name: cephadm install
       ansible.builtin.shell:
         cmd: cephadm install
       register: details
+    - debug: msg="{{ details.cmd }}"
     - debug: msg="{{ details.stdout_lines }}"
 
     - name: mkdir -p /etc/ceph
       ansible.builtin.shell:
         cmd: mkdir -p /etc/ceph
       register: details
+    - debug: msg="{{ details.cmd }}"
     - debug: msg="{{ details.stdout_lines }}"
 
     - name: apt update
       ansible.builtin.shell:
         cmd: cephadm --image harbor.iblog.pro/quayio/ceph/ceph:{{ ceph_version }} bootstrap  --mon-ip {{ hostvars[inventory_hostname]['ansible_facts']['default_ipv4']['address'] }} --allow-overwrite
       register: details
+    - debug: msg="{{ details.cmd }}"
     - debug: msg="{{ details.stdout_lines }}"
 
     - name: configure ceph
       ansible.builtin.shell: "{{ item}}"
       loop: "{{ configure_ceph }}"
       register: details
-
+    - name: Debug Msg
+      debug:
+          msg="{{ item.cmd }}"
+      loop: "{{ details.results }}"
     - name: Debug Msg
       debug:
           msg="{{ item.stdout_lines }}"
       loop: "{{ details.results }}"
+
 - hosts: bootstrap
   become: yes
   gather_facts: false

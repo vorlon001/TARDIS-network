@@ -5,6 +5,9 @@ wait_seconds: 30
 attached_node:
   - node141
   - node142
+attached_node_mds:
+  - node141
+  - node142
 attached_node_mon:
   - node141
   - node142
@@ -16,6 +19,8 @@ attached_node_diag:
   - ceph orch host ls
   - ceph orch ps
   - cephadm shell -- ceph -s
+ceph_cephfs:
+  - name: kubernetes
 ceph_rbd:
   - name: images
     pg_num_1: 32
@@ -29,6 +34,9 @@ ceph_rbd:
   - name: vms
     pg_num_1: 32
     pg_num_2: 32
+  - name: kube
+    pg_num_1: 128
+    pg_num_2: 128
 ceph_osd:
   - name: node140
     packages:

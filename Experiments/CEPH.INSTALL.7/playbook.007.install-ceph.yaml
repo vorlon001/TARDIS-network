@@ -2,12 +2,16 @@
 - hosts: bootstrap
   become: yes
   tasks:
- 
+
    - name: ceph orch apply rgw ....
      ansible.builtin.shell:
        cmd: ceph orch apply rgw {{ item.name }}
      loop: "{{ ceph_s3 }}"
      register: details
+   - name: Debug Msg
+     debug:
+         msg="{{ item.cmd }}"
+     loop: "{{ details.results }}"
    - name: Debug Msg
      debug:
          msg="{{ item.stdout_lines }}"
@@ -21,6 +25,10 @@
      register: details
    - name: Debug Msg
      debug:
+         msg="{{ item.cmd }}"
+     loop: "{{ details.results }}"
+   - name: Debug Msg
+     debug:
          msg="{{ item.stdout_lines }}"
      loop: "{{ details.results }}"
 
@@ -29,6 +37,10 @@
        cmd: ceph orch apply rgw {{ item.name }} '--placement=label:rgw count-per-host:1' --port={{ item.port }}
      loop: "{{ ceph_s3 }}"
      register: details
+   - name: Debug Msg
+     debug:
+         msg="{{ item.cmd }}"
+     loop: "{{ details.results }}"
    - name: Debug Msg
      debug:
          msg="{{ item.stdout_lines }}"
