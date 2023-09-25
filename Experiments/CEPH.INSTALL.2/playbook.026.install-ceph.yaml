@@ -1,0 +1,68 @@
+---
+- hosts: bootstrap
+  become: yes
+  tasks:
+
+   - name: radosgw-admin .... stage 1
+     ansible.builtin.shell:
+       cmd: radosgw-admin --tenant {{ item.tenant }} --uid {{ item.uid }} --display-name "{{ item.displayname }}" --access_key {{ item.access_key }} --secret {{ item.secret_key }} user create
+     loop: "{{ ceph_s3 }}"
+     register: details
+   - name: Debug Msg
+     debug:
+         msg="{{ item.stdout_lines }}"
+     loop: "{{ details.results }}"
+
+   - name: radosgw-admin .... stage 2
+     ansible.builtin.shell:
+       cmd: radosgw-admin subuser create --tenant {{ item.tenant }} --uid={{ item.uid }} --subuser={{ item.user }} --access=readwrite
+     loop: "{{ ceph_s3 }}"
+     register: details
+   - name: Debug Msg
+     debug:
+         msg="{{ item.stdout_lines }}"
+     loop: "{{ details.results }}"
+
+
+   - name: radosgw-admin .... stage 3
+     ansible.builtin.shell:
+       cmd: radosgw-admin quota enable --quota-scope=user --tenant {{ item.tenant }} --uid={{ item.uid }} --max-objects={{ item.maxobjects }} --max-size={{ item.maxsize }}
+     loop: "{{ ceph_s3 }}"
+     register: details
+   - name: Debug Msg
+     debug:
+         msg="{{ item.stdout_lines }}"
+     loop: "{{ details.results }}"
+
+
+   - name: radosgw-admin .... stage 4
+     ansible.builtin.shell:
+       cmd: radosgw-admin user info --tenant {{ item.tenant }}  --uid={{ item.uid }}
+     loop: "{{ ceph_s3 }}"
+     register: details
+   - name: Debug Msg
+     debug:
+         msg="{{ item.stdout_lines }}"
+     loop: "{{ details.results }}"
+
+   - name: radosgw-admin .... stage 5
+     ansible.builtin.shell:
+       cmd: radosgw-admin user info --tenant {{ item.tenant }} --uid={{ item.uid }}  --access-key={{ item.user_access_key }} --secret={{ item.user_secret_key }}
+     loop: "{{ ceph_s3 }}"
+     register: details
+   - name: Debug Msg
+     debug:
+         msg="{{ item.stdout_lines }}"
+     loop: "{{ details.results }}"
+
+
+   - name: radosgw-admin .... stage 6
+     ansible.builtin.shell:
+       cmd: radosgw-admin user modify --tenant {{ item.tenant }} --uid={{ item.uid }}  --access-key={{ item.user_access_key }} --secret={{ item.user_secret_key }}
+     loop: "{{ ceph_s3 }}"
+     register: details
+   - name: Debug Msg
+     debug:
+         msg="{{ item.stdout_lines }}"
+     loop: "{{ details.results }}"
+

@@ -1,0 +1,85 @@
+---
+- hosts: bootstrap
+  become: yes
+  tasks:
+  - name: ceph orch host label add ... rgw
+    ansible.builtin.shell: "ceph orch host label add  {{ item.name }} rgw"
+    loop: "{{ ceph_osd }}"
+    register: details
+
+  - name: Debug Msg
+    debug:
+        msg="{{ item.stdout_lines }}"
+    loop: "{{ details.results }}"
+
+
+  - name: Debug Msg
+    debug:
+        msg="{{ item.stdout_lines }}"
+    loop: "{{ details.results }}"
+
+  - name: ceph osd pool create .... .... ....
+    ansible.builtin.shell:
+      cmd: ceph osd pool create {{ item.name }} {{ item.pg_num_1 }} {{ item.pg_num_1 }}
+    loop: "{{ ceph_rbd }}"
+  - name: pause for {{ wait_seconds | int }} second(s)
+    ansible.builtin.pause:
+      seconds: "{{ wait_seconds | int }}"
+
+  - name: ceph osd pool ls
+    ansible.builtin.shell:
+      cmd: ceph osd pool ls
+    register: details
+  - debug: msg="{{ details.stdout_lines }}"
+
+  - name: ceph osd pool application enable ..... rbd
+    ansible.builtin.shell:
+      cmd: ceph osd pool application enable {{ item.name }} rbd
+    loop: "{{ ceph_rbd }}"
+
+  - name: pause for {{ wait_seconds | int }} second(s)
+    ansible.builtin.pause:
+      seconds: "{{ wait_seconds | int }}"
+
+  - name: ceph auth list
+    ansible.builtin.shell:
+      cmd: ceph auth list
+    register: details
+  - debug: msg="{{ details.stdout_lines }}"
+
+  - name: ceph auth get client.admin
+    ansible.builtin.shell:
+      cmd: ceph auth get client.admin
+    register: details
+  - debug: msg="{{ details.stdout_lines }}"
+
+
+  - name: ceph auth get-or-create client.....
+    ansible.builtin.shell:
+      cmd: ceph auth get-or-create client.{{ item.name }}
+    loop: "{{ ceph_rbd }}"
+  - name: pause for {{ wait_seconds | int }} second(s)
+    ansible.builtin.pause:
+      seconds: "{{ wait_seconds | int }}"
+
+  - name: ceph auth caps client..... mon 'allow r' osd 'allow rwx pool=images'
+    ansible.builtin.shell:
+      cmd: ceph auth caps client.{{ item.name }} mon 'allow r' osd 'allow rwx pool=images'
+    loop: "{{ ceph_rbd }}"
+  - name: pause for {{ wait_seconds | int }} second(s)
+    ansible.builtin.pause:
+      seconds: "{{ wait_seconds | int }}"
+
+  - name: ceph auth get client.....
+    ansible.builtin.shell:
+      cmd: ceph auth get client.{{ item.name }}
+    loop: "{{ ceph_rbd }}"
+  - name: pause for {{ wait_seconds | int }} second(s)
+    ansible.builtin.pause:
+      seconds: "{{ wait_seconds | int }}"
+
+  - name: ceph auth get client..... -o ~/ceph.client.....keyring
+    ansible.builtin.shell:
+      cmd: ceph auth get client.{{ item.name }} -o ~/ceph.client.{{ item.name }}.keyring
+    loop: "{{ ceph_rbd }}"
+

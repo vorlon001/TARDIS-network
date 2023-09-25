@@ -1,0 +1,73 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: "generate /etc/hosts.ansible file"
+      template: "src=etc/hosts.j2 dest='/etc/hosts.ansible' owner=root group=root mode=0644"
+      become: true
+    - name: "check if debian generated hosts file has a backup"
+      stat: "path=/etc/hosts.debian"
+      register: etc_hosts_debian
+    - name: Print to screen google authenticator details
+      command: /bin/cat /etc/hosts.ansible
+      register: details
+    - debug: msg="{{ details.stdout_lines }}"
+    - name: "backup debian generated /etc/hosts"
+      command: "cp /etc/hosts /etc/hosts.debian"
+      when: etc_hosts_debian.stat.islnk is not defined
+      become: true
+    - name: "install /etc/hosts.ansible file"
+      command: "cp /etc/hosts.ansible /etc/hosts"
+      become: true
+
+    - name: Print to screen google authenticator details
+      command: /bin/cat /etc/hosts.debian
+      register: details
+    - debug: msg="{{ details.stdout_lines }}"
+
+    - name: Print to screen google authenticator details
+      command: /bin/cat /etc/hosts.ansible
+      register: details
+    - debug: msg="{{ details.stdout_lines }}"
+
+    - name: Install a list of packages
+      ansible.builtin.apt:
+        update_cache: yes
+        pkg:
+        - apt-transport-https
+        - ca-certificates
+        - curl
+        - gnupg
+        - lsb-release
+        - docker.io
+        - containerd
+        - ntpdate
+
+    - name: ntpdate -u pool.ntp.org
+      ansible.builtin.shell:
+        cmd: ntpdate -u pool.ntp.org
+      register: details
+    - debug: msg="{{ details.stdout_lines }}"
+
+    - name: sed -i '/#NTP=/a NTP=time.google.com' /etc/systemd/timesyncd.conf
+      ansible.builtin.shell:
+        cmd: sed -i '/#NTP=/a NTP=time.google.com' /etc/systemd/timesyncd.conf
+
+    - name: Restart service systemd-timesyncd
+      ansible.builtin.systemd:
+        state: restarted
+        daemon_reload: true
+        name: systemd-timesyncd
+
+    - name: timedatectl
+      ansible.builtin.shell:
+        cmd: timedatectl
+      register: details
+    - debug: msg="{{ details.stdout_lines }}"
+
+    - name: apt list --installed |grep ^lvm
+      ansible.builtin.shell:
+        cmd: apt list --installed | grep ^lvm
+      register: details
+    - debug: msg="{{ details.stdout_lines }}"
+
