@@ -1,0 +1,37 @@
+
+    - name: ntpdate -u pool.ntp.org
+      ansible.builtin.shell:
+        cmd: ntpdate -u pool.ntp.org
+      register: details
+    - debug: msg="{{ details.stdout_lines }}"
+
+    - name: sed -i '/#NTP=/a NTP=time.google.com' /etc/systemd/timesyncd.conf
+      ansible.builtin.shell:
+        cmd: sed -i '/#NTP=/a NTP=time.google.com' /etc/systemd/timesyncd.conf
+
+    - name: Restart service systemd-timesyncd
+      ansible.builtin.systemd:
+        state: restarted
+        daemon_reload: true
+        name: systemd-timesyncd
+
+    - name: timedatectl
+      ansible.builtin.shell:
+        cmd: timedatectl
+      register: details
+    - debug:
+        msg:
+          cmd: "{{ details.cmd }}"
+          stdout_lines: "{{ details.stdout_lines }}"
+          stderr_lines:  "{{ details.stderr_lines }}"
+
+    - name: apt list --installed |grep ^lvm
+      ansible.builtin.shell:
+        cmd: apt list --installed | grep ^lvm
+      register: details
+    - debug:
+        msg:
+          cmd: "{{ details.cmd }}"
+          stdout_lines: "{{ details.stdout_lines }}"
+          stderr_lines:  "{{ details.stderr_lines }}"
+

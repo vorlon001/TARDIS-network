@@ -1,0 +1,25 @@
+  - name: Debug Msg
+    debug:
+        msg="33333333333333"
+  - name: Debug Msg
+    ansible.builtin.shell:
+      cmd: ps auxf && id && pwd
+    register: details
+  - debug:
+      msg:
+        cmd: "{{ details.cmd }}"
+        stdout_lines: "{{ details.stdout_lines }}"
+        stderr_lines:  "{{ details.stderr_lines }}"
+
+  - name: run task_block_1
+    ansible.builtin.shell: "{{ item }}"
+    loop: "{{ task_block_1 }}"
+    register: details
+
+  - name: Debug Msg
+    debug:
+        msg:
+          cmd: "{{ item.cmd }}"
+          stdout_lines: "{{ item.stdout_lines }}"
+          stderr_lines:  "{{ item.stderr_lines }}"
+    loop: "{{ details.results }}"

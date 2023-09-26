@@ -1,0 +1,35 @@
+    - name: "generate /etc/hosts.ansible file"
+      template: "src=etc/hosts.j2 dest='/etc/hosts.ansible' owner=root group=root mode=0644"
+      become: true
+    - name: "check if debian generated hosts file has a backup"
+      stat: "path=/etc/hosts.debian"
+      register: etc_hosts_debian
+    - name: Print to screen google authenticator details
+      command: /bin/cat /etc/hosts.ansible
+      register: details
+    - debug: msg="{{ details.stdout_lines }}"
+    - name: "backup debian generated /etc/hosts"
+      command: "cp /etc/hosts /etc/hosts.debian"
+      when: etc_hosts_debian.stat.islnk is not defined
+      become: true
+    - name: "install /etc/hosts.ansible file"
+      command: "cp /etc/hosts.ansible /etc/hosts"
+      become: true
+
+    - name: Print to screen google authenticator details
+      command: /bin/cat /etc/hosts.debian
+      register: details
+    - debug:
+        msg:
+          cmd: "{{ details.cmd }}"
+          stdout_lines: "{{ details.stdout_lines }}"
+          stderr_lines:  "{{ details.stderr_lines }}"
+    - name: Print to screen google authenticator details
+      command: /bin/cat /etc/hosts.ansible
+      register: details
+    - debug:
+        msg:
+          cmd: "{{ details.cmd }}"
+          stdout_lines: "{{ details.stdout_lines }}"
+          stderr_lines:  "{{ details.stderr_lines }}"
+

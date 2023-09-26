@@ -1,7 +1,3 @@
----
-- hosts: bootstrap
-  become: yes
-  tasks:
   - name: ansible copy file from remote to local.
     loop: "{{ ceph_rbd }}"
     fetch:

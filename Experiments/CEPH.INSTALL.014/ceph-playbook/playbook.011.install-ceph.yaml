@@ -1,7 +1,3 @@
----
-- hosts: bootstrap
-  become: yes
-  tasks:
   - name: ceph orch host add nodeXXX
     ansible.builtin.shell:
       cmd: ceph orch host add {{ item }}
@@ -9,26 +5,31 @@
     register: details
   - name: Debug Msg
     debug:
-        msg="{{ item.cmd }}"
-    loop: "{{ details.results }}"
-  - name: Debug Msg
-    debug:
-        msg="{{ item.stdout_lines }}"
+        msg:
+          cmd: "{{ item.cmd }}"
+          stdout_lines: "{{ item.stdout_lines }}"
+          stderr_lines:  "{{ item.stderr_lines }}"
     loop: "{{ details.results }}"
 
   - name: ceph orch host ls
     ansible.builtin.shell:
       cmd: ceph orch host ls
     register: details
-  - debug: msg="{{ details.cmd }}"
-  - debug: msg="{{ details.stdout_lines }}"
+  - debug:
+      msg:
+        cmd: "{{ details.cmd }}"
+        stdout_lines: "{{ details.stdout_lines }}"
+        stderr_lines:  "{{ details.stderr_lines }}"
 
   - name: ceph orch apply mon xxxxxxx
     ansible.builtin.shell:
       cmd: ceph orch apply mon {{ inventory_hostname }}{% for host in attached_node_mon %},{{ host }}{% endfor %}
     register: details
-  - debug: msg="{{ details.cmd }}"
-  - debug: msg="{{ details.stdout_lines }}"
+  - debug:
+      msg:
+        cmd: "{{ details.cmd }}"
+        stdout_lines: "{{ details.stdout_lines }}"
+        stderr_lines:  "{{ details.stderr_lines }}"
 
 
   - name: ceph orch apply mds nodeXXX
@@ -38,33 +39,41 @@
     register: details
   - name: Debug Msg
     debug:
-        msg="{{ item.cmd }}"
-    loop: "{{ details.results }}"
-  - name: Debug Msg
-    debug:
-        msg="{{ item.stdout_lines }}"
+        msg:
+          cmd: "{{ item.cmd }}"
+          stdout_lines: "{{ item.stdout_lines }}"
+          stderr_lines:  "{{ item.stderr_lines }}"
     loop: "{{ details.results }}"
 
   - name: ceph -s
     ansible.builtin.shell:
       cmd: ceph -s
     register: details
-  - debug: msg="{{ details.cmd }}"
-  - debug: msg="{{ details.stdout_lines }}"
+  - debug:
+      msg:
+        cmd: "{{ details.cmd }}"
+        stdout_lines: "{{ details.stdout_lines }}"
+        stderr_lines:  "{{ details.stderr_lines }}"
 
   - name: ceph orch apply mgr xxxxxxx
     ansible.builtin.shell:
       cmd: ceph orch apply mgr {{ inventory_hostname }}{% for host in attached_node_mgr %},{{ host }}{% endfor %}
     register: details
-  - debug: msg="{{ details.cmd }}"
-  - debug: msg="{{ details.stdout_lines }}"
+  - debug:
+      msg:
+        cmd: "{{ details.cmd }}"
+        stdout_lines: "{{ details.stdout_lines }}"
+        stderr_lines:  "{{ details.stderr_lines }}"
 
   - name: ceph -s
     ansible.builtin.shell:
       cmd: ceph -s
     register: details
-  - debug: msg="{{ details.cmd }}"
-  - debug: msg="{{ details.stdout_lines }}"
+  - debug:
+      msg:
+        cmd: "{{ details.cmd }}"
+        stdout_lines: "{{ details.stdout_lines }}"
+        stderr_lines:  "{{ details.stderr_lines }}"
 
 
   - name: pause for {{ wait_seconds | int }} second(s)
@@ -77,9 +86,8 @@
     register: details
   - name: Debug Msg
     debug:
-        msg="{{ item.cmd }}"
-    loop: "{{ details.results }}"
-  - name: Debug Msg
-    debug:
-        msg="{{ item.stdout_lines }}"
+        msg:
+          cmd: "{{ item.cmd }}"
+          stdout_lines: "{{ item.stdout_lines }}"
+          stderr_lines:  "{{ item.stderr_lines }}"
     loop: "{{ details.results }}"

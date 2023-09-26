@@ -1,8 +1,3 @@
----
-- hosts: bootstrap
-  become: yes
-  tasks:
-
    - name: radosgw-admin .... stage 1
      ansible.builtin.shell:
        cmd: radosgw-admin --tenant {{ item.tenant }} --uid {{ item.uid }} --display-name "{{ item.displayname }}" --access_key {{ item.access_key }} --secret {{ item.secret_key }} user create
@@ -10,11 +5,10 @@
      register: details
    - name: Debug Msg
      debug:
-         msg="{{ item.cmd }}"
-     loop: "{{ details.results }}"
-   - name: Debug Msg
-     debug:
-         msg="{{ item.stdout_lines }}"
+         msg:
+           cmd: "{{ item.cmd }}"
+           stdout_lines: "{{ item.stdout_lines }}"
+           stderr_lines:  "{{ item.stderr_lines }}"
      loop: "{{ details.results }}"
 
    - name: radosgw-admin .... stage 2
@@ -24,11 +18,10 @@
      register: details
    - name: Debug Msg
      debug:
-         msg="{{ item.cmd }}"
-     loop: "{{ details.results }}"
-   - name: Debug Msg
-     debug:
-         msg="{{ item.stdout_lines }}"
+         msg:
+           cmd: "{{ item.cmd }}"
+           stdout_lines: "{{ item.stdout_lines }}"
+           stderr_lines:  "{{ item.stderr_lines }}"
      loop: "{{ details.results }}"
 
 
@@ -39,11 +32,10 @@
      register: details
    - name: Debug Msg
      debug:
-         msg="{{ item.cmd }}"
-     loop: "{{ details.results }}"
-   - name: Debug Msg
-     debug:
-         msg="{{ item.stdout_lines }}"
+         msg:
+           cmd: "{{ item.cmd }}"
+           stdout_lines: "{{ item.stdout_lines }}"
+           stderr_lines:  "{{ item.stderr_lines }}"
      loop: "{{ details.results }}"
 
 
@@ -54,11 +46,10 @@
      register: details
    - name: Debug Msg
      debug:
-         msg="{{ item.cmd }}"
-     loop: "{{ details.results }}"
-   - name: Debug Msg
-     debug:
-         msg="{{ item.stdout_lines }}"
+         msg:
+           cmd: "{{ item.cmd }}"
+           stdout_lines: "{{ item.stdout_lines }}"
+           stderr_lines:  "{{ item.stderr_lines }}"
      loop: "{{ details.results }}"
 
    - name: radosgw-admin .... stage 5
@@ -68,11 +59,10 @@
      register: details
    - name: Debug Msg
      debug:
-         msg="{{ item.cmd }}"
-     loop: "{{ details.results }}"
-   - name: Debug Msg
-     debug:
-         msg="{{ item.stdout_lines }}"
+         msg:
+           cmd: "{{ item.cmd }}"
+           stdout_lines: "{{ item.stdout_lines }}"
+           stderr_lines:  "{{ item.stderr_lines }}"
      loop: "{{ details.results }}"
 
    - name: radosgw-admin .... stage 6
@@ -80,11 +70,11 @@
        cmd: radosgw-admin user modify --tenant {{ item.tenant }} --uid={{ item.uid }}  --access-key={{ item.user_access_key }} --secret={{ item.user_secret_key }}
      loop: "{{ ceph_s3 }}"
      register: details
+     register: details
    - name: Debug Msg
      debug:
-         msg="{{ item.cmd }}"
-     loop: "{{ details.results }}"
-   - name: Debug Msg
-     debug:
-         msg="{{ item.stdout_lines }}"
+         msg:
+           cmd: "{{ item.cmd }}"
+           stdout_lines: "{{ item.stdout_lines }}"
+           stderr_lines:  "{{ item.stderr_lines }}"
      loop: "{{ details.results }}"

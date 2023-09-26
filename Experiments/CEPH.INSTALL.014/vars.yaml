@@ -99,3 +99,12 @@ diagnostic_post_deploy:
       - ceph orch device ls --wide
       - ceph orch ps
       - ceph mon dump
+pkgs:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg
+      - lsb-release
+      - docker.io
+      - containerd
+      - ntpdate

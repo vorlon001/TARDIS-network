@@ -1,17 +1,17 @@
-[all]
+[ceph]
 node140 ansible_ssh_host=192.168.200.140
 node141 ansible_ssh_host=192.168.200.141
 node142 ansible_ssh_host=192.168.200.142
 
-[all:vars]
+[ceph:vars]
 ansible_connection=ssh
 ansible_user=root
 ansible_ssh_pass=root
 
-[bootstrap]
+[cephbootstrap]
 node140 ansible_ssh_host=192.168.200.140
 
-[bootstrap:vars]
+[cephbootstrap:vars]
 ansible_connection=ssh
 ansible_user=root
 ansible_ssh_pass=root

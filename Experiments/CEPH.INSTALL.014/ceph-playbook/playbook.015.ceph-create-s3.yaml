@@ -1,8 +1,3 @@
----
-- hosts: bootstrap
-  become: yes
-  tasks:
-
    - name: ceph orch apply rgw ....
      ansible.builtin.shell:
        cmd: ceph orch apply rgw {{ item.name }}
@@ -10,11 +5,10 @@
      register: details
    - name: Debug Msg
      debug:
-         msg="{{ item.cmd }}"
-     loop: "{{ details.results }}"
-   - name: Debug Msg
-     debug:
-         msg="{{ item.stdout_lines }}"
+         msg:
+           cmd: "{{ item.cmd }}"
+           stdout_lines: "{{ item.stdout_lines }}"
+           stderr_lines:  "{{ item.stderr_lines }}"
      loop: "{{ details.results }}"
 
 
@@ -23,13 +17,13 @@
        cmd: ceph orch apply rgw {{ item.name }} --port={{ item.port }}
      loop: "{{ ceph_s3 }}"
      register: details
+     register: details
    - name: Debug Msg
      debug:
-         msg="{{ item.cmd }}"
-     loop: "{{ details.results }}"
-   - name: Debug Msg
-     debug:
-         msg="{{ item.stdout_lines }}"
+         msg:
+           cmd: "{{ item.cmd }}"
+           stdout_lines: "{{ item.stdout_lines }}"
+           stderr_lines:  "{{ item.stderr_lines }}"
      loop: "{{ details.results }}"
 
    - name: ceph orch apply rgw ....
@@ -39,11 +33,10 @@
      register: details
    - name: Debug Msg
      debug:
-         msg="{{ item.cmd }}"
-     loop: "{{ details.results }}"
-   - name: Debug Msg
-     debug:
-         msg="{{ item.stdout_lines }}"
+         msg:
+           cmd: "{{ item.cmd }}"
+           stdout_lines: "{{ item.stdout_lines }}"
+           stderr_lines:  "{{ item.stderr_lines }}"
      loop: "{{ details.results }}"
 
    - name: pause for {{ wait_seconds | int }} second(s)
