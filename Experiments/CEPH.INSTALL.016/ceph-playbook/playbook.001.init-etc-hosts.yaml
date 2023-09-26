@@ -1,5 +1,5 @@
     - name: "generate /etc/hosts.ansible file"
-      template: "src=etc/hosts.j2 dest='/etc/hosts.ansible' owner=root group=root mode=0644"
+      template: "src=etc/{{ ceph_hosts_template }} dest='/etc/hosts.ansible' owner=root group=root mode=0644"
       become: true
     - name: "check if debian generated hosts file has a backup"
       stat: "path=/etc/hosts.debian"

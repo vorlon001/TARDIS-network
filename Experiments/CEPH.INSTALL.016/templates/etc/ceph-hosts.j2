@@ -15,6 +15,6 @@ ff02::2 ip6-allrouters
 
 # Network nodes as generated through Ansible.
 
-{% for host in groups['all'] %}
+{% for host in groups['ceph'] %}
 {{ hostvars[host]['ansible_facts']['default_ipv4']['address'] }} {{ host }}
 {% endfor %}

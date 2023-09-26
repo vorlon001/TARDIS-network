@@ -1,5 +1,8 @@
 public_network: 192.168.200.0/24
 cluster_network: 192.168.201.0/24
+ceph_hosts_template: ceph-hosts.j2
+ceph_gpg_url: https://download.ceph.com/keys/release.gpg
+ceph_repo_url:  https://download.ceph.com/
 ceph_version: v18.2
 wait_seconds: 30
 attached_node:

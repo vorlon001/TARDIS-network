@@ -6,9 +6,9 @@
         mode: '777'
 
 
-    - name: cephadm add-repo --release reef
+    - name: cephadm add-repo --release reef --gpg-url ....  --repo-url ......
       ansible.builtin.shell:
-        cmd: cephadm add-repo --release reef
+        cmd: cephadm add-repo --release reef --gpg-url {{ ceph_gpg_url }} --repo-url {{ ceph_repo_url }}
       register: details
     - debug:
         msg:
