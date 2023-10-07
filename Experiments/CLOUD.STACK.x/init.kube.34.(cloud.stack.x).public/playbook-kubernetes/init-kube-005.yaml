@@ -1,0 +1,80 @@
+---
+- hosts: kubernetes
+  become: yes
+  vars:
+    kubernetesVersion: 1.28.2
+    CONTROL_PLANE_IP: 192.168.200.186
+    APITOKEN: "bu5tiw.iq1i8h3t740fgy0l"
+  tasks:
+  - block:
+    - name: Run openssl x509 -in /etc/kubernetes/pki/ca.crt -noout -pubkey | openssl rsa -pubin -outform DER 2>/dev/null | sha256sum | cut -d' ' -f1
+      shell: |
+        openssl x509 -in /etc/kubernetes/pki/ca.crt -noout -pubkey | openssl rsa -pubin -outform DER 2>/dev/null | sha256sum | cut -d' ' -f1
+      register: SHA256_TOKENS
+      when:
+      - inventory_hostname in groups['bootstrap']
+    - name: Print return information from the previous task
+      ansible.builtin.debug:
+        var: SHA256_TOKENS['stdout']
+      when:
+      - inventory_hostname in groups['bootstrap']
+    - name: Run kubeadm init phase upload-certs --upload-certs 2>&1 | grep -o -E '^[[:alnum:]]{64}'
+      shell: |
+        kubeadm init phase upload-certs --upload-certs 2>&1 | grep -o -E '^[[:alnum:]]{64}'
+      register: UPLOADTLSKEYS
+      when:
+      - inventory_hostname in groups['bootstrap']
+    - name: Print return information from the previous task
+      ansible.builtin.debug:
+        var: UPLOADTLSKEYS['stdout']
+      when:
+      - inventory_hostname in groups['bootstrap']
+    - delegate_to: localhost
+      copy:
+        content: "UPLOADTLSKEY: \"{{UPLOADTLSKEYS['stdout']}}\""
+        dest: /tmp/join-UPLOADTLSKEY.yml
+      when:
+      - inventory_hostname in groups['bootstrap']
+    - delegate_to: localhost
+      copy:
+        content: "SHA256_TOKEN: \"{{SHA256_TOKENS['stdout']}}\""
+        dest: /tmp/join-command.yml
+      when:
+      - inventory_hostname in groups['bootstrap']
+    - name: Load a variable file /tmp/join-UPLOADTLSKEY.yml
+      include_vars: /tmp/join-UPLOADTLSKEY.yml
+      when:
+      - inventory_hostname in groups['worker']
+
+    - name: Load a variable file /tmp/join-command.yml
+      include_vars: /tmp/join-command.yml
+      when:
+      - inventory_hostname in groups['worker']
+    - name: Print vars UPLOADTLSKEY
+      ansible.builtin.debug:
+        var: UPLOADTLSKEY
+      when:
+      - inventory_hostname in groups['worker']
+    - name: Print vars SHA256_TOKEN
+      ansible.builtin.debug:
+        var: SHA256_TOKEN
+      when:
+      - inventory_hostname in groups['worker']
+    - name: Copy /root/join-worker.yaml
+      template:
+        src: "join-worker.yaml.j2"
+        dest: /root/join-worker.yaml
+        owner: root
+        group: root
+        mode: '0644'
+      when:
+      - inventory_hostname in groups['worker']
+    - name: Run kubeadm join --config=./join-worker.yaml
+      shell: |
+         kubeadm join --config=./join-worker.yaml
+      register: logs
+      when:
+      - inventory_hostname in groups['worker']
+    - debug: var=logs.stdout_lines
+
+    when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'

@@ -1,0 +1,22 @@
+{
+  "features": {
+    "buildkit": false
+  },
+  "exec-opts": ["native.cgroupdriver=systemd"],
+  "log-driver": "json-file",
+  "data-root": "/cloud/docker",
+  "log-opts": {
+    "max-size": "500m",
+    "max-file": "2"
+  },
+  "dns": ["192.168.1.10" ],
+  "default-ulimits": {"nofile": {"Name": "nofile","Hard": 262144,"Soft": 262144}},
+  "live-restore": true,
+  "registry-mirrors": ["https://nexus3-docker-io.iblog.pro"],
+  "default-address-pools" : [
+    {
+      "base" : "172.31.0.0/16",
+      "size" : 24
+    }
+  ]
+}

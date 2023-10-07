@@ -1,0 +1,21 @@
+---
+- hosts: ceph
+  become: yes
+  tasks:
+  - block:
+    - import_tasks: ceph-playbook/playbook.001.init-etc-hosts.yaml
+    - import_tasks: ceph-playbook/playbook.002.install-apt-deb.yaml
+    - import_tasks: ceph-playbook/playbook.003.configure-ntp.yaml
+    when:
+      - inventory_hostname in groups['ceph']
+  - block:
+    - import_tasks: ceph-playbook/playbook.010.install-ceph.yaml
+    - import_tasks: ceph-playbook/playbook.011.install-ceph.yaml
+    - import_tasks: ceph-playbook/playbook.012.ceph-add-osd.yaml
+    - import_tasks: ceph-playbook/playbook.013.ceph-create-rbd-cephfs.yaml
+    - import_tasks: ceph-playbook/playbook.014.copy-ceph-keyring.yaml
+    - import_tasks: ceph-playbook/playbook.015.ceph-create-s3.yaml
+    - import_tasks: ceph-playbook/playbook.016.ceph-create-s3.yaml
+    when:
+      - inventory_hostname in groups['cephbootstrap']
+

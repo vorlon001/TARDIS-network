@@ -1,0 +1,68 @@
+---
+- hosts: bootstrap
+  become: yes
+  vars:
+    kube_version: "v1.28.2"
+    crictl_version: "v1.28.0"
+    containerd_version: "1.7.3"
+    image_arch: "amd64"
+    runc_version: "1.1.9"
+    cni_version: "1.3.0"
+    k8s_regestry: "harbor.iblog.pro/registry.k8s.io"
+    etcd_version: "3.5.9"
+    IPREFIX: "192.168.200"
+    CLUSTERIP: "186"
+    NODE: "180"
+    clusterName: "cluster.local"
+    podSubnet: "10.96.0.0/17"
+    serviceSubnet: "10.96.128.0/17"
+    APITOKEN: "bu5tiw.iq1i8h3t740fgy0l"
+  tasks:
+  - block:
+    - name: Recursively remove directory /root/.kube
+      ansible.builtin.file:
+        path: /root/.kube
+        state: absent
+
+    - name: Run mkdir -p /root/.kube
+      ansible.builtin.shell: mkdir -p /root/.kube
+      args:
+        executable: /bin/bash
+      register: logs
+    - debug: var=logs.stdout_lines
+
+    - name: Run cp -i /etc/kubernetes/admin.conf /root/.kube/config
+      ansible.builtin.shell: cp -i /etc/kubernetes/admin.conf /root/.kube/config
+      args:
+        executable: /bin/bash
+      register: logs
+    - debug: var=logs.stdout_lines
+
+    - name: Run chown 0:0 /root/.kube/config 
+      ansible.builtin.shell: chown 0:0 /root/.kube/config 
+      args:
+        executable: /bin/bash
+      register: logs
+    - debug: var=logs.stdout_lines
+
+    - name: Run mkdir -p /root/.kube
+      ansible.builtin.shell: mkdir -p /root/.kube
+      args:
+        executable: /bin/bash
+      register: logs
+    - debug: var=logs.stdout_lines
+
+    - name: Run kubectl get nodes,pod -A -o wide
+      ansible.builtin.shell: kubectl get nodes,pod -A -o wide
+      args:
+        executable: /bin/bash
+      register: logs
+    - debug: var=logs.stdout_lines
+
+    - name: Run kubectl taint nodes --all node-role.kubernetes.io/master-
+      ansible.builtin.shell: kubectl taint nodes --all node-role.kubernetes.io/master-
+      args:
+        executable: /bin/bash
+      register: logs
+    - debug: var=logs.stdout_lines
+    when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'

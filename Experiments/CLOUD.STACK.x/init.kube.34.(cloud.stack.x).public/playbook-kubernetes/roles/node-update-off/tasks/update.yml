@@ -1,0 +1,23 @@
+- block:
+  - block:
+
+    - name: run - sudo pam-auth-update --enable mkhomedir
+      ansible.builtin.shell: sed  -i 's|APT::Periodic::Unattended-Upgrade "1";|APT::Periodic::Unattended-Upgrade "0";|' /etc/apt/apt.conf.d/20auto-upgrades
+      args:
+        executable: /bin/bash
+      register: cat
+    - debug: var=cat.stdout_lines
+
+
+    - name: run - sudo pam-auth-update --enable mkhomedir
+      ansible.builtin.shell: cat  /etc/apt/apt.conf.d/20auto-upgrades
+      args:
+        executable: /bin/bash
+      register: cat
+    - debug: var=cat.stdout_lines
+
+
+
+  when: inventory_hostname in groups['node-update']
+  tags:
+    - node-update

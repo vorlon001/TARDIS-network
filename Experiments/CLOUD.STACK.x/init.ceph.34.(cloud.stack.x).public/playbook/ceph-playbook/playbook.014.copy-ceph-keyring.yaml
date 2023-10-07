@@ -1,0 +1,11 @@
+  - name: ansible copy file from remote to local.
+    loop: "{{ ceph_rbd }}"
+    fetch:
+     src: /root/ceph.client.{{ item.name }}.keyring
+     dest: /
+
+  - name: ansible copy file from remote to local.
+    loop: "{{ ceph_cephfs }}"
+    fetch:
+     src: /root/ceph.client.{{ item.name }}.keyring
+     dest: /

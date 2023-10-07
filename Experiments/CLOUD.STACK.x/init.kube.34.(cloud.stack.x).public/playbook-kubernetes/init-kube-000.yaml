@@ -1,0 +1,170 @@
+---
+- name: Install systemd timesyncd
+  hosts: kubernetes
+  port: 22
+  gather_facts: True
+  become: true
+  tasks:
+    - name: Install systemd timesyncd
+      ansible.builtin.apt:
+        name: systemd-timesyncd
+        state: present
+    - name: Execute the command in remote shell; timedatectl set-ntp true
+      ansible.builtin.shell: timedatectl set-ntp true
+      register: debug
+    - debug: var=debug.stdout_lines
+
+- hosts: kubernetes
+  port: 22
+  gather_facts: True
+  roles:
+    - role: node-systemd-timesyncd
+      become: true
+      vars:
+        system_timezone: Etc/UTC
+        ntp_servers:
+        - "pool.ntp.org"
+        - "pool.ntp.org"
+        ntp_fallback_servers:
+        - "pool.ntp.org"
+        - "pool.ntp.org"
+      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+- name: Run timedatectl status
+  hosts: kubernetes
+  port: 22
+  gather_facts: True
+  become: true
+  tasks:
+    - name: Execute the command in remote shell; timedatectl set-ntp true
+      ansible.builtin.shell: timedatectl status
+      register: debug
+    - debug: var=debug.stdout_lines
+
+- name: Install exporter
+  hosts: kubernetes
+  port: 22
+  gather_facts: True
+  roles:
+    - role: node-update-off
+      become: yes
+      tag: node-update
+
+- hosts: kubernetes
+  become: yes
+  vars:
+    t: 1
+  tasks:
+    - name: Remove "snapd" package
+      ansible.builtin.apt:
+        name: snapd
+        state: absent
+      when: ansible_distribution == 'Ubuntu'
+
+    - name: Install a list of packages
+      ansible.builtin.apt:
+        update_cache: yes
+        pkg:
+          - cgroup-tools
+          - cpuset
+          - cgroup-tools
+          - sysstat
+          - nmon
+      when: ansible_distribution == 'Debian'
+
+    - name: Install a list of packages
+      ansible.builtin.apt:
+        update_cache: yes
+        pkg:
+          - cgroup-tools
+          - cpuset
+          - cgroup-lite
+          - cgroupfs-mount
+          - sysstat
+          - nmon
+      when: ansible_distribution == 'Ubuntu'
+
+    - name: Run a command ansible.posix.sysctl vm.max_map_count=262144
+      ansible.posix.sysctl:
+        name: vm.max_map_count
+        value: 262144
+        sysctl_set: yes
+        state: present
+        reload: yes
+      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+    - name: Run patch /etc/default/grub
+      ansible.builtin.shell: sed -i -e 's|GRUB_CMDLINE_LINUX="console=tty0 console=ttyS0,115200 earlyprintk=ttyS0,115200 consoleblank=0"|GRUB_CMDLINE_LINUX="console=tty0 console=ttyS0,115200 earlyprintk=ttyS0,115200 consoleblank=0 cgroup_enable=cpuset cgroup_enable=memory swapaccount=1 systemd.unified_cgroup_hierarchy=1"|' /etc/default/grub
+      args:
+        executable: /bin/bash
+      register: logs
+      when: ansible_distribution == 'Debian'
+    - debug: var=logs.stdout_lines
+      when: ansible_distribution == 'Debian'
+
+    - name: Run patch /etc/default/grub
+      ansible.builtin.shell: sed -i -e 's|GRUB_CMDLINE_LINUX=""|GRUB_CMDLINE_LINUX="cgroup_enable=cpuset cgroup_enable=memory swapaccount=1 systemd.unified_cgroup_hierarchy=1"|'  /etc/default/grub
+      args:
+        executable: /bin/bash
+      register: logs
+      when: ansible_distribution == 'Ubuntu'
+    - debug: var=logs.stdout_lines
+      when: ansible_distribution == 'Ubuntu'
+
+    - name: Run patch /etc/needrestart/needrestart.conf
+      ansible.builtin.shell: sudo sed -i 's/#{restart} = '"'"'i'"'"';/{restart} = '"'"'a'"'"';/g' /etc/needrestart/needrestart.conf
+      args:
+        executable: /bin/bash
+      register: logs
+      when: ansible_distribution == 'Ubuntu'
+    - debug: var=logs.stdout_lines
+
+    - name: Run cat /etc/default/grub 
+      ansible.builtin.shell: cat /etc/default/grub
+      args:
+        executable: /bin/bash
+      register: logs
+      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+    - debug: var=logs.stdout_lines
+
+    - name: Run update-grub
+      ansible.builtin.shell: update-grub
+      args:
+        executable: /bin/bash
+      register: logs
+      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+    - debug: var=logs.stdout_lines
+
+    - name: Copy /etc/sysctl.d/99-kubernetes-cri.conf
+      copy:
+        src: files/99-kubernetes-cri.conf
+        dest: /etc/sysctl.d/99-kubernetes-cri.conf
+        owner: root
+        group: root
+        mode: '0644'
+        backup: yes
+      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+    - name: reboot
+      shell: shutdown -r now "Ansible updates triggered"
+      async: 1
+      poll: 0
+      ignore_errors: true
+      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+    - name: Wait for the reboot and reconnect 
+      wait_for:
+          port: 22
+          host: '{{ (ansible_ssh_host|default(ansible_host))|default(inventory_hostname) }}'
+          search_regex: OpenSSH
+          delay: 10
+          timeout: 60
+      connection: local
+      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+    - name: Check the Uptime of the servers
+      ansible.builtin.shell: "uptime"
+      register: Uptime
+      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+    - debug: var=Uptime
+

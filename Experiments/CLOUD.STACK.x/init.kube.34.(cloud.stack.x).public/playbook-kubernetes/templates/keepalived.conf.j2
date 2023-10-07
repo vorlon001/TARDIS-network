@@ -1,0 +1,35 @@
+
+global_defs {
+   router_id LVS_DEVEL
+}
+
+vrrp_script check_apiserver {
+   script "/etc/keepalived/check_apiserver.sh"
+   interval 3
+   weight -2
+   fall 100
+   user root
+}
+
+vrrp_instance vi{{ KEEPALIVE_id }} {
+        virtual_router_id {{ KEEPALIVE_id }}
+        state BACKUP
+        priority {{ 150 - groups['master'].index(inventory_hostname)*10 }}
+        interface {{ ansible_default_ipv4.interface }}
+        virtual_ipaddress {
+                {{ VIPIP_KEEPALIVE }} dev {{ ansible_default_ipv4.interface }} label {{ ansible_default_ipv4.interface }}:1 # Virtual IP
+        }
+        unicast_src_ip {{ ansible_default_ipv4.address }}
+        unicast_peer {
+{% for host_lb in groups['master'] %}{% if  hostvars[host_lb]['ansible_facts']['default_ipv4']['address']  != ansible_default_ipv4.address %}
+           {{ hostvars[host_lb]['ansible_facts']['default_ipv4']['address'] }}
+{% endif %}{% endfor %}
+        }
+        authentication {
+            auth_type {{ keepalived_auth_type }}
+            auth_pass {{ keepalived_auth_pass }}
+        }
+        track_script {
+                ckhaproxy
+        }
+}

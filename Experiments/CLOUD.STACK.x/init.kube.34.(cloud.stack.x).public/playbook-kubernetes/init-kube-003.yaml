@@ -1,0 +1,88 @@
+---
+- hosts: bootstrap
+  become: yes
+  vars:
+    kube_version: "v1.28.2"
+    crictl_version: "v1.28.0"
+    containerd_version: "1.7.3"
+    image_arch: "amd64"
+    runc_version: "1.1.9"
+    cni_version: "1.3.0"
+    k8s_regestry: "harbor.iblog.pro/registry.k8s.io"
+    etcd_version: "3.5.9"
+    IPREFIX: "192.168.200"
+    CLUSTERIP: "186"
+    NODE: "140"
+    clusterName: "cluster.local"
+    podSubnet: "10.96.0.0/17"
+    serviceSubnet: "10.96.128.0/17"
+    APITOKEN: "bu5tiw.iq1i8h3t740fgy0l"
+  tasks:
+  - block:
+    - name: install keepalived
+      package:
+        name: keepalived
+        state: present
+
+    - name: Run mkdir -p /etc/kubernetes/policies/
+      ansible.builtin.shell: mkdir -p /etc/kubernetes/policies/
+      args:
+        executable: /bin/bash
+      register: logs
+    - debug: var=logs.stdout_lines
+
+
+    - name: Run mkdir -p /var/log/kube-audit
+      ansible.builtin.shell: mkdir -p /var/log/kube-audit
+      args:
+        executable: /bin/bash
+      register: logs
+    - debug: var=logs.stdout_lines
+
+    - name: Run copy audit-policy.yaml /etc/kubernetes/policies/
+      template:
+        src: "audit-policy.yaml.j2"
+        dest: /etc/kubernetes/policies/audit-policy.yaml
+        mode: '0644'
+
+    - name: Copy kubeadm.yml
+      template:
+        src: "kubeadm.yml.j2"
+        dest: /root/kubeadm.yml
+        mode: '0644'
+
+    - name: Run cat  kubeadm.yml
+      ansible.builtin.shell: cat /root/kubeadm.yml
+      args:
+        executable: /bin/bash
+      register: logs
+    - debug: var=logs.stdout_lines
+
+    - name: Run cat  kubeadm.yml
+      ansible.builtin.shell: cat /root/kubeadm.yml
+      args:
+        executable: /bin/bash
+      register: logs
+    - debug: var=logs.stdout_lines
+
+    - name: Run cat  mkdir /sys/fs/cgroup/kubepod.cluster.slice/
+      ansible.builtin.shell: if [ ! -d "/sys/fs/cgroup/kubepod.cluster.slice/" ]; then     echo "Directory /sys/fs/cgroup/kubepod.cluster.slice/ DOES NOT exists.";     mkdir /sys/fs/cgroup/kubepod.cluster.slice/ || throw 18380; fi
+      args:
+        executable: /bin/bash
+      register: logs
+    - debug: var=logs.stdout_lines
+
+    - name: Run kubeadm config migrate --old-config kubeadm.yml  --new-config kubeadm.v3.yml
+      ansible.builtin.shell: cd /root; kubeadm config migrate --old-config kubeadm.yml  --new-config kubeadm.v3.yml
+      args:
+        executable: /bin/bash
+      register: logs
+    - debug: var=logs.stdout_lines
+
+    - name: Run kubeadm init --config=./kubeadm.yml
+      ansible.builtin.shell: cd /root; kubeadm init --config=/root/kubeadm.yml
+      args:
+        executable: /bin/bash
+      register: logs
+    - debug: var=logs.stdout_lines
+    when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'

@@ -1,0 +1,43 @@
+---
+
+- name: set time zone
+  timezone:
+    name: '{{ system_timezone }}'
+  tags:
+    - timezone
+
+- name: remove unneeded ntp clients
+  package:
+    name: chrony,ntp
+    state: absent
+  when: systemd_timesyncd_purge_legacy_packages
+
+- name: install systemd
+  package:
+    name: systemd
+
+- name: configure systemd-timesyncd
+  template:
+    src: timesyncd.conf.j2
+    dest: /etc/systemd/timesyncd.conf
+    owner: root
+    group: root
+    mode: 0644
+  register: __systemd_timesyncd_configuration
+
+- name: enable systemd-timesyncd service and assure it is started
+  service:
+    name: systemd-timesyncd
+    enabled: yes
+    state: >-
+      {{
+        __systemd_timesyncd_configuration.changed |
+          default(False) |
+          ternary("restarted", "started")
+      }}
+  tags:
+    - service
+    - service-timesyncd
+    - timesyncd-service
+
+...

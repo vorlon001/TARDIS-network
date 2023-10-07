@@ -1,0 +1,75 @@
+- hosts: localhost
+  tasks:
+  - block:
+    - name: Creates directory
+      file:
+        path: /tmp/deploy/etc/kubernetes/pki/etcd
+        state: directory
+        owner: root
+        group: root
+        mode: 0775
+        recurse: yes
+    when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+- hosts: bootstrap
+  vars:
+    kubernetes_pki:
+      - /etc/kubernetes/pki/sa.pub
+      - /etc/kubernetes/pki/sa.key
+      - /etc/kubernetes/pki/etcd/ca.key
+      - /etc/kubernetes/pki/etcd/ca.crt
+      - /etc/kubernetes/pki/front-proxy-ca.crt
+      - /etc/kubernetes/pki/apiserver-etcd-client.crt
+      - /etc/kubernetes/pki/apiserver-etcd-client.key
+      - /etc/kubernetes/pki/ca.key
+      - /etc/kubernetes/pki/ca.crt
+      - /etc/kubernetes/pki/front-proxy-ca.key
+  tasks:
+  - block:
+    - name: ansible copy file from remote to local.
+      fetch:
+        src: "{{ item }}"
+        dest: /tmp/deploy/{{ item }}
+        flat: yes
+      loop: "{{ kubernetes_pki }}"
+    when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+- hosts: masterjoin
+  become: yes
+  vars:
+    kubernetes_pki:
+      - /etc/kubernetes/pki/sa.pub
+      - /etc/kubernetes/pki/sa.key
+      - /etc/kubernetes/pki/etcd/ca.key
+      - /etc/kubernetes/pki/etcd/ca.crt
+      - /etc/kubernetes/pki/front-proxy-ca.crt
+      - /etc/kubernetes/pki/apiserver-etcd-client.crt
+      - /etc/kubernetes/pki/apiserver-etcd-client.key
+      - /etc/kubernetes/pki/ca.key
+      - /etc/kubernetes/pki/ca.crt
+      - /etc/kubernetes/pki/front-proxy-ca.key
+  tasks:
+  - block:
+    - name: Creates directory
+      file:
+        path: /etc/kubernetes/pki/etcd
+        state: directory
+        owner: root
+        group: root
+        mode: 0775
+        recurse: yes
+    - name: ansible copy file from local to remote.
+      ansible.builtin.copy:
+        src: /tmp/deploy/{{ item }}
+        dest: "{{ item }}"
+      loop: "{{ kubernetes_pki }}"
+    when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+- hosts: localhost
+  tasks:
+  - block:
+    - name: Recursively remove directory
+      ansible.builtin.file:
+        path: /tmp/deploy
+        state: absent
+    when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
