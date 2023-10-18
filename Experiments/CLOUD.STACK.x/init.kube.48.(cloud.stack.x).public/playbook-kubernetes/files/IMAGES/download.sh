@@ -5,7 +5,7 @@ set -x
 #https://storage.googleapis.com/kubernetes-release/release/v1.26.0-rc.0/bin/linux/amd64/kubelet
 export kube_version="v1.28.2"
 export crictl_version="v1.28.0"
-export containerd_version="1.7.3"
+export containerd_version="1.7.7"
 export image_arch="amd64"
 export runc_version="1.1.9"
 export cni_version="1.3.0"

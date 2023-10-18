@@ -1,10 +1,6 @@
 ---
 - hosts: kubernetes
   become: yes
-  vars:
-    kubernetesVersion: 1.28.2
-    CONTROL_PLANE_IP: 192.168.200.186
-    APITOKEN: "bu5tiw.iq1i8h3t740fgy0l"
   tasks:
   - block:
     - name: Run openssl x509 -in /etc/kubernetes/pki/ca.crt -noout -pubkey | openssl rsa -pubin -outform DER 2>/dev/null | sha256sum | cut -d' ' -f1
@@ -44,37 +40,38 @@
     - name: Load a variable file /tmp/join-UPLOADTLSKEY.yml
       include_vars: /tmp/join-UPLOADTLSKEY.yml
       when:
-      - inventory_hostname in groups['worker']
+      - inventory_hostname in groups['masterjoin']
 
     - name: Load a variable file /tmp/join-command.yml
       include_vars: /tmp/join-command.yml
       when:
-      - inventory_hostname in groups['worker']
+      - inventory_hostname in groups['masterjoin']
     - name: Print vars UPLOADTLSKEY
       ansible.builtin.debug:
         var: UPLOADTLSKEY
       when:
-      - inventory_hostname in groups['worker']
+      - inventory_hostname in groups['masterjoin']
     - name: Print vars SHA256_TOKEN
       ansible.builtin.debug:
         var: SHA256_TOKEN
       when:
-      - inventory_hostname in groups['worker']
-    - name: Copy /root/join-worker.yaml
+      - inventory_hostname in groups['masterjoin']
+
+    - name: Copy join.yaml
       template:
-        src: "join-worker.yaml.j2"
-        dest: /root/join-worker.yaml
+        src: "join-master.yaml.j2"
+        dest: /root/join-master.yaml
         owner: root
         group: root
         mode: '0644'
       when:
-      - inventory_hostname in groups['worker']
-    - name: Run kubeadm join --config=./join-worker.yaml
+      - inventory_hostname in groups['masterjoin']
+    - name: Run kubeadm join --config=./join-master.yaml
       shell: |
-         kubeadm join --config=./join-worker.yaml
+         kubeadm join --config=./join-master.yaml
+      throttle: 1
       register: logs
       when:
-      - inventory_hostname in groups['worker']
+      - inventory_hostname in groups['masterjoin']
     - debug: var=logs.stdout_lines
-
     when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'

@@ -1,0 +1,76 @@
+
+  - name: docker pull antilope
+    ansible.builtin.shell:
+      cmd: docker pull {{ kolla_image_registry_pull }}/{{ item }}
+    loop: "{{ kolla_antilope }}"
+    register: details
+  - name: Debug Msg
+    debug:
+        msg:
+          cmd: "{{ item.cmd }}"
+          stdout_lines: "{{ item.stdout_lines }}"
+          stderr_lines:  "{{ item.stderr_lines }}"
+    loop: "{{ details.results }}"
+
+  - name: docker login ..... --username ..... --password .....
+    ansible.builtin.shell:
+      cmd: docker login {{ docker_registry_url }}  --username {{ docker_registry_user }}  --password {{ docker_registry_password }}
+    register: details
+  - debug:
+      msg:
+        cmd: "{{ details.cmd }}"
+        stdout_lines: "{{ details.stdout_lines }}"
+        stderr_lines:  "{{ details.stderr_lines }}"
+
+  - name: docker tag antilope
+    ansible.builtin.shell:
+      cmd: docker tag {{ kolla_image_registry_pull }}/{{ item }} {{ kolla_image_registry_push_antilope }}/{{ item }}
+    loop: "{{ kolla_antilope }}"
+    register: details
+  - name: Debug Msg
+    debug:
+        msg:
+          cmd: "{{ item.cmd }}"
+          stdout_lines: "{{ item.stdout_lines }}"
+          stderr_lines:  "{{ item.stderr_lines }}"
+    loop: "{{ details.results }}"
+
+  - name: docker push antilope
+    ansible.builtin.shell:
+      cmd: docker push {{ kolla_image_registry_push_antilope }}/{{ item }}
+    loop: "{{ kolla_antilope }}"
+    register: details
+  - name: Debug Msg
+    debug:
+        msg:
+          cmd: "{{ item.cmd }}"
+          stdout_lines: "{{ item.stdout_lines }}"
+          stderr_lines:  "{{ item.stderr_lines }}"
+    loop: "{{ details.results }}"
+
+
+  - name: docker rmi antilope
+    ansible.builtin.shell:
+      cmd: docker rmi {{ kolla_image_registry_pull }}/{{ item }}
+    loop: "{{ kolla_antilope }}"
+    register: details
+  - name: Debug Msg
+    debug:
+        msg:
+          cmd: "{{ item.cmd }}"
+          stdout_lines: "{{ item.stdout_lines }}"
+          stderr_lines:  "{{ item.stderr_lines }}"
+    loop: "{{ details.results }}"
+
+  - name: docker rmi antilope
+    ansible.builtin.shell:
+      cmd: docker rmi {{ kolla_image_registry_push_antilope }}/{{ item }}
+    loop: "{{ kolla_antilope }}"
+    register: details
+  - name: Debug Msg
+    debug:
+        msg:
+          cmd: "{{ item.cmd }}"
+          stdout_lines: "{{ item.stdout_lines }}"
+          stderr_lines:  "{{ item.stderr_lines }}"
+    loop: "{{ details.results }}"

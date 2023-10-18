@@ -12,18 +12,6 @@
     when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
 - hosts: bootstrap
-  vars:
-    kubernetes_pki:
-      - /etc/kubernetes/pki/sa.pub
-      - /etc/kubernetes/pki/sa.key
-      - /etc/kubernetes/pki/etcd/ca.key
-      - /etc/kubernetes/pki/etcd/ca.crt
-      - /etc/kubernetes/pki/front-proxy-ca.crt
-      - /etc/kubernetes/pki/apiserver-etcd-client.crt
-      - /etc/kubernetes/pki/apiserver-etcd-client.key
-      - /etc/kubernetes/pki/ca.key
-      - /etc/kubernetes/pki/ca.crt
-      - /etc/kubernetes/pki/front-proxy-ca.key
   tasks:
   - block:
     - name: ansible copy file from remote to local.
@@ -36,18 +24,6 @@
 
 - hosts: masterjoin
   become: yes
-  vars:
-    kubernetes_pki:
-      - /etc/kubernetes/pki/sa.pub
-      - /etc/kubernetes/pki/sa.key
-      - /etc/kubernetes/pki/etcd/ca.key
-      - /etc/kubernetes/pki/etcd/ca.crt
-      - /etc/kubernetes/pki/front-proxy-ca.crt
-      - /etc/kubernetes/pki/apiserver-etcd-client.crt
-      - /etc/kubernetes/pki/apiserver-etcd-client.key
-      - /etc/kubernetes/pki/ca.key
-      - /etc/kubernetes/pki/ca.crt
-      - /etc/kubernetes/pki/front-proxy-ca.key
   tasks:
   - block:
     - name: Creates directory

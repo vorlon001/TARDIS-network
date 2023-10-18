@@ -20,14 +20,6 @@
   roles:
     - role: node-systemd-timesyncd
       become: true
-      vars:
-        system_timezone: Etc/UTC
-        ntp_servers:
-        - "pool.ntp.org"
-        - "pool.ntp.org"
-        ntp_fallback_servers:
-        - "pool.ntp.org"
-        - "pool.ntp.org"
       when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
 - name: Run timedatectl status
@@ -52,8 +44,6 @@
 
 - hosts: kubernetes
   become: yes
-  vars:
-    t: 1
   tasks:
     - name: Remove "snapd" package
       ansible.builtin.apt:
