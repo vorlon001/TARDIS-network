@@ -1,4 +1,9 @@
 
+
+ubuntu_mirror: "https://<YOUR-NEXUS>.<YOUR-DOMAIN>/repository/archive.ubuntu.com/"
+ubuntu_mirror_security: "https://<YOUR-NEXUS>.<YOUR-DOMAIN>/repository/security.ubuntu.com/"
+
+
 system_timezone: Etc/UTC
 ntp_servers:
 - "pool.ntp.org"
@@ -7,13 +12,13 @@ ntp_fallback_servers:
 - "pool.ntp.org"
 - "pool.ntp.org"
 
-kube_version: "v1.28.2"
+kube_version: "v1.28.3"
 crictl_version: "v1.28.0"
 containerd_version: "1.7.7"
 image_arch: "amd64"
 runc_version: "1.1.9"
 cni_version: "1.3.0"
-k8s_regestry: "harbor.iblog.pro/registry.k8s.io"
+k8s_regestry: "harbor.<YOUR-DOMAIN>/registry.k8s.io"
 etcd_version: "3.5.9"
 LANG: ru_RU.UTF-8
 VERSION: mantic
@@ -32,7 +37,7 @@ KUBERNETES_VERSION: 1.28.2
 VIPIP_KEEPALIVE: "192.168.200.186"
 APISERVER_DEST_PORT: 6443
 keepalived_auth_type: AH
-keepalived_auth_pass: "e470f1261"
+keepalived_auth_pass: "<YOUR-KEEPALIVED-TOKEN>"
 KEEPALIVE_id: 51
 
 kubernetesVersion: 1.28.2

@@ -3,7 +3,8 @@
 set -x
 # ./kubeadm.amd64.v1.25.0 config images list
 #https://storage.googleapis.com/kubernetes-release/release/v1.26.0-rc.0/bin/linux/amd64/kubelet
-export kube_version="v1.28.2"
+export kube_version="v1.28.3"
+export kube_version2="1.28.3"
 export crictl_version="v1.28.0"
 export containerd_version="1.7.7"
 export image_arch="amd64"
@@ -25,3 +26,6 @@ wget -q --show-progress --https-only --timestamping https://github.com/kubernete
 wget -q --show-progress --https-only --timestamping https://github.com/cloudflare/cfssl/releases/download/v1.6.4/cfssl_1.6.4_linux_amd64 https://github.com/cloudflare/cfssl/releases/download/v1.6.4/cfssljson_1.6.4_linux_amd64
 
 wget -q --show-progress --https-only --timestamping https://github.com/etcd-io/etcd/releases/download/v${etcd_version}/etcd-v${etcd_version}-linux-${image_arch}.tar.gz
+
+
+wget -q --show-progress --https-only --timestamping -O kubernetes-server-linux-amd64.${kube_version2}.tar.gz https://storage.googleapis.com/kubernetes-release/release/v${kube_version2}/kubernetes-server-linux-amd64.tar.gz

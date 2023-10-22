@@ -1,0 +1,10 @@
+deb {{ ubuntu_mirror }} {{ VERSION }} main restricted
+deb {{ ubuntu_mirror }} {{ VERSION }}-updates main restricted
+deb {{ ubuntu_mirror }} {{ VERSION }} universe
+deb {{ ubuntu_mirror }} {{ VERSION }}-updates universe
+deb {{ ubuntu_mirror }} {{ VERSION }} multiverse
+deb {{ ubuntu_mirror }} {{ VERSION }}-updates multiverse
+deb {{ ubuntu_mirror }} {{ VERSION }}-backports main restricted universe multiverse
+deb {{ ubuntu_mirror_security }} {{ VERSION }}-security main restricted
+deb {{ ubuntu_mirror_security }} {{ VERSION }}-security universe
+deb {{ ubuntu_mirror_security }} {{ VERSION }}-security multiverse
