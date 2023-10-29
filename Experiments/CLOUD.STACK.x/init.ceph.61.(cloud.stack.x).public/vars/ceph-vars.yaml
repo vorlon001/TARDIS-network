@@ -3,22 +3,22 @@ cluster_network: 192.168.201.0/24
 ceph_hosts_template: ceph-hosts.j2
 ceph_gpg_url: https://download.ceph.com/keys/release.gpg
 ceph_repo_url:  https://download.ceph.com/
-ceph_image_registry: <YOUR-DOCKEr-HUB>.<YOUR-DOMAIN>/quayio/ceph/ceph
+ceph_image_registry: harbor.iblog.pro/quayio/ceph/ceph
 ceph_version: v18.2
 wait_seconds: 30
 attached_node:
-  - node141
-  - node142
-  - node143
+  - node131
+  - node132
+  - node133
 attached_node_mds:
-  - node141
-  - node142
+  - node131
+  - node132
 attached_node_mon:
-  - node141
-  - node142
+  - node131
+  - node132
 attached_node_mgr:
-  - node141
-  - node142
+  - node131
+  - node132
 attached_node_diag:
   - ceph orch device ls
   - ceph orch host ls
@@ -43,22 +43,22 @@ ceph_rbd:
     pg_num_1: 128
     pg_num_2: 128
 ceph_osd:
-  - name: node140
+  - name: node130
     packages:
       - sdb
       - sdc
       - sdd
-  - name: node141
+  - name: node131
     packages:
       - sdb
       - sdc
       - sdd
-  - name: node142
+  - name: node132
     packages:
       - sdb
       - sdc
       - sdd
-  - name: node143
+  - name: node133
     packages:
       - sdb
       - sdc

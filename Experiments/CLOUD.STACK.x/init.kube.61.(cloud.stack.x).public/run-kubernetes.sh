@@ -27,3 +27,7 @@ ansible-playbook -i  node-hosts-all.yaml playbook-kubernetes/init-kube-005.yaml 
 ansible-playbook -i  node-hosts-all.yaml playbook-kubernetes/init-kube-006.yaml --extra-vars "@run-kubernetes.vars.yaml" || throw ${LINENO}
 ansible-playbook -i  node-hosts-all.yaml playbook-kubernetes/init-kube-007.yaml --extra-vars "@run-kubernetes.vars.yaml" || throw ${LINENO}
 
+
+
+# ansible  -i node-hosts-all.yaml --become -m shell -a 'mkdir -p /opt/local-path-provisioner' kubernetes
+# ansible  -i node-hosts-all.yaml --become -m shell -a 'chmod 777 /opt/local-path-provisioner' kubernetes

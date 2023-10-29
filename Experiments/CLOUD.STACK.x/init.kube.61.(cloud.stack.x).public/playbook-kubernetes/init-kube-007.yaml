@@ -57,6 +57,24 @@
       when:
       - inventory_hostname in groups['masterjoin']
 
+
+    - name: Run mkdir -p /etc/kubernetes/policies/
+      ansible.builtin.shell: mkdir -p /etc/kubernetes/policies/
+      args:
+        executable: /bin/bash
+      register: logs
+      when:
+      - inventory_hostname in groups['masterjoin']
+    - debug: var=logs.stdout_lines
+
+    - name: Run copy audit-policy.yaml /etc/kubernetes/policies/
+      template:
+        src: "audit-policy.yaml.j2"
+        dest: /etc/kubernetes/policies/audit-policy.yaml
+        mode: '0644'
+      when:
+      - inventory_hostname in groups['masterjoin']
+
     - name: Copy join.yaml
       template:
         src: "join-master.yaml.j2"
