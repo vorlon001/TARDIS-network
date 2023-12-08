@@ -16,6 +16,7 @@ vppctl set logging class linux-cp rate-limit 1000 level warn syslog-level notice
 #vppctl lcp default netns dataplane
 vppctl lcp lcp-sync on
 vppctl lcp lcp-auto-subint on
+vppctl ip table add 2
 
 vppctl set interface state GigabitEthernet3/3/0 up
 vppctl set interface mtu packet 1500 GigabitEthernet3/3/0
@@ -23,10 +24,12 @@ vppctl set interface mtu packet 1500 GigabitEthernet3/3/0
 vppctl create sub GigabitEthernet3/3/0 800
 vppctl set interface state GigabitEthernet3/3/0.800 up
 vppctl set interface mtu packet 1500 GigabitEthernet3/3/0.800
+vppctl set interface ip table GigabitEthernet3/3/0.800 2
 
 vppctl create bridge-domain 1
 vppctl create loopback interface instance 1
 vppctl lcp create loop1 host-if bvi1
+
 vppctl set interface ip address loop1 192.168.203.${NODEID}/24
 vppctl set interface l2 bridge loop1 1 bvi
 vppctl set interface l2 bridge GigabitEthernet3/3/0.800 1
