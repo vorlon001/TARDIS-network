@@ -1,0 +1,9 @@
+---
+version: 1
+config:
+- type: physical
+  name: eth0
+  mac_address: 52:54:00:33:ea:7f
+- type: physical
+  name: eth1
+  mac_address: 52:54:00:2d:24:d8

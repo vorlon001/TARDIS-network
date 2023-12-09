@@ -1,0 +1,9 @@
+#cloud-config
+vyos_config_commands:
+- set service ssh port 22
+- set system login user vyos authentication encrypted-password '$6$K4lzAIXncuBdwzjb$2DLRUjkEO.LyVPkvve5kz0k7UYsK5gFqMKxMMlhh8Wppf75Eq9UcdLecTNJDRztCdhgTixPFoSr3PZm291ehi0'
+- set system login user vyos authentication plaintext-password vyos
+- set interfaces ethernet eth0 address '192.168.44.188/24'
+- set interfaces ethernet eth0 description 'uplink............'
+- set system host-name 'node188'
+- set system login banner pre-login 'VyOS router NODE188'

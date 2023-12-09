@@ -73,13 +73,11 @@ vppctl ip route add 192.168.44.22/32 via tap1
 vppctl ip route add 192.168.203.0/24 via GigabitEthernet3/3/0.800
 
 vppctl set arp proxy start 0.0.0.0 end 255.255.255.255
-# vppctl set interface proxy-arp GigabitEthernet3/3/0.800 enable
+vppctl set interface proxy-arp GigabitEthernet3/3/0.800 enable
 vppctl set interface proxy-arp loop10 enable
 vppctl set interface proxy-arp tap0 enable
 vppctl set interface proxy-arp tap1 enable
 
-ip netns exec vpp10 route add -host 192.168.44.1 dev vpp10
-ip netns exec vpp20 route add -host 192.168.44.1 dev vpp20
 
 #  247  arp -i vpp20 -s 192.168.45.22 02:fe:2d:0d:14:2e
 #  248  arp -i vpp20 -s 192.168.203.1 02:fe:2d:0d:14:2e
