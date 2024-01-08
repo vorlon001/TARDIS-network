@@ -1,0 +1,24 @@
+FROM golang:1.16.6-buster AS builder
+
+ENV APP_NAME web
+WORKDIR /workspace
+
+#COPY . /go/src/${APP_NAME}
+#WORKDIR /go/src/${APP_NAME}
+
+RUN go build -o ${APP_NAME}
+
+
+FROM sregistry.iblog.pro/labs/alpine/lab.alpine:3.14-v1
+
+ENV APP_NAME web
+ENV PORT 8080
+
+RUN mkdir /app
+WORKDIR /app
+
+COPY --from=builder /workspace/${APP_NAME} .
+RUN chmod +x ./${APP_NAME}
+
+EXPOSE 8080
+ENTRYPOINT ["./web"]
