@@ -1,4 +1,0 @@
-
-    - name: "generate /etc/docker/docker-daemon.json file"
-      template: "src=etc/{{ docker_daemon_config_template }} dest='/etc/docker/docker-daemon.json' owner=root group=root mode=0644"
-      become: true

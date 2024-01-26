@@ -1,0 +1,14 @@
+
+
+    - name: Remove "snapd" package
+      ansible.builtin.apt:
+        name: snapd
+        state: absent
+
+
+    - name: Install a list of packages
+      ansible.builtin.apt:
+        name: "{{ item }}"
+        update_cache: yes
+      loop: "{{ pkgs }}"
+

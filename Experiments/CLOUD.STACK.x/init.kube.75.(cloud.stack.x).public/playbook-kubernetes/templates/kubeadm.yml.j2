@@ -1,0 +1,105 @@
+apiVersion: kubeadm.k8s.io/v1beta3
+kind: InitConfiguration
+bootstrapTokens:
+- groups:
+  - system:bootstrappers:kubeadm:default-node-token
+  token: {{ APITOKEN }}
+  ttl: 120h0m0s
+  usages:
+  - signing
+  - authentication
+localAPIEndpoint:
+  advertiseAddress: {{IPREFIX}}.{{NODE}}
+  bindPort: 6443
+nodeRegistration:
+#  criSocket: /run/containerd/containerd.sock
+  imagePullPolicy: IfNotPresent
+  name: node{{NODE}}
+  taints:
+  - effect: NoSchedule
+    key: node-role.kubernetes.io/master
+---
+apiVersion: kubeadm.k8s.io/v1beta3
+kind: ClusterConfiguration
+certificatesDir: /etc/kubernetes/pki
+imageRepository: {{k8s_regestry}}
+clusterName: {{clusterName}}
+kubernetesVersion: "{{kube_version}}"
+controlPlaneEndpoint: {{IPREFIX}}.{{CLUSTERIP}}:6443
+apiServer:
+  extraArgs:
+    audit-log-format: json
+    audit-log-maxage: "7"
+    audit-log-maxbackup: "10"
+    audit-log-maxsize: "100"
+    audit-log-path: /var/log/kube-audit/audit.log
+    audit-policy-file: /etc/kubernetes/policies/audit-policy.yaml
+  extraVolumes:
+  - hostPath: /etc/kubernetes/policies
+    mountPath: /etc/kubernetes/policies
+    name: policies
+    pathType: DirectoryOrCreate
+    readOnly: true
+  - hostPath: /var/log/kube-audit
+    mountPath: /var/log/kube-audit
+    name: logs
+    pathType: DirectoryOrCreate
+  timeoutForControlPlane: 4m0s
+controllerManager:
+  extraArgs:
+    bind-address: 0.0.0.0
+    node-cidr-mask-size-ipv4: "24"
+etcd:
+  local:
+    extraArgs:
+      listen-metrics-urls: http://0.0.0.0:2381 
+scheduler:
+  extraArgs:
+    bind-address: 0.0.0.0
+dns: {}
+networking:
+  dnsDomain: {{clusterName}}
+  podSubnet: {{podSubnet}}
+  serviceSubnet: {{serviceSubnet}}
+---
+apiVersion: kubelet.config.k8s.io/v1beta1
+kind: KubeletConfiguration
+cgroupDriver: systemd
+cgroupsPerQOS: true
+systemReserved:
+  cpu: 500m
+  memory: 1000Mi
+kubeReserved:
+  cpu: 500m
+  memory: 500Mi
+  ephemeral-storage: 3Gi
+evictionHard:
+  memory.available: "500Mi"
+  nodefs.available: "1Gi"
+  imagefs.available: "10Gi"
+evictionMinimumReclaim:
+  memory.available: "0Mi"
+  nodefs.available: "500Mi"
+  imagefs.available: "2Gi"
+serverTLSBootstrap: false ## default false.................
+serializeImagePulls: false
+kubeAPIQPS: 50
+kubeAPIBurst: 100
+evictionPressureTransitionPeriod: "5m"
+evictionMaxPodGracePeriod: 300
+memoryThrottlingFactor: 0.9
+registerNode: true
+podsPerCore: 5
+nodeStatusUpdateFrequency: "10s"
+nodeStatusReportFrequency: "3m"
+maxPods: 20
+containerLogMaxSize: "10Mi"
+containerLogMaxFiles: 5
+maxParallelImagePulls: 5
+podPidsLimit: 1000000
+maxOpenFiles: 1000000
+---
+apiVersion: kubeproxy.config.k8s.io/v1alpha1
+kind: KubeProxyConfiguration
+mode: ipvs
+metricsBindAddress: 0.0.0.0:10249

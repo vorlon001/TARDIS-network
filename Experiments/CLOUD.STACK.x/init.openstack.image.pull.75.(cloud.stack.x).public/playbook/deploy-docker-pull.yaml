@@ -1,0 +1,12 @@
+---
+- hosts: pull
+  become: yes
+  tasks:
+  - block:
+    - import_tasks: docker-pull-playbook/playbook.001.install-apt-deb.yaml
+    - import_tasks: docker-pull-playbook/playbook.002.configure-docker.yaml
+    - import_tasks: docker-pull-playbook/playbook.003.docker-restart.yaml
+    - import_tasks: docker-pull-playbook/playbook.004.docker-pull-antilope.yaml
+    - import_tasks: docker-pull-playbook/playbook.004.docker-pull-bobcat.yaml
+    when:
+      - inventory_hostname in groups['pull']
