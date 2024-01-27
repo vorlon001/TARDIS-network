@@ -1,0 +1,110 @@
+---
+- name: Build Amfora
+  hosts: build
+  port: 22
+  gather_facts: true
+  become: true
+  vars:
+      octavia_git: https://opendev.org/openstack/octavia
+      octavia_version: "2023.2"
+      octavia_tag: stable/{{ octavia_version }}
+      octavia_repo_path: /root/octavia
+      DIB_REPOLOCATION_amphora_agent: /root/octavia
+      DIB_REPOREF_amphora_agent: "{{ octavia_tag }}"
+      DIB_REPOLOCATION_octavia_lib: https://opendev.org/openstack/octavia-lib
+      DIB_REPOREF_octavia_lib: "{{ octavia_tag }}"
+      DIB_REPOLOCATION_upper_constraints: https://opendev.org/openstack/requirements/raw/branch/stable/{{ octavia_version }}/upper-constraints.txt
+      CLOUD_INIT_DATASOURCES: ConfigDrive
+      DIB_DISTRIBUTION_MIRROR: https://nexus3.iblog.pro/repository/archive.ubuntu.com/
+  tasks:
+    - name: Print all available facts
+      ansible.builtin.debug:
+        var: ansible_facts
+
+    - name: Install a list of packages
+      ansible.builtin.apt:
+        pkg:
+        - debootstrap
+        - qemu-utils
+        - git
+        - kpartx
+        - python3-pip
+        - python3.10-venv
+
+    - name: Git checkout
+      ansible.builtin.git:
+        repo: '{{ octavia_git }}'
+        dest: '{{ octavia_repo_path }}'
+        version: "{{ octavia_tag }}"
+        force: true
+
+    - name: Install pip python package
+      ansible.builtin.pip:
+        name: pip
+
+    - name: Install diskimage-builder python package
+      ansible.builtin.pip:
+        name: diskimage-builder
+
+
+    - name: Copy /etc/sysctl.d/99-kubernetes-cri.conf
+      copy:
+        src: build.ubuntu-minimal-baseinstall
+        dest: /usr/local/lib/python3.10/dist-packages/diskimage_builder/elements/ubuntu-minimal/root.d/75-ubuntu-minimal-baseinstall
+        owner: root
+        group: root
+        mode: '0777'
+        backup: yes
+      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+
+    - name: Run - task pre install kolla 1
+      environment:
+          DIB_REPOLOCATION_amphora_agent: '{{ DIB_REPOLOCATION_amphora_agent }}'
+          DIB_REPOREF_amphora_agent: '{{DIB_REPOREF_amphora_agent }}'
+          DIB_REPOLOCATION_octavia_lib: '{{ DIB_REPOLOCATION_octavia_lib }}'
+          DIB_REPOREF_octavia_lib: '{{ DIB_REPOREF_octavia_lib }}'
+          DIB_REPOLOCATION_upper_constraints: '{{ DIB_REPOLOCATION_upper_constraints }}'
+          CLOUD_INIT_DATASOURCES: '{{ CLOUD_INIT_DATASOURCES }}'
+          DIB_DISTRIBUTION_MIRROR: '{{ DIB_DISTRIBUTION_MIRROR }}'
+      vars:
+          UBUNTU_CODE: jammy
+          task_build:
+               - cd /root; cd octavia/diskimage-create/; ./diskimage-create.sh -a amd64 -d {{ UBUNTU_CODE }} -i ubuntu-minimal -o amphora-x64-haproxy-{{ UBUNTU_CODE }}.qcow2 -s 3
+      ansible.builtin.shell:
+        cmd: /usr/bin/bash -c '{{ item }}'
+      loop: "{{ task_build }}"
+      register: details
+    - name: Debug Msg
+      debug:
+          msg:
+            cmd: "{{ item.cmd }}"
+            stdout_lines: "{{ item.stdout_lines }}"
+            stderr_lines:  "{{ item.stderr_lines }}"
+      loop: "{{ details.results }}"
+
+
+    - name: Run - task pre install kolla 1
+      environment:
+          DIB_REPOLOCATION_amphora_agent: '{{ DIB_REPOLOCATION_amphora_agent }}'
+          DIB_REPOREF_amphora_agent: '{{DIB_REPOREF_amphora_agent }}'
+          DIB_REPOLOCATION_octavia_lib: '{{ DIB_REPOLOCATION_octavia_lib }}'
+          DIB_REPOREF_octavia_lib: '{{ DIB_REPOREF_octavia_lib }}'
+          DIB_REPOLOCATION_upper_constraints: '{{ DIB_REPOLOCATION_upper_constraints }}'
+          CLOUD_INIT_DATASOURCES: '{{ CLOUD_INIT_DATASOURCES }}'
+          DIB_DISTRIBUTION_MIRROR: '{{ DIB_DISTRIBUTION_MIRROR }}'
+      vars:
+          UBUNTU_CODE: focal
+          task_build:
+               - cd /root; cd octavia/diskimage-create/; ./diskimage-create.sh -a amd64 -d {{ UBUNTU_CODE }} -i ubuntu-minimal -o amphora-x64-haproxy-{{ UBUNTU_CODE }}.qcow2 -s 3
+      ansible.builtin.shell:
+        cmd: /usr/bin/bash -c '{{ item }}'
+      loop: "{{ task_build }}"
+      register: details
+    - name: Debug Msg
+      debug:
+          msg:
+            cmd: "{{ item.cmd }}"
+            stdout_lines: "{{ item.stdout_lines }}"
+            stderr_lines:  "{{ item.stderr_lines }}"
+      loop: "{{ details.results }}"

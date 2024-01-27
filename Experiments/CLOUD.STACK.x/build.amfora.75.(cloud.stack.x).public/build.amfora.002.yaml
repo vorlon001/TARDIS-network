@@ -1,0 +1,22 @@
+---
+- name: Build Amfora
+  hosts: localhost
+  port: 22
+  gather_facts: true
+  become: true
+  vars:
+     hostbuild: "192.168.200.170"
+     build_qcow2_path: /root/octavia/diskimage-create/amphora-x64-haproxy-
+     image_archive_kvm: /KVM/IMAGES/amphora-x64-haproxy-
+     image_archive_cloud: /cloud/CLOUD.STACK.CURRENT.BOBCAT/playbook-kolla/amphora-x64-haproxy-
+  tasks:
+    - name: Store file {{ build_qcow2_path }}focal.qcow2
+      command: scp -r root@{{ hostbuild }}:{{ build_qcow2_path }}focal.qcow2 {{ image_archive_kvm }}focal.qcow2
+    - name: Store {{ build_qcow2_path }}jammy.qcow2
+      command: scp -r root@{{ hostbuild }}:{{ build_qcow2_path }}jammy.qcow2 {{ image_archive_kvm }}jammy.qcow2
+
+    - name: Store file {{ build_qcow2_path }}focal.qcow2
+      command: scp -r root@{{ hostbuild }}:{{ build_qcow2_path }}focal.qcow2 {{ image_archive_cloud }}focal.qcow2
+    - name: Store {{ build_qcow2_path }}jammy.qcow2
+      command: scp -r root@{{ hostbuild }}:{{ build_qcow2_path }}jammy.qcow2 {{ image_archive_cloud }}jammy.qcow2
+
