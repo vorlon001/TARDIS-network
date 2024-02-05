@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment-green
+  namespace: test-ingress-1
+  labels:
+    app: nginx-green
+spec:
+  selector:
+    matchLabels:
+      app: nginx-green
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+      labels:
+        app: nginx-green
+    spec:
+      volumes:
+      - name: webdata
+        emptyDir: {}
+      initContainers:
+      - name: web-content
+        image: docker.io/busybox
+        volumeMounts:
+        - name: webdata
+          mountPath: "/webdata"
+        command: ["/bin/sh", "-c", 'echo "<h1>I am <font color=green>GREEN</font></h1>" > /webdata/index.html']
+      containers:
+      - image: docker.io/nginx:1.19
+        name: nginx-green2
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: webdata
+          mountPath: "/usr/share/nginx/html"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-green
+  namespace: test-ingress-1
+spec:
+  selector:
+    app: nginx-green
+  ports:
+  - protocol: "TCP"
+    port: 8080
+    targetPort: 80
+  type: NodePort
