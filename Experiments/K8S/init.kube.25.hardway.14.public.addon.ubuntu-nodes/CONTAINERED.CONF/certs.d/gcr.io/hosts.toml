@@ -1,0 +1,12 @@
+
+#"gcr.io"
+server = "https://nexus3-gcr-io.iblog.pro"
+
+[host."https://nexus3-gcr-io.iblog.pro"]
+  capabilities = ["pull"]                  # Requires less trust, won't resolve tag to digest from this host
+
+
+#server = "https://registry-1.docker.io"    # Exclude this to not use upstream
+#
+#[host."https://public-mirror.example.com"]
+#  capabilities = ["pull"]                  # Requires less trust, won't resolve tag to digest from this host

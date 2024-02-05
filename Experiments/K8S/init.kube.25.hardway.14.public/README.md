@@ -1,19 +1,27 @@
 ```shell
 
-VM CORE:5, RAM:8Gb, DISK: 30Gb:
-- node180
-- node181
-- node181
-- node170
-- node171
-- node172
-
 
 array=( 180 181 182 170 171 172 )
 for i in "${array[@]}"
 do
   scp -r * root@192.168.200.${i}:.
 done
+
+
+addon ubuntu worker node
+
+
+array=( 140 141 142 143 )
+for i in "${array[@]}"
+do
+  scp init.0.1.cgroup.ubuntu.sh root@192.168.200.${i}:.
+  scp init.0.ubuntu.sh  root@192.168.200.${i}:.
+  scp -r ./IMAGES root@192.168.200.${i}:.
+  scp containerd.service root@192.168.200.${i}:.;
+  scp -r ./CONTAINERED.CONF root@192.168.200.${i}:.;
+done
+
+
 
 ```
 
