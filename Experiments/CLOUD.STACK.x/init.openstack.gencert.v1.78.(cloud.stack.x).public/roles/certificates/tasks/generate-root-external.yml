@@ -1,0 +1,48 @@
+---
+
+- block:
+
+    - name: Ensuring ca directory exist
+      file:
+        path: "{{ kolla_certificates_dir }}/ca"
+        state: "directory"
+        mode: "0770"
+
+    - name: Ensuring private root directory exist
+      file:
+        path: "{{ root_dir }}"
+        state: "directory"
+        mode: "0770"
+
+    - name: "Copy external cert {{ kolla_tls_all_cert }}"
+      copy:
+        src: "files/certificates/{{ kolla_tls_all_cert }}"
+        dest: "{{ root_dir }}/root.crt"
+
+    - name: "Setting permissions {{ root_dir }}/root.crt"
+      file:
+        path: "{{ root_dir }}/root.crt"
+        mode: "0660"
+        state: file
+
+
+    - name: "Copy external key {{ kolla_tls_all_cert }}"
+      copy:
+        src: "files/certificates/{{ kolla_tls_all_key }}"
+        dest: "{{ root_dir }}/root.key"
+
+    - name: "Setting permissions {{ root_dir }}/root.crt"
+      file:
+        path: "{{ root_dir }}/root.crt"
+        mode: "0660"
+        state: file
+
+    - name: Creating root Certificate file to be included in container trusted ca-certificates
+      copy:
+        src: "{{ root_dir }}/root.crt"
+        dest: "{{ kolla_certificates_dir }}/ca/root.crt"
+        mode: "0660"
+
+  when:
+    - no tls_create | bool
+
