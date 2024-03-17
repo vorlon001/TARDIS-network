@@ -1,0 +1,232 @@
+[ceph]
+node130 ansible_ssh_host=192.168.200.130
+node131 ansible_ssh_host=192.168.200.131
+node132 ansible_ssh_host=192.168.200.132
+node133 ansible_ssh_host=192.168.200.133
+
+[ceph:vars]
+ansible_connection=ssh
+ansible_user=root
+ansible_ssh_pass=root
+host_key_checking=False
+ansible_become=True
+
+[cephbootstrap]
+node130 ansible_ssh_host=192.168.200.130
+
+[cephbootstrap:vars]
+ansible_connection=ssh
+ansible_user=root
+ansible_ssh_pass=root
+
+
+
+[pull]
+node130 ansible_ssh_host=192.168.200.130
+
+[pull:vars]
+ansible_connection=ssh
+ansible_user=root
+ansible_ssh_pass=root
+
+
+
+[system-exporter]
+node140 ansible_ssh_host=192.168.200.140
+node141 ansible_ssh_host=192.168.200.141
+node142 ansible_ssh_host=192.168.200.142
+node143 ansible_ssh_host=192.168.200.143
+node180 ansible_ssh_host=192.168.200.180
+node170 ansible_ssh_host=192.168.200.170
+node171 ansible_ssh_host=192.168.200.171
+node181 ansible_ssh_host=192.168.200.181
+node172 ansible_ssh_host=192.168.200.172
+node182 ansible_ssh_host=192.168.200.182
+
+[system-exporter:vars]
+ansible_connection=ssh
+ansible_user=root
+ansible_ssh_pass=root
+
+
+
+[process-exporter:children]
+system-exporter
+
+[node-update:children]
+system-exporter
+
+[ntp-update:children]
+system-exporter
+
+[ntp-exporter:children]
+system-exporter
+
+[node-exporter:children]
+system-exporter
+
+[filebeat:children]
+system-exporter
+
+[beat-exporter:children]
+system-exporter
+
+[cloud-balancer]
+node140 ansible_ssh_host=192.168.200.140
+node141 ansible_ssh_host=192.168.200.141
+node142 ansible_ssh_host=192.168.200.142
+
+[cloud-balancer:vars]
+ansible_connection=ssh
+ansible_user=root
+ansible_ssh_pass=root
+host_key_checking=False
+ansible_become=True
+
+
+[victoria-metrics]
+node140 ansible_ssh_host=192.168.200.140
+node141 ansible_ssh_host=192.168.200.141
+node142 ansible_ssh_host=192.168.200.142
+
+[victoria-metrics:vars]
+ansible_connection=ssh
+ansible_user=root
+ansible_ssh_pass=root
+host_key_checking=False
+ansible_become=True
+
+[victoria-metrics-store:children]
+victoria-metrics
+
+[victoria-metrics-insert:children]
+victoria-metrics
+
+[victoria-metrics-select:children]
+victoria-metrics
+
+
+
+
+[opensearch-master]
+node140 ansible_ssh_host=192.168.200.140
+node141 ansible_ssh_host=192.168.200.141
+node142 ansible_ssh_host=192.168.200.142
+
+[opensearch-master:vars]
+ansible_connection=ssh
+ansible_user=root
+ansible_ssh_pass=root
+host_key_checking=False
+ansible_become=True
+
+[opensearch-dashboard:children]
+opensearch-master
+
+
+[opensearch-data-hot]
+node180 ansible_ssh_host=192.168.200.180
+node170 ansible_ssh_host=192.168.200.170
+
+[opensearch-data-hot:vars]
+ansible_connection=ssh
+ansible_user=root
+ansible_ssh_pass=root
+host_key_checking=False
+ansible_become=True
+
+[opensearch-data-warm]
+node181 ansible_ssh_host=192.168.200.181
+node171 ansible_ssh_host=192.168.200.171
+
+[opensearch-data-warm:vars]
+ansible_connection=ssh
+ansible_user=root
+ansible_ssh_pass=root
+host_key_checking=False
+ansible_become=True
+
+
+[opensearch-data-cold]
+node182 ansible_ssh_host=192.168.200.182
+node172 ansible_ssh_host=192.168.200.172
+
+[opensearch-data-cold:vars]
+ansible_connection=ssh
+ansible_user=root
+ansible_ssh_pass=root
+host_key_checking=False
+ansible_become=True
+
+
+[opensearch-data:children]
+opensearch-data-hot
+opensearch-data-warm
+opensearch-data-cold
+
+[opensearch:children]
+opensearch-data
+opensearch-master
+
+
+[opensearch:vars]
+ansible_connection=ssh
+ansible_user=root
+ansible_ssh_pass=root
+host_key_checking=False
+ansible_become=True
+
+
+[cloud-prometheus]
+node140 ansible_ssh_host=192.168.200.140
+node141 ansible_ssh_host=192.168.200.141
+node142 ansible_ssh_host=192.168.200.142
+
+[cloud-prometheus:vars]
+ansible_connection=ssh
+ansible_user=root
+ansible_ssh_pass=root
+host_key_checking=False
+ansible_become=True
+
+[cloud-blackbox:children]
+
+
+[victoria-metrics-agent]
+node140 ansible_ssh_host=192.168.200.140
+node141 ansible_ssh_host=192.168.200.141
+node142 ansible_ssh_host=192.168.200.142
+
+[victoria-metrics-agent:vars]
+ansible_connection=ssh
+ansible_user=root
+ansible_ssh_pass=root
+host_key_checking=False
+ansible_become=True
+
+[cloud-logstash]
+node140 ansible_ssh_host=192.168.200.140
+node141 ansible_ssh_host=192.168.200.141
+node142 ansible_ssh_host=192.168.200.142
+
+[cloud-logstash:vars]
+ansible_connection=ssh
+ansible_user=root
+ansible_ssh_pass=root
+host_key_checking=False
+ansible_become=True
+
+
+
+[cloud-grafana]
+node140 ansible_ssh_host=192.168.200.140
+node141 ansible_ssh_host=192.168.200.141
+node142 ansible_ssh_host=192.168.200.142
+
+[cloud-grafana:vars]
+ansible_connection=ssh
+ansible_user=root
+ansible_ssh_pass=root
+host_key_checking=False
+ansible_become=True
+

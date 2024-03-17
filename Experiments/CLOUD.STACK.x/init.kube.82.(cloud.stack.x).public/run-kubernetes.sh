@@ -27,6 +27,9 @@ ANSIBLE_LOG_PATH=./ansible.init-kube-005.log ansible-playbook -i  node-hosts-all
 ANSIBLE_LOG_PATH=./ansible.init-kube-006.log ansible-playbook -i  node-hosts-all.yaml playbook-kubernetes/init-kube-006.yaml --extra-vars "@run-kubernetes.vars.yaml" || throw ${LINENO}
 ANSIBLE_LOG_PATH=./ansible.init-kube-007.log ansible-playbook -i  node-hosts-all.yaml playbook-kubernetes/init-kube-007.yaml --extra-vars "@run-kubernetes.vars.yaml" || throw ${LINENO}
 
+ANSIBLE_LOG_PATH=.//ansible.post-init-kube-050.log ansible-playbook -i  node-hosts-all.yaml playbook-kubernetes/post-init-kube-050.yaml --extra-vars "@run-kubernetes.vars.yaml" || throw ${LINENO}
+ANSIBLE_LOG_PATH=.//ansible.post-init-kube-050.log ansible-playbook -i  node-hosts-all.yaml playbook-kubernetes/post-init-kube-051.yaml --extra-vars "@run-kubernetes.vars.yaml" || throw ${LINENO}
+ANSIBLE_LOG_PATH=.//ansible.post-init-kube-050.log ansible-playbook -i  node-hosts-all.yaml playbook-kubernetes/post-init-kube-052.yaml --extra-vars "@run-kubernetes.vars.yaml" || throw ${LINENO}
 
 
 # ansible  -i node-hosts-all.yaml --become -m shell -a 'mkdir -p /opt/local-path-provisioner' kubernetes

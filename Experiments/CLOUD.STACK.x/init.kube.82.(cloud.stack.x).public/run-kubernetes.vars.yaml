@@ -1,0 +1,110 @@
+
+
+HELMVERSION: "3.14.3"
+platform: "amd64"
+KUBERNETES_VIP: "192.168.200.187"
+KUBERNETES_clusterDomain: cluster.local
+HELMFILE: "helm-v{{HELMVERSION}}-linux-{{platform}}.tar.gz"
+HELM_CHARTMUSEUM: "http://192.168.200.6:8080/"
+CSI_NFS_NAMESPACE: nfs-client
+CSI_NFS_image: harbor.iblog.pro/gcrio/k8s-staging-sig-storage/nfs-subdir-external-provisioner:v4.0.2
+CSI_NFS_PROVISIONER_NAME: iblog.pro/nfs
+CSI_NFS_SERVER: 192.168.200.1
+CSI_NFS_SERVER_path: /cloud/nfsshare
+CSI_NFS_replicas: 2
+CERMANAGER_cainjector_image: "harbor.iblog.pro/quayio/jetstack/cert-manager-cainjector:v1.14.3"
+CERMANAGER_controller_image: "harbor.iblog.pro/quayio/jetstack/cert-manager-controller:v1.14.3"
+CERMANAGER_webhook_image: "harbor.iblog.pro/quayio/jetstack/cert-manager-webhook:v1.14.3"
+CERMANAGER_acme_image: quay.io/jetstack/cert-manager-acmesolver:v1.14.3
+METRICSERVER_image: harbor.iblog.pro/registryk8sio/metrics-server/metrics-server:v0.6.4
+CILIUM_chart_version: 1.14.6
+CILIUM_REPO: "harbor.iblog.pro/quayio/cilium/cilium"
+CILIUM_nodeinit: "harbor.iblog.pro/quayio/cilium/startup-script"
+CILIUM_certgen: "harbor.iblog.pro/quayio/cilium/certgen"
+CILIUM_kvstoremesh: "harbor.iblog.pro/quayio/cilium/kvstoremesh"
+CILIUM_clustermesh: "harbor.iblog.pro/quayio/cilium/clustermesh-apiserver-ci"
+CILIUM_etcd: "harbor.iblog.pro/quayio/coreos/etcd"
+CILIUM_operator: "harbor.iblog.pro/quayio/cilium/operator"
+CILIUM_clusterPoolIPv4PodCIDRList: "10.96.0.0/17"
+CILIUM_clusterPoolIPv4MaskSize: "24"
+CILIUM_hubble_relay: "harbor.iblog.pro/quayio/cilium/hubble-relay"
+CILIUM_hubble_backend: "harbor.iblog.pro/quayio/cilium/hubble-ui-backend"
+CILIUM_hubble_frontend: "harbor.iblog.pro/quayio/cilium/hubble-ui"
+
+METALLB_chart_version: "0.14.3"
+METALLB_prometheus_repository: harbor.iblog.pro/gcrio/kubebuilder/kube-rbac-proxy
+METALLB_prometheus_tag: "v0.12.0"
+METALLB_controller_repository: harbor.iblog.pro/quayio/metallb/controller
+METALLB_controller_tag: "v0.14.3"
+METALLB_speaker_repository: harbor.iblog.pro/quayio/metallb/speaker
+METALLB_speaker_tag: "v0.14.3"
+METALLB_frr_repository: harbor.iblog.pro/quayio/frrouting/frr
+METALLB_frr_tag: "8.5.2"
+METALLB_ippools:
+  default:
+  - 11.0.0.0/22
+  internet:
+  - 11.0.10.1/32
+  internet2:
+  - 11.0.11.2/32
+  coredns-kube:
+  - 11.0.11.22/32
+
+
+ubuntu_mirror: "https://nexus3.iblog.pro/repository/archive.ubuntu.com/"
+ubuntu_mirror_security: "https://nexus3.iblog.pro/repository/security.ubuntu.com/"
+
+system_timezone: Etc/UTC
+ntp_servers:
+- "pool.ntp.org"
+- "pool.ntp.org"
+ntp_fallback_servers:
+- "pool.ntp.org"
+- "pool.ntp.org"
+
+KUBERNETES_VERSION: 1.29.3
+
+kube_version: "v{{ KUBERNETES_VERSION }}"
+crictl_version: "v1.29.0"
+containerd_version: "1.7.14"
+image_arch: "amd64"
+runc_version: "1.1.12"
+cni_version: "1.4.1"
+k8s_regestry: "harbor.iblog.pro/registry.k8s.io"
+etcd_version: "3.5.12"
+LANG: ru_RU.UTF-8
+VERSION: noble
+# VERSION: jammy
+NAMESERVER: "192.168.1.10"
+
+IPREFIX: "192.168.200"
+CLUSTERIP: "187"
+NODE: "130"
+clusterName: "cluster.local"
+podSubnet: "10.96.0.0/17"
+serviceSubnet: "10.96.128.0/17"
+APITOKEN: "bu5tiw.iq1i8h3t740fgy0l"
+
+VIPIP_KEEPALIVE: "192.168.200.187"
+APISERVER_DEST_PORT: 6443
+keepalived_auth_type: AH
+keepalived_auth_pass: "e470f1261"
+KEEPALIVE_id: 51
+
+kubernetesVersion: "{{ KUBERNETES_VERSION }}"
+CONTROL_PLANE_IP: 192.168.200.187
+
+
+kubernetes_pki:
+  - /etc/kubernetes/pki/sa.pub
+  - /etc/kubernetes/pki/sa.key
+  - /etc/kubernetes/pki/etcd/ca.key
+  - /etc/kubernetes/pki/etcd/ca.crt
+  - /etc/kubernetes/pki/front-proxy-ca.crt
+  - /etc/kubernetes/pki/apiserver-etcd-client.crt
+  - /etc/kubernetes/pki/apiserver-etcd-client.key
+  - /etc/kubernetes/pki/ca.key
+  - /etc/kubernetes/pki/ca.crt
+  - /etc/kubernetes/pki/front-proxy-ca.key
+
+

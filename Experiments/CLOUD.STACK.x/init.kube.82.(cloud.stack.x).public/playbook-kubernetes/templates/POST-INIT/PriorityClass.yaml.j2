@@ -1,0 +1,40 @@
+---
+apiVersion: scheduling.k8s.io/v1
+description: Used for system critical pods that must run in the cluster, but can be  moved to another node if necessary.
+kind: PriorityClass
+globalDefault: false
+metadata:
+  name: cluster-observability-pods
+value: 900000000
+---
+apiVersion: scheduling.k8s.io/v1
+description: Used for system critical pods that must run in the cluster, but can be  moved to another node if necessary.
+kind: PriorityClass
+globalDefault: false
+metadata:
+  name: cluster-critical-pods
+value: 1000000000
+---
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: high-priority
+value: 2000000
+globalDefault: false
+description: "System components. Like a pv, controllers, docker registry etc"
+---
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: medium-priority
+value: 1005000
+globalDefault: false
+description: "Application productive contour"
+---
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: low-priority
+value: 1000000
+globalDefault: false
+description: "For any case."
