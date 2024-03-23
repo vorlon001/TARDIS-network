@@ -6,6 +6,10 @@ ceph_repo_url:  https://download.ceph.com/
 ceph_image_registry: harbor.iblog.pro/quayio/ceph/ceph
 ceph_version: v18.2
 wait_seconds: 30
+ceph_init_node: true
+ceph_install: true
+ceph_deploy_rbd: false
+ceph_deploy_s3: false
 attached_node:
   - node131
   - node132

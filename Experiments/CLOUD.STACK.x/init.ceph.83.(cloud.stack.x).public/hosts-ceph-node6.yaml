@@ -1,0 +1,22 @@
+[ceph]
+node130 ansible_ssh_host=192.168.200.130
+node131 ansible_ssh_host=192.168.200.131
+node132 ansible_ssh_host=192.168.200.132
+node133 ansible_ssh_host=192.168.200.133
+
+[ceph:vars]
+ansible_connection=ssh
+ansible_user=root
+ansible_ssh_pass=root
+host_key_checking=False
+ansible_become=True
+
+[cephbootstrap]
+node130 ansible_ssh_host=192.168.200.130
+
+[cephbootstrap:vars]
+ansible_connection=ssh
+ansible_user=root
+ansible_ssh_pass=root
+
+

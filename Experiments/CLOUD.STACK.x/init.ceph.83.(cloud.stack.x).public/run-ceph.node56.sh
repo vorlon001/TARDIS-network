@@ -17,8 +17,8 @@ function check_error {
 export DEBIAN_FRONTEND=noninteractive
 
 
-ansible  -i hosts.yaml --become -m shell -a 'uptime'  ceph || throw ${LINENO}
-ANSIBLE_LOG_PATH=./ansible.deploy-ceph.log ansible-playbook -i hosts.yaml playbook/deploy-ceph.yaml  --extra-vars "@vars/ceph-vars.yaml"  || throw ${LINENO}
+ansible  -i hosts-ceph-node5.yaml --become -m shell -a 'uptime'  ceph || throw ${LINENO}
+ANSIBLE_LOG_PATH=./ansible.deploy-ceph-node5.log ansible-playbook -i hosts-ceph-node56.yaml playbook/deploy-ceph.yaml  --extra-vars "@vars/ceph-vars.node56.yaml"  || throw ${LINENO}
 
 ### ansible-playbook release.yml --extra-vars "version=1.23.45 other_variable=foo"
 ### ansible-playbook release.yml --extra-vars '{"version":"1.23.45","other_variable":"foo"}'
