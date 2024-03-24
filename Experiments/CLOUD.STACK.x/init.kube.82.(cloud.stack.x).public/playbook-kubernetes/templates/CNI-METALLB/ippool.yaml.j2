@@ -1,9 +1,0 @@
----
-apiVersion: metallb.io/v1beta1
-kind: IPAddressPool
-metadata:
-  name: {{ item.0.key }}
-  namespace: metallb-system
-spec:
-  addresses:
-  - {{ item.1 }}
