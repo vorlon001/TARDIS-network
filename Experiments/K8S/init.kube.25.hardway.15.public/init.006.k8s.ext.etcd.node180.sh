@@ -3,15 +3,15 @@
 cp /root/init.etcd/apiserver.pem /etc/kubernetes/pki/apiserver-etcd.pem
 cp /root/init.etcd/apiserver-key.pem /etc/kubernetes/pki/apiserver-etcd-key.pem
 
-export kube_version="v1.29.1"
-export kube_version2="1.29.1"
+export kube_version="v1.29.3"
+export kube_version2="1.29.3"
 export crictl_version="v1.29.0"
-export containerd_version="1.7.12"
+export containerd_version="1.7.14"
 export image_arch="amd64"
-export runc_version="1.1.11"
-export cni_version="1.4.0"
+export runc_version="1.1.12"
+export cni_version="1.4.1"
 export k8s_regestry="harbor.iblog.pro/registry.k8s.io"
-export etcd_version="3.5.11"
+export etcd_version="3.5.12"
 
 export IPREFIX="192.168.200"
 export CLUSTERIP="189"

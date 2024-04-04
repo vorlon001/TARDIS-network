@@ -14,8 +14,10 @@ Documentation=https://github.com/kubernetes/kubernetes
 After=network.target
 
 [Service]
+[Service]
 ExecStart=/usr/local/bin/kube-apiserver \\
     --advertise-address=${INTERNAL_IP} \\
+    --service-node-port-range=30000-32767 \\
     --allow-privileged=true \\
     --audit-log-format=json \\
     --audit-log-maxage=7 \\
@@ -42,6 +44,7 @@ ExecStart=/usr/local/bin/kube-apiserver \\
     --requestheader-group-headers=X-Remote-Group \\
     --requestheader-username-headers=X-Remote-User \\
     --secure-port=6443 \\
+    --service-account-issuer=https://192.168.200.189:6443 \\
     --service-account-issuer=https://kubernetes.default.svc.cluster.local \\
     --service-account-key-file=/etc/kubernetes/pki/sa.pub \\
     --service-account-signing-key-file=/etc/kubernetes/pki/sa.key \\

@@ -43,7 +43,7 @@ EOF
 # WORK
 helm repo add cilium https://helm.cilium.io/
 
-helm install cilium cilium/cilium --version 1.14.2  \
+helm install cilium cilium/cilium --version 1.14.8  \
   --namespace kube-system  \
   --set tunnel=geneve   \
   --set kubeProxyReplacement=true \

@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 CONTROL_PLANE_IP=192.168.200.189
-KUBERNETES_VERSION=1.29.1
+KUBERNETES_VERSION=1.29.3
 TOKEN=bu5tiw.iq1i8h3t740fgy0l
 
 SHA256_TOKEN=$(openssl x509 -in /etc/kubernetes/pki/ca.crt -noout -pubkey | openssl rsa -pubin -outform DER 2>/dev/null | sha256sum | cut -d' ' -f1)

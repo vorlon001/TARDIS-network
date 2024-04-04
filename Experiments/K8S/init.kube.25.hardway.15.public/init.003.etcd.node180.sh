@@ -69,11 +69,11 @@ cd /root/init.etcd
 # STEP-1
 
 
-# wget -q --show-progress --https-only --timestamping https://github.com/cloudflare/cfssl/releases/download/v1.6.4/cfssl_1.6.4_linux_amd64 https://github.com/cloudflare/cfssl/releases/download/v1.6.4/cfssljson_1.6.4_linux_amd64
-# chmod +x cfssl_1.6.4_linux_amd64 cfssljson_1.6.4_linux_amd64
+# wget -q --show-progress --https-only --timestamping https://github.com/cloudflare/cfssl/releases/download/v1.6.5/cfssl_1.6.5_linux_amd64 https://github.com/cloudflare/cfssl/releases/download/v1.6.5/cfssljson_1.6.5_linux_amd64
+# chmod +x cfssl_1.6.5_linux_amd64 cfssljson_1.6.5_linux_amd64
 
-cp /root/IMAGES/cfssl_1.6.4_linux_amd64 /usr/local/bin/cfssl
-cp /root/IMAGES/cfssljson_1.6.4_linux_amd64 /usr/local/bin/cfssljson
+cp /root/IMAGES/cfssl_1.6.5_linux_amd64 /usr/local/bin/cfssl
+cp /root/IMAGES/cfssljson_1.6.5_linux_amd64 /usr/local/bin/cfssljson
 chmod +x /usr/local/bin/cfss*
 
 # STEP-2
@@ -243,10 +243,10 @@ scp -r /root/init.etcd/peer-node${i}-key.pem root@192.168.200.${i}:/etc/etcd/pee
 
 pdsh -R ssh -w root@192.168.200.${i} "ls -la /etc/etcd/"
 
-scp /root/IMAGES/etcd-v3.5.11-linux-amd64.tar.gz root@192.168.200.${i}:/root
-#pdsh -R ssh -w root@192.168.200.${i} "wget -q --show-progress --https-only --timestamping 'https://github.com/etcd-io/etcd/releases/download/v3.5.11/etcd-v3.5.11-linux-amd64.tar.gz'"
-pdsh -R ssh -w root@192.168.200.${i} "tar -xvf /root/etcd-v3.5.11-linux-amd64.tar.gz"
-pdsh -R ssh -w root@192.168.200.${i} "sudo mv /root/etcd-v3.5.11-linux-amd64/etcd* /usr/local/bin/"
+scp /root/IMAGES/etcd-v3.5.12-linux-amd64.tar.gz root@192.168.200.${i}:/root
+#pdsh -R ssh -w root@192.168.200.${i} "wget -q --show-progress --https-only --timestamping 'https://github.com/etcd-io/etcd/releases/download/v3.5.12/etcd-v3.5.12-linux-amd64.tar.gz'"
+pdsh -R ssh -w root@192.168.200.${i} "tar -xvf /root/etcd-v3.5.12-linux-amd64.tar.gz"
+pdsh -R ssh -w root@192.168.200.${i} "sudo mv /root/etcd-v3.5.12-linux-amd64/etcd* /usr/local/bin/"
 
 
 
