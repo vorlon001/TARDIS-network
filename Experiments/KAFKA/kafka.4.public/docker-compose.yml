@@ -1,0 +1,342 @@
+version: '3.7'
+services:
+
+  app:
+    build:
+      context: ./app
+      dockerfile: ../Dockerfile
+    ports:
+      - "8851:8890"
+    restart: always
+    networks:
+      - backend
+    depends_on:
+      - kafka-0
+      - kafka-1
+      - kafka-2
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2048M
+    environment:
+      kafkaTopik: "my-topic"
+      kafkaPartition: "0"
+      kafkaBroker: "kafka-0:9092,kafka-1:9092,kafka-2:9092"
+
+  logs0:
+    build:
+      context: ./log
+      dockerfile: ../Dockerfile
+    ports:
+      - "8852:8890"
+    restart: always
+    networks:
+      - backend
+    depends_on:
+      - kafka-0
+      - kafka-1
+      - kafka-2
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2048M
+    environment:
+      kafkaTopik: "my-topic"
+      kafkaPartition: "0"
+      kafkaBroker: "kafka-0:9092,kafka-1:9092,kafka-2:9092"
+
+  logs1:
+    build:
+      context: ./log
+      dockerfile: ../Dockerfile
+    ports:
+      - "8853:8890"
+    restart: always
+    networks:
+      - backend
+    depends_on:
+      - kafka-0
+      - kafka-1
+      - kafka-2
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2048M
+    environment:
+      kafkaTopik: "my-topic"
+      kafkaPartition: "1"
+      kafkaBroker: "kafka-0:9092,kafka-1:9092,kafka-2:9092"
+
+  zookeeper-exporter:
+    container_name: zookeeper-exporter
+    image: docker.io/dabealu/zookeeper-exporter
+    # build:
+    #   context: .
+    networks:
+      - backend
+    ports:
+      - 9144:9141
+    command: --zk-hosts="zookeeper:2181,zookeeper2:2181,zookeeper3:2181" --timeout=5
+    depends_on:
+      - zookeeper
+      - zookeeper2
+      - zookeeper3
+
+  kafka-exporter-0:
+    container_name: kafka-exporter-0
+    image: docker.io/bitnami/kafka-exporter:1.7.0
+    restart: always
+    networks:
+      - backend
+    ports:
+      - 9307:9308
+    depends_on:
+      - kafka-0
+      - kafka-1
+      - kafka-2
+    command:
+    - --kafka.server=kafka-0:9092
+
+  kafka-exporter-1:
+    container_name: kafka-exporter-1
+    image: docker.io/bitnami/kafka-exporter:1.7.0
+    restart: always
+    networks:
+      - backend
+    ports:
+      - 9308:9308
+    depends_on:
+      - kafka-0
+      - kafka-1
+      - kafka-2
+    command:
+    - --kafka.server=kafka-1:9092
+
+  kafka-exporter-2:
+    container_name: kafka-exporter-2
+    image: docker.io/bitnami/kafka-exporter:1.7.0
+    restart: always
+    networks:
+      - backend
+    ports:
+      - 9309:9308
+    depends_on:
+      - kafka-0
+      - kafka-1
+      - kafka-2
+    command:
+    - --kafka.server=kafka-2:9092
+
+  zoonavigator:
+    container_name: zoonavigator
+    image: elkozmon/zoonavigator
+    networks:
+      - backend
+    depends_on:
+      - zookeeper
+      - zookeeper2
+      - zookeeper3
+      - kafka-0
+      - kafka-1
+      - kafka-2
+    ports:
+      - 9000:9000
+
+  kafka_manager:
+    container_name: kafka_manager
+    image: hlebalbau/kafka-manager:stable
+    networks:
+      - backend
+    ports:
+      - "9020:9000"
+    depends_on:
+      - zookeeper
+      - zookeeper2
+      - zookeeper3
+      - kafka-0
+      - kafka-1
+      - kafka-2
+    environment:
+      ZK_HOSTS: "zookeeper:2181,zookeeper2:2181,zookeeper3:2181"
+      APPLICATION_SECRET: "random-secret"
+    command: -Dpidfile.path=/dev/null
+
+  kafka-0:
+    container_name: kafka-0
+    image: docker.io/bitnami/kafka:3.6.2
+    networks:
+      - backend
+    ports:
+      - "9092"
+    depends_on:
+      zookeeper:
+        condition: service_healthy
+      zookeeper2:
+        condition: service_healthy
+      zookeeper3:
+        condition: service_healthy
+    environment:
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_CFG_NODE_ID=0
+      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@kafka-0:9093,1@kafka-1:9093,2@kafka-2:9093
+      - KAFKA_KRAFT_CLUSTER_ID=abcdefghijklmnopqrstuv
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper1:2181,zookeeper2:2181,zookeeper3:2181
+      - KAFKA_CFG_OFFSETS_TOPIC_REPLICATION_FACTOR=3
+      - KAFKA_CFG_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=3
+      - KAFKA_CFG_TRANSACTION_STATE_LOG_MIN_ISR=2
+      - KAFKA_CFG_MAX_MESSAGE_BYTES=100000
+      - KAFKA_CFG_LOG_FLUSH_INTERVAL_MESSAGES=10000
+      - KAFKA_CFG_LOG_FLUSH_INTERVAL_MS=1000
+      - KAFKA_CFG_LOG_RETENTION_BYTES=1073741824
+      - KAFKA_CFG_LOG_RETENTION_CHECK_INTERVALS_MS=300000
+      - KAFKA_CFG_LOG_RETENTION_HOURS=168
+      - KAFKA_CFG_MESSAGE_MAX_BYTES=1000012
+      - KAFKA_CFG_LOG_SEGMENT_BYTES=1073741824
+    volumes:
+      - kafka_0_data:/bitnami/kafka
+
+
+  kafka-1:
+    container_name: kafka-1
+    image: docker.io/bitnami/kafka:3.6.2
+    networks:
+      - backend
+    ports:
+      - "9092"
+    depends_on:
+      zookeeper:
+        condition: service_healthy
+      zookeeper2:
+        condition: service_healthy
+      zookeeper3:
+        condition: service_healthy
+    environment:
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_CFG_NODE_ID=1
+      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@kafka-0:9093,1@kafka-1:9093,2@kafka-2:9093
+      - KAFKA_KRAFT_CLUSTER_ID=abcdefghijklmnopqrstuv
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181,zookeeper2:2181,zookeeper3:2181
+      - KAFKA_CFG_OFFSETS_TOPIC_REPLICATION_FACTOR=3
+      - KAFKA_CFG_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=3
+      - KAFKA_CFG_TRANSACTION_STATE_LOG_MIN_ISR=2
+      - KAFKA_CFG_MAX_MESSAGE_BYTES=100000
+      - KAFKA_CFG_LOG_FLUSH_INTERVAL_MESSAGES=10000
+      - KAFKA_CFG_LOG_FLUSH_INTERVAL_MS=1000
+      - KAFKA_CFG_LOG_RETENTION_BYTES=1073741824
+      - KAFKA_CFG_LOG_RETENTION_CHECK_INTERVALS_MS=300000
+      - KAFKA_CFG_LOG_RETENTION_HOURS=168
+      - KAFKA_CFG_MESSAGE_MAX_BYTES=1000012
+      - KAFKA_CFG_LOG_SEGMENT_BYTES=1073741824
+    volumes:
+      - kafka_1_data:/bitnami/kafka
+
+  kafka-2:
+    container_name: kafka-2
+    image: docker.io/bitnami/kafka:3.6.2
+    networks:
+      - backend
+    ports:
+      - "9092"
+    depends_on:
+      zookeeper:
+        condition: service_healthy
+      zookeeper2:
+        condition: service_healthy
+      zookeeper3:
+        condition: service_healthy
+    environment:
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_CFG_NODE_ID=2
+      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@kafka-0:9093,1@kafka-1:9093,2@kafka-2:9093
+      - KAFKA_KRAFT_CLUSTER_ID=abcdefghijklmnopqrstuv
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181,zookeeper2:2181,zookeeper3:2181
+      - KAFKA_CFG_OFFSETS_TOPIC_REPLICATION_FACTOR=3
+      - KAFKA_CFG_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=3
+      - KAFKA_CFG_TRANSACTION_STATE_LOG_MIN_ISR=2
+      - KAFKA_CFG_MAX_MESSAGE_BYTES=100000
+      - KAFKA_CFG_LOG_FLUSH_INTERVAL_MESSAGES=10000
+      - KAFKA_CFG_LOG_FLUSH_INTERVAL_MS=1000
+      - KAFKA_CFG_LOG_RETENTION_BYTES=1073741824
+      - KAFKA_CFG_LOG_RETENTION_CHECK_INTERVALS_MS=300000
+      - KAFKA_CFG_LOG_RETENTION_HOURS=168
+      - KAFKA_CFG_MESSAGE_MAX_BYTES=1000012
+      - KAFKA_CFG_LOG_SEGMENT_BYTES=1073741824
+    volumes:
+      - kafka_2_data:/bitnami/kafka
+
+  zookeeper:
+    container_name: zookeeper
+    image: docker.io/bitnami/zookeeper:3.9.2
+    networks:
+      - backend
+    healthcheck:
+      test: ["CMD", "sh", "-c", "echo ruok | nc 127.0.0.1 2181 || exit -1"]
+      interval: 5s
+      timeout: 60s
+      retries: 120
+    ports:
+      - '2181'
+    volumes:
+      - zookeeper_data:/bitnami
+    environment:
+      - ZOO_SERVER_ID=1
+      - ALLOW_ANONYMOUS_LOGIN=yes
+      - ZOO_SERVERS=zookeeper:2888:3888,zookeeper2:2888:3888,zookeeper3:2888:3888
+
+  zookeeper2:
+    container_name: zookeeper2
+    image: docker.io/bitnami/zookeeper:3.9.2
+    networks:
+      - backend
+    healthcheck:
+      test: ["CMD", "sh", "-c", "echo ruok | nc 127.0.0.1 2181 || exit -1"]
+      interval: 5s
+      timeout: 60s
+      retries: 120
+    ports:
+      - '2181'
+    volumes:
+      - zookeeper2_data:/bitnami
+    environment:
+      - ZOO_SERVER_ID=2
+      - ALLOW_ANONYMOUS_LOGIN=yes
+      - ZOO_SERVERS=zookeeper:2888:3888,zookeeper2:2888:3888,zookeeper3:2888:3888
+
+  zookeeper3:
+    container_name: zookeeper3
+    image: docker.io/bitnami/zookeeper:3.9.2
+    networks:
+      - backend
+    healthcheck:
+      test: ["CMD", "sh", "-c", "echo ruok | nc 127.0.0.1 2181 || exit -1"]
+      interval: 5s
+      timeout: 60s
+      retries: 120
+    ports:
+      - '2181'
+    volumes:
+      - zookeeper3_data:/bitnami
+    environment:
+      - ZOO_SERVER_ID=3
+      - ALLOW_ANONYMOUS_LOGIN=yes
+      - ZOO_SERVERS=zookeeper:2888:3888,zookeeper2:2888:3888,zookeeper3:2888:3888
+
+volumes:
+  kafka_0_data:
+    driver: local
+  kafka_1_data:
+    driver: local
+  kafka_2_data:
+    driver: local
+  zookeeper_data:
+    driver: local
+  zookeeper2_data:
+    driver: local
+  zookeeper3_data:
+    driver: local
+
+networks:
+  backend:
