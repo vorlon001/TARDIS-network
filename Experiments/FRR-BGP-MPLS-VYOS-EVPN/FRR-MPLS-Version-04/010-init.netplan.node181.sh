@@ -1,27 +1,31 @@
+#!/usr/bin/bash
+
+export NODEID=181
+cp /etc/netplan/50-cloud-init.yaml /etc/netplan/50-cloud-init.yaml.original
+cat <<EOF>/etc/netplan/50-cloud-init.yaml
 network:
   ethernets:
     enp1s0:
       dhcp4: false
       dhcp6: false
       match:
-        macaddress: fa:16:3e:c7:63:e5
+        macaddress: $(ip link show enp1s0 | grep link/ether | awk '{print $2}')
         name: enp*s0
       set-name: enp1s0
     enp2s0:
       dhcp4: false
       dhcp6: false
       match:
-        macaddress: fa:16:3e:4a:48:1c
+        macaddress: $(ip link show enp2s0 | grep link/ether | awk '{print $2}')
         name: enp*s0
       set-name: enp2s0
   version: 2
   vlans:
     enp1s0.200:
       addresses:
-      - 192.168.200.183/24
+      - 192.168.200.${NODEID}/24
       dhcp4: false
       dhcp6: false
-      gateway4: 192.168.200.1
       id: 200
       link: enp1s0
       nameservers:
@@ -29,22 +33,13 @@ network:
         - 192.168.1.10
         search:
         - cloud.local
-    enp1s0.802:
+    enp1s0.34:
       addresses:
-      - 192.168.24.183/24
+      - 192.168.34.${NODEID}/24
       dhcp4: false
       dhcp6: false
-      id: 802
+      gateway4: 192.168.34.180
+      id: 34
       link: enp1s0
-    enp1s0.803:
-      addresses:
-      - 192.168.25.183/24
-      dhcp4: false
-      dhcp6: false
-      id: 803
-      link: enp1s0
-  vrfs:
-    vrf1:
-      table: 10
-      interfaces:
-        - enp1s0.803
+EOF
+reboot

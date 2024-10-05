@@ -5,7 +5,14 @@ set -x
 export DEBIAN_FRONTEND=noninteractive
 
 
-apt -y update && apt -y install frr frr-pythontools
+
+curl –s https://deb.frrouting.org/frr/keys.gpg | sudo tee /usr/share/keyrings/frrouting.gpg > /dev/null
+FRRVER="frr-stable"
+echo deb '[signed-by=/usr/share/keyrings/frrouting.gpg]' https://deb.frrouting.org/frr \
+     $(lsb_release -s -c) $FRRVER | sudo tee -a /etc/apt/sources.list.d/frr.list
+
+# update and install FRR
+apt update && apt install frr frr-pythontools -y
 
 sed -i "s/^bgpd=no/bgpd=yes/" /etc/frr/daemons
 sed -i "s/^ospfd=no/ospfd=yes/" /etc/frr/daemons
@@ -38,7 +45,7 @@ modprobe mpls_iptunnel
 cat <<EOF>>/etc/sysctl.conf
 net.ipv4.ip_forward = 1
 net.mpls.conf.enp1s0.input = 1
-net.mpls.conf.enp1s0/800.input = 1
+net.mpls.conf.enp1s0/33.input = 1
 net.mpls.default_ttl = 255
 net.mpls.ip_ttl_propagate = 1
 net.mpls.platform_labels = 100000

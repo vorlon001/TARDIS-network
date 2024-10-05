@@ -1,0 +1,50 @@
+network:
+  ethernets:
+    enp1s0:
+      dhcp4: false
+      dhcp6: false
+      match:
+        macaddress: fa:16:3e:6f:eb:27
+        name: enp*s0
+      set-name: enp1s0
+    enp2s0:
+      dhcp4: false
+      dhcp6: false
+      match:
+        macaddress: fa:16:3e:4e:dd:4b
+        name: enp*s0
+      set-name: enp2s0
+  version: 2
+  vlans:
+    enp1s0.200:
+      addresses:
+      - 192.168.200.180/24
+      dhcp4: false
+      dhcp6: false
+      gateway4: 192.168.200.1
+      id: 200
+      link: enp1s0
+      nameservers:
+        addresses:
+        - 192.168.1.10
+        search:
+        - cloud.local
+    enp1s0.33:
+      addresses:
+      - 192.168.33.180/24
+      dhcp4: false
+      dhcp6: false
+      id: 33
+      link: enp1s0
+    enp1s0.34:
+      addresses:
+      - 192.168.34.180/24
+      dhcp4: false
+      dhcp6: false
+      id: 34
+      link: enp1s0
+  vrfs:
+    vrf1:
+      table: 10
+      interfaces:
+        - enp1s0.34
