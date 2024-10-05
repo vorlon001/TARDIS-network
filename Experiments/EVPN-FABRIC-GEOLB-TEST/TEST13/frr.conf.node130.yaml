@@ -1,0 +1,47 @@
+frr version 10.1.1
+frr defaults traditional
+hostname node130
+log syslog informational
+no ip forwarding
+no ipv6 forwarding
+service integrated-vtysh-config
+!
+ip prefix-list test seq 5 permit 3.3.3.3/32
+ip prefix-list NOT seq 5 permit 1.1.1.0/24
+ip prefix-list NOT seq 10 permit 2.2.2.0/24
+ip prefix-list NOT seq 15 permit 192.168.200.0/24
+!
+ip route 3.3.3.3/32 2.2.2.2
+ip route 5.5.5.5/32 blackhole
+!
+router bgp 65001
+ neighbor 1.1.1.140 remote-as 65000
+ neighbor 1.1.1.140 ebgp-multihop 100
+ neighbor 1.1.1.142 remote-as 65000
+ neighbor 1.1.1.142 ebgp-multihop 100
+ !
+ address-family ipv4 unicast
+  redistribute connected
+  redistribute static
+  neighbor 1.1.1.140 route-map IMPORT in
+  neighbor 1.1.1.140 route-map EXPORT out
+  neighbor 1.1.1.142 route-map IMPORT in
+  neighbor 1.1.1.142 route-map EXPORT out
+ exit-address-family
+exit
+!
+route-map IMPORT permit 65535
+exit
+!
+route-map EXPORT deny 10
+ match ip address prefix-list NOT
+exit
+!
+route-map EXPORT permit 1000
+ match ip address prefix-list test
+ set ip next-hop 2.2.2.2
+exit
+!
+route-map EXPORT permit 65535
+exit
+!

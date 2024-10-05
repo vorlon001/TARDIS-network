@@ -1,0 +1,73 @@
+frr version 10.1.1
+frr defaults traditional
+hostname node143
+log syslog informational
+no ipv6 forwarding
+service integrated-vtysh-config
+!
+ip prefix-list NOT seq 5 permit 1.1.1.0/24
+ip prefix-list NOT seq 10 permit 2.2.2.0/24
+!
+vrf BLUE
+exit-vrf
+!
+router bgp 65000
+ bgp router-id 192.168.200.143
+ bgp bestpath as-path multipath-relax
+ neighbor cluster peer-group
+ neighbor cluster remote-as 65000
+ neighbor fabric peer-group
+ neighbor fabric remote-as 65000
+ neighbor 192.168.203.141 peer-group fabric
+ !
+ address-family ipv4 unicast
+  neighbor cluster route-map IMPORT in
+  neighbor cluster route-map EXPORT out
+  neighbor fabric route-map IMPORT in
+  neighbor fabric route-map EXPORT out
+ exit-address-family
+ !
+ address-family ipv4 vpn
+  neighbor fabric activate
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor cluster activate
+  neighbor cluster route-map IMPORT in
+  neighbor cluster route-map EXPORT out
+  neighbor fabric activate
+  neighbor fabric route-map IMPORT in
+  neighbor fabric route-map EXPORT out
+  advertise-all-vni
+  advertise-default-gw
+ exit-address-family
+exit
+!
+router bgp 65000 vrf BLUE
+ !
+ address-family ipv4 unicast
+  redistribute connected
+  redistribute static
+  label vpn export auto
+  rd vpn export 192.168.100.142:100
+  rt vpn import 10:100
+  rt vpn export 1.1.1.254:4
+  export vpn
+  import vpn
+ exit-address-family
+exit
+!
+route-map IMPORT permit 1
+exit
+!
+route-map EXPORT permit 1
+exit
+!
+route-map EXPORT_TEST deny 1
+ match ip address prefix-list NOT
+exit
+!
+route-map EXPORT_TEST permit 100
+ set ip next-hop unchanged
+exit
+!

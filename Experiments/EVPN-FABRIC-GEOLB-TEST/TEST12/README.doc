@@ -1,0 +1,12 @@
+
+scp 192.168.200.150://etc/netplan/50-cloud-init.yaml netplan.node150.yaml
+scp 192.168.200.140://etc/netplan/50-cloud-init.yaml netplan.node140.yaml
+scp 192.168.200.141://etc/netplan/50-cloud-init.yaml netplan.node141.yaml
+scp 192.168.200.142://etc/netplan/50-cloud-init.yaml netplan.node142.yaml
+scp 192.168.200.143://etc/netplan/50-cloud-init.yaml netplan.node143.yaml
+
+scp 192.168.200.150://etc/frr/frr.conf frr.conf.node150.yaml
+scp 192.168.200.140://etc/frr/frr.conf frr.conf.node140.yaml
+scp 192.168.200.141://etc/frr/frr.conf frr.conf.node141.yaml
+scp 192.168.200.142://etc/frr/frr.conf frr.conf.node142.yaml
+scp 192.168.200.143://etc/frr/frr.conf frr.conf.node143.yaml
